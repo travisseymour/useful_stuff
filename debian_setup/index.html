@@ -102,6 +102,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#enable-flatpak-flathub">Enable Flatpak &amp; Flathub</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-the-npm-package">Install the NPM package</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#gnome-resources-system-monitor">GNOME Resources (System Monitor)</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#pdf-app-for-viewingcommentingformfillingsignatures">PDF App for Viewing/Commenting/FormFilling/Signatures</a>
@@ -330,7 +332,13 @@ sudo apt install -y gnome-boxes
 </code></pre>
 <blockquote>
 <p>Now log out and back in to set virtualization group membership</p>
+<p>Note that after you install a linux distro as a guest, you may need to do something like this:</p>
 </blockquote>
+<pre><code class="language-bash"># Inside the Linux VM
+sudo apt update -y
+sudo apt install spice-vdagent
+reboot
+</code></pre>
 <h2 id="audio-sanity-tools">Audio sanity tools</h2>
 <blockquote>
 <p>Useful if something goes wrong with your audio system</p>
@@ -518,6 +526,16 @@ sudo apt install -y libavcodec-extra
 <pre><code class="language-bash">sudo apt update
 sudo apt install -y flatpak
 flatpak remote-add --if-not-exists flathub [https://flathub.org/repo/flathub.flatpakrepo](https://flathub.org/repo/flathub.flatpakrepo)
+</code></pre>
+<h2 id="install-the-npm-package">Install the NPM package</h2>
+<blockquote>
+<p>Allows management of software built using Node.</p>
+</blockquote>
+<pre><code class="language-bash"># add NodeSource repo for Node.js LTS
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+sudo apt install -y nodejs
+node -v
+npm -v
 </code></pre>
 <h2 id="gnome-resources-system-monitor">GNOME Resources (System Monitor)</h2>
 <blockquote>
