@@ -1,0 +1,9 @@
+site_name: Stuff I Find Useful
+theme:
+  name: readthedocs
+
+nav:
+  - Home: index.md
+  - Marp Stuff: marp_stuff.md
+  - Linux Setup (Debian): debian_setup.md
+

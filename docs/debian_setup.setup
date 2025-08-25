@@ -1,0 +1,714 @@
+maintitle: Linux Setup for Ubuntu/Debian Distros
+
+---
+
+title: Update System
+note: Run this anytime you want to fully update your system from the terminal.
+step: go to terminal and do this
+bash:
+sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove
+
+---
+
+title: Update Drivers <mark>Linux Mint</mark>
+bash:
+sudo apt update && sudo apt full-upgrade -y
+# Driver Manager (pick NVIDIA/prop if needed)
+sudo mintdrivers
+sudo reboot
+
+---
+
+title: Install the Ubuntu Driver Collection
+bash:
+sudo apt install -y ubuntu-drivers-common
+sudo ubuntu-drivers install
+sudo reboot
+
+---
+
+title: Install Nvidia Drive
+note: ⚠️ Only do this if you have an NVidia GPU!
+bash:
+sudo apt install -y nvidia-driver
+
+---
+
+title: Install Multimedia Support
+bash:
+sudo apt install -y mint-meta-codecs
+bash:
+sudo apt install -y libavcodec-extra vlc
+
+---
+
+title: Improve Battery & Power Management (Approach 1)
+note: ⚠️ Only do this if you're setting up a laptop
+bash:
+sudo apt install -y tlp tlp-rdw
+sudo systemctl enable --now tlp
+
+---
+
+title: Improve Battery & Power Management (Approach 2 - <mark>many consider it to manage both battery life and cpu power, unlike tlp</mark>)
+note: ⚠️ Only do this if you're setting up a laptop
+item: Uninstall tlp, if it's installed
+bash:
+sudo apt autoremove tlp
+item: Install auto-cpufreq
+bash:
+git clone https://github.com/AdnanHodzic/auto-cpufreq.git
+cd auto-cpufreq && sudo ./auto-cpufreq-installer
+
+---
+
+title: Install GNOME Customizations
+note: ⚠️ Only if you are using **GNOME** and your distro is missing this stuff.
+step: Install `gnome-tweaks` and `gnome-shell-extension-manager`
+bash:
+sudo apt install -y gnome-tweaks gnome-shell-extension-manager
+step: Restore Dock Features (only required on some distros)
+item: [Dash To Dock](https://extensions.gnome.org/)
+item: [Tray Icons](https://extensions.gnome.org/extension/615/appindicator-support)
+---
+
+title: Install uv tool installer and Python manager
+note: Everyone needs this! It's how I manage Python and Various Apps
+step: Download & run installer
+bash:
+curl -LsSf https://astral.sh/uv/install.sh | sh
+step: Ensure uv is on PATH for this session
+bash:
+export PATH="$HOME/.local/bin:$PATH"
+
+---
+
+title: Preparation for Virtualization
+bash:
+sudo apt install -y qemu-kvm libvirt-daemon-system virt-manager
+sudo usermod -aG libvirt,kvm $USER
+sudo apt install -y gnome-boxes
+note: Now log out and back in to set virtualization group membership
+
+---
+
+title: Audio sanity tools
+note: Useful if something goes wrong with your audio system
+bash:
+sudo apt install -y pavucontrol
+
+---
+
+title: Install Virtualization Essentials
+bash:
+sudo apt install -y qemu-kvm libvirt-daemon-system virt-manager
+sudo usermod -aG libvirt $USER
+note: Now log out and back in to set virtualization group membership
+
+---
+
+title: Install Some Printer stuff
+item: Printing (CUPS) + driverless USB printing support
+bash:
+sudo apt install -y cups ipp-usb system-config-printer
+sudo systemctl enable --now cups ipp-usb
+# (optional) allow your user to manage printers
+sudo usermod -aG lpadmin "$USER"
+item: Scanning
+bash:
+sudo apt install -y simple-scan sane-airscan sane-utils
+
+---
+
+title: Install Microsoft fonts
+bash:
+sudo apt install -y ttf-mscorefonts-installer
+sudo fc-cache -f -v
+
+---
+
+title: Enable Firewall
+item: Turn it ON (Home profile is fine)
+bash:
+sudo apt install -y gufw
+gufw
+item: Allow SMB file sharing (adjust to your LAN as needed)
+bash:
+sudo ufw allow 445/tcp
+
+---
+
+title: CPU Microcode (Intel)
+note: ⚠️ **Only** install this if you have an <mark>Intel CPU!</mark>
+bash:
+# Will immediately reboot!
+sudo apt install -y intel-microcode
+sudo reboot
+
+---
+
+title: CPU Microcode (AMD)
+note: ⚠️ **Only** install this if you have an <mark>AMD CPU!</mark>
+bash:
+# Will immediately reboot!
+sudo apt install -y amd64-microcode
+sudo reboot
+
+---
+
+title: Enable TRIM
+item: First check if it is already running
+bash:
+systemctl status fstrim.timer
+item: If, the above step suggests TRIM is not enabled, do this:
+bash:
+sudo systemctl enable --now fstrim.timer
+
+---
+
+title: Install GStreamer
+item: Core
+bash:
+sudo apt update -y && sudo apt install -y gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav
+item: Nice to Haves
+bash:
+sudo apt install -y gstreamer1.0-plugins-good gstreamer1.0-tools gstreamer1.0-gl
+item: Optional GPU Acceleration for <mark>AMD GPU</mark>
+bash:
+sudo apt install -y mesa-va-drivers gstreamer1.0-vaapi vainfo
+item: Optional GPU Acceleration for <mark>INTEL/NVIDIA GPU</mark>
+note: On Linux Mint -- You already have what you need! Otherwise:
+bash:
+sudo apt update -y
+# Install/refresh the proprietary driver automatically
+sudo ubuntu-drivers autoinstall
+sudo reboot
+
+---
+
+title: Install Text-To-Speech Voices
+item: eSpeak NG via Speech Dispatcher (classic & tiny but works everywhere)
+bash:
+sudo apt update
+sudo apt install -y espeak-ng speech-dispatcher-espeak-ng
+spd-say "Hello from e-Speak N.G. via Speech Dispatcher"
+item: RHVoice (higher-quality, lightweight voices)
+bash:
+sudo apt install -y rhvoice rhvoice-english speech-dispatcher-rhvoice
+spd-say -o rhvoice -l en "Hello from R.H. Voice via Speech Dispatcher"
+
+---
+
+title: Install Rust
+item: Install rustup + stable toolchain
+bash:
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+source "$HOME/.cargo/env"
+item: Install some handy Rust components
+bash:
+rustup component add rustfmt clippy
+
+---
+
+title: Install Many Important System Tools
+note: Includes things like access to exfat and ntfs, compatability with 7zip, java sdk, linux headers, and others.
+item: Common Stuff
+bash:
+sudo apt install -y htop btop clang exfatprogs libu2f-udev samba-common-bin default-jdk curl wget unrar git unzip ntfs-3g p7zip-full
+item: Linux headers (then pick the right headers meta (Debian/LMDE vs Ubuntu/Mint))
+bash:
+if apt-cache show linux-headers-amd64 >/dev/null 2>&1; then
+  sudo apt install -y linux-headers-amd64
+elif apt-cache show linux-headers-generic >/dev/null 2>&1; then
+  sudo apt install -y linux-headers-generic
+fi
+item: Install fastfetch, but fallback to neofetch (older, arrested development) if fastfetch is not available.
+bash:
+sudo apt install -y fastfetch || sudo apt install -y neofetch
+
+---
+
+title: Install Essential Development Tools
+bash:
+sudo apt install -y build-essential pkg-config libssl-dev
+
+---
+
+title: Install Dropbox
+note: <mark>⚠️ Only download the one appropriate for your desktop file manager</mark>. That usually depends on which desktop type you use. Installing the correct file-manager integration will automatically pull in and install the Dropbox daemon on first run.
+item: Cinnamon (Linux Mint's Deafult Desktop)
+bash:
+sudo apt install -y nemo-dropbox
+item: Nautilus (On GNOME Desktop)
+bash:
+sudo apt install -y nautilus-dropbox
+item: Caja (On MATE Desktop)
+bash:
+sudo apt install -y caja-dropbox
+item: Thunar (On Xfce Desktop)
+bash:
+sudo apt install -y thunar-dropbox-plugin
+
+---
+
+title: Install ffmpeg
+note: Command-line toolkit for converting, recording, and streaming audio/video in virtually any format.
+bash:
+sudo apt install -y ffmpeg
+sudo apt install -y libavcodec-extra
+
+---
+
+title: Enable Flatpak & Flathub
+note: Ensures Flatpak is installed and the Flathub repo is enabled (Mint usually has this already).
+bash:
+sudo apt update
+sudo apt install -y flatpak
+flatpak remote-add --if-not-exists flathub [https://flathub.org/repo/flathub.flatpakrepo](https://flathub.org/repo/flathub.flatpakrepo)
+
+---
+
+title: Install the NPM package
+note: Allows management of software built using Node.
+bash:
+# add NodeSource repo for Node.js LTS
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+sudo apt install -y nodejs
+node -v
+npm -v
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+title: GNOME Resources (System Monitor)
+note: Modern GNOME system monitor for CPU, memory, disk, network, and GPU usage with basic app/process management.
+bash:
+sudo apt install -y gnome-usage
+
+---
+
+title: PDF App for Viewing/Commenting/FormFilling/Signatures
+note: If none of the FOSS apps are good enough, consider <b>PDF Studio</b>
+item: Install Okular PDF Reader
+bash:
+sudo apt install okular
+item: Install PDF Viewer (Free)
+bash:
+sh <(wget -qO - https://download.qoppa.com/pdfstudioviewer/PDFStudioViewer_linux64.sh)
+item: Install PDF Studio (**PAID**)
+bash:
+sh <(wget -qO - https://download.qoppa.com/pdfstudio/PDFStudio_linux64.sh)
+
+---
+
+title: PDF Arranger
+note: Lightweight tool to merge, split, rotate, crop, and reorder PDF pages.
+bash:
+sudo apt install -y pdfarranger
+
+---
+
+title: Stimulator
+note: Tool that keeps your system “awake” by temporarily preventing screen dimming and sleep.
+bash:
+flatpak install -y flathub io.github.sigmasd.stimulator
+
+---
+
+title: Pika Backup
+note: User data backup solution
+bash:
+flatpak install -y flathub org.gnome.World.PikaBackup
+
+---
+
+title: PicoCrypt
+note: Free, open-source disk-encryption tool. It encrypts data on the fly so files are readable only after you unlock them, and they appear as a normal mounted drive while in use.
+item: Download Debian Installer
+bash:
+flatpak install -y flathub io.github.picocrypt.Picocrypt
+
+---
+
+title: Private Internet Access (PIA) VPN Client
+bash:
+sh <(wget -qO - https://installers.privateinternetaccess.com/download/pia-linux-3.6.2-08398.run)
+
+---
+
+title: Mulvad VPN Client
+item: Download the Mullvad signing key
+bash:
+sudo curl -fsSLo /usr/share/keyrings/mullvad-keyring.asc https://repository.mullvad.net/deb/mullvad-keyring.asc
+item: Add the Mullvad repository server to apt
+bash:
+echo "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=$( dpkg --print-architecture )] https://repository.mullvad.net/deb/stable stable main" | sudo tee /etc/apt/sources.list.d/mullvad.list
+item: Install the package
+bash:
+sudo apt update
+sudo apt install mullvad-vpn
+
+---
+
+title: SpeechNote
+note: A lightweight note-taking app with built-in speech recognition (voice-to-text) **and** (text-to-speech).
+bash:
+flatpak install flathub net.mkiol.SpeechNote
+
+---
+
+title: Elisa Music Player
+note: KDE’s clean, modern music player and library manager for local audio collections.
+bash:
+sudo apt install elisa
+
+---
+
+title: Audacity
+note: Popular open-source audio recorder and multitrack editor.
+bash:
+sudo apt install -y audacity
+
+---
+
+title: Bitwarden
+note: Open-source password manager with end-to-end encryption.
+bash:
+flatpak install -y flathub com.bitwarden.desktop
+
+---
+
+title: BleachBit
+note: System cleaner that frees disk space and removes traces.
+bash:
+sudo apt install -y bleachbit
+
+---
+
+title: Boxy SVG
+note: User-friendly SVG vector editor optimized for UI/web graphics.
+bash:
+flatpak install -y flathub com.boxy\_svg.BoxySVG
+
+---
+
+title: Brasero Disc Burner
+note: Simple CD/DVD burning application for creating data and audio discs.
+bash:
+sudo apt install -y brasero
+
+---
+
+title: draw\.io / diagrams.net
+note: Full-featured diagramming tool for flowcharts, UML, mind maps, and more.
+bash:
+flatpak install -y flathub com.jgraph.drawio.desktop
+
+---
+
+title: EasyTAG
+note: Audio tag editor that quickly fixes and organizes music metadata.
+bash:
+sudo apt install -y easytag
+
+---
+
+title: Eyedropper
+note: Handy color picker for grabbing and managing colors from your screen.
+bash:
+flatpak install -y flathub com.github.finefindus.eyedropper
+
+---
+
+title: Filelight
+note: Sunburst-style disk usage viewer to find large folders and files fast.
+bash:
+sudo apt install -y filelight
+
+---
+
+title: Fluent Reader
+note: Modern, cross-platform RSS reader with a clean, distraction-free UI.
+bash:
+flatpak install -y flathub me.hyliu.fluentreader
+
+---
+
+title: Flatseal
+note: GUI to review and adjust Flatpak app permissions per application.
+bash:
+flatpak install -y flathub com.github.tchx84.Flatseal
+
+---
+
+title: GIMP
+note: Powerful raster graphics editor for photo retouching and image creation.
+bash:
+sudo apt install -y gimp
+
+---
+
+title: GPU Screen Recorder
+note: Low-overhead screen recorder leveraging GPU encoders for high performance.
+bash:
+flatpak install -y flathub com.dec05eba.gpu\_screen\_recorder
+
+---
+
+title: GPU Viewer
+note: Shows detailed OpenGL/Vulkan/Mesa/driver information for your system.
+bash:
+flatpak install -y flathub io.github.arunsivaramanneo.GPUViewer
+
+---
+
+title: Inkscape
+note: Professional-grade vector graphics editor ideal for logos and illustrations.
+bash:
+sudo apt install -y inkscape
+
+---
+
+title: JASP (Statistics)
+note: Easy-to-use statistical analysis suite with APA-style outputs and plots. 
+bash:
+flatpak install -y flathub org.jaspstats.JASP
+
+---
+
+title: Jamovi (Statistics)
+note: Free, open-source statistical spreadsheet and analysis suite (SPSS-like) with R-based add-ons; the official Linux build is distributed via Flathub.
+bash:
+flatpak install -y flathub org.jamovi.jamovi
+
+---
+
+title: K3b Disc Burner
+note: Feature-rich disc authoring tool for CDs, DVDs, and Blu-ray.
+bash:
+sudo apt install -y k3b
+
+---
+
+title: Kooha
+note: Minimal screen recording app with a simple, elegant GNOME-style UI.
+bash:
+flatpak install -y flathub io.github.seadve.Kooha
+
+---
+
+title: LocalSend
+note: Share files securely over your local network without the internet or cloud.
+bash:
+flatpak install -y flathub org.localsend.localsend\_app
+
+---
+
+title: OnionShare
+note: Share files, host websites, and chat securely over Tor.
+bash:
+sudo apt install -y onionshare
+
+---
+
+title: LosslessCut
+note: Ultra-fast lossless video/audio trimming, splitting, and merging.
+bash:
+flatpak install -y flathub no.mifi.losslesscut
+
+---
+
+title: MakeMKV
+note: Rips DVDs/Blu-rays to high-quality MKV files while preserving most metadata.
+item: Add the MakeMKV beta PPA and install
+bash:
+sudo add-apt-repository -y ppa\:heyarje/makemkv-beta
+sudo apt update
+sudo apt install -y makemkv-oss makemkv-bin
+
+---
+
+title: Meld (Diff/Merge)
+note: Visual diff and merge tool for comparing files and directories.
+bash:
+sudo apt install -y meld
+
+---
+
+title: Mullvad Browser
+note: Privacy-focused web browser with anti-tracking and fingerprinting defenses.
+item: Open the official download page (install the latest .deb via the site)
+bash:
+xdg-open [https://mullvad.net/download/browser](https://mullvad.net/download/browser)
+
+---
+
+title: MuseScore
+note: Full music notation editor and playback tool for composers and students.
+bash:
+flatpak install -y flathub org.musescore.MuseScore
+
+---
+
+title: MusicBrainz Picard
+note: Tag your music files using the MusicBrainz database with acoustic fingerprints.
+bash:
+sudo apt install -y picard
+
+---
+
+title: ONLYOFFICE Desktop Editors
+note: Full office suite for text documents, spreadsheets, and presentations.
+bash:
+sudo apt install -y onlyoffice-desktopeditors
+
+---
+
+title: Peruse
+note: Comic book reader supporting CBZ/CBR/PDF with a library view.
+bash:
+sudo apt install -y peruse
+
+---
+
+title: Spectacle
+note: Screenshot utility with region/window/full-screen capture and annotation.
+bash:
+sudo apt install -y spectacle
+
+---
+
+title: Switcheroo
+note: Batch convert and resize images through a simple, drag-and-drop interface.
+bash:
+flatpak install -y flathub io.gitlab.adhami3310.Converter
+
+---
+
+title: Transmission
+note: Lightweight, reliable BitTorrent client with a clean interface.
+bash:
+sudo apt install -y transmission-gtk
+
+---
+
+title: VLC
+note: Swiss-army-knife media player with wide codec support and streaming tools.
+bash:
+sudo apt install -y vlc
+
+---
+
+title: VSCodium
+note: Telemetry-free builds of VS Code from upstream open-source sources.
+item: Add VSCodium repo & install
+bash:
+wget -qO- [https://download.vscodium.com/debs/pgp/public.key](https://download.vscodium.com/debs/pgp/public.key) | gpg --dearmor | sudo tee /usr/share/keyrings/vscodium-archive-keyring.gpg > /dev/null
+echo "deb \[signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg] [https://download.vscodium.com/debs](https://download.vscodium.com/debs) vscodium main" | sudo tee /etc/apt/sources.list.d/vscodium.list
+sudo apt update
+sudo apt install -y codium
+
+---
+
+title: Zotero
+note: Reference manager for collecting, organizing, citing, and sharing research.
+bash:
+flatpak install -y flathub org.zotero.Zotero
+
+---
+
+title: JetBrains Toolbox
+note: Installer/manager for JetBrains IDEs that keeps them updated automatically.
+bash:
+wget -O jetbrains-toolbox.tar.gz "[https://data.services.jetbrains.com/products/download?platform=linux\&code=TBA](https://data.services.jetbrains.com/products/download?platform=linux&code=TBA)"
+tar -xzf jetbrains-toolbox.tar.gz
+cd jetbrains-toolbox-\* && ./jetbrains-toolbox
+
+---
+
+title: QuickGUI
+note: Simple GUI for creating and running virtual machines using Quickemu.
+item: Add PPA & install
+bash:
+sudo add-apt-repository -y ppa\:flexiondotorg/quickemu
+sudo apt update
+sudo apt install -y quickgui
+
+---
+
+title: Sublime Text
+note: Fast, extensible text editor with powerful search, multi-cursor, and plugins.
+item: Add Sublime repo & install
+bash:
+wget -qO- [https://download.sublimetext.com/sublimehq-pub.gpg](https://download.sublimetext.com/sublimehq-pub.gpg) | gpg --dearmor | sudo tee /usr/share/keyrings/sublimehq-archive.gpg > /dev/null
+echo "deb \[signed-by=/usr/share/keyrings/sublimehq-archive.gpg] [https://download.sublimetext.com/](https://download.sublimetext.com/) apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+sudo apt update
+sudo apt install -y sublime-text
+
+---
+
+title: Zoom
+note: Video conferencing client with screen sharing and breakout rooms.
+bash:
+flatpak install -y flathub us.zoom.Zoom
+
+---
+
+title: SimpleScreenRecorder
+note: Feature-rich screen recorder with live preview and fine-grained control.
+bash:
+sudo apt install -y simplescreenrecorder
+
+---
+
+title: GPT4All
+note: Desktop app for running and managing local LLMs on your machine.
+bash:
+flatpak install -y flathub io.gpt4all.gpt4all
+
+---
+
+title: KDiskMark
+note: Cross-platform disk benchmarking utility inspired by CrystalDiskMark.
+bash:
+sudo apt install -y kdiskmark
+
+---
+
+title: AppImage Pool
+note: Browse, download, and manage AppImages from a convenient catalog.
+bash:
+flatpak install -y flathub io.github.prateekmedia.appimagepool
+
+---
+
+title: OBS Studio
+note: Free, open-source live streaming and screen recording app with scenes/sources and hardware encoding (NVENC/VAAPI) when drivers are installed.
+bash:
+sudo apt install -y obs-studio
+item: (Optional, ⚠️ Ubuntu-based Mint Only) Use the official OBS PPA for newer versions
+bash:
+sudo add-apt-repository -y ppa:obsproject/obs-studio
+sudo apt update
+sudo apt install -y obs-studio
+item: (Optional) Enable Virtual Camera (so OBS appears as a webcam)
+bash:
+sudo apt install -y v4l2loopback-dkms
+sudo modprobe v4l2loopback devices=1 video_nr=10 card_label="OBS Virtual Camera" exclusive_caps=1
+
+---
+
