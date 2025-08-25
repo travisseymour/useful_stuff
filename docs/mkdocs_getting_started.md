@@ -15,3 +15,6 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
     docs/
         index.md  # The documentation homepage.
         ...       # Other markdown pages, images and other files.
+
+## Other
+* after `mkdocs ghdeploy` (currently using github actions) the site will live at `https://<username>.github.io/<repo>/`
