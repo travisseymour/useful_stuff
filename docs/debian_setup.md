@@ -111,6 +111,15 @@ sudo apt install -y gnome-boxes
 
 > Now log out and back in to set virtualization group membership
 
+> Note that after you install a linux distro as a guest, you may need to do something like this:
+
+```bash
+# Inside the Linux VM
+sudo apt update -y
+sudo apt install spice-vdagent
+reboot
+```
+
 ## Audio sanity tools
 
 > Useful if something goes wrong with your audio system
@@ -320,6 +329,18 @@ sudo apt install -y libavcodec-extra
 sudo apt update
 sudo apt install -y flatpak
 flatpak remote-add --if-not-exists flathub [https://flathub.org/repo/flathub.flatpakrepo](https://flathub.org/repo/flathub.flatpakrepo)
+```
+
+## Install the NPM package
+
+> Allows management of software built using Node.
+
+```bash
+# add NodeSource repo for Node.js LTS
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+sudo apt install -y nodejs
+node -v
+npm -v
 ```
 
 ## GNOME Resources (System Monitor)
