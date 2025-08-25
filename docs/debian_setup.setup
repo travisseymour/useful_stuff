@@ -89,6 +89,12 @@ sudo apt install -y qemu-kvm libvirt-daemon-system virt-manager
 sudo usermod -aG libvirt,kvm $USER
 sudo apt install -y gnome-boxes
 note: Now log out and back in to set virtualization group membership
+note: Note that after you install a linux distro as a guest, you may need to do something like this:
+bash:
+# Inside the Linux VM
+sudo apt update -y
+sudo apt install spice-vdagent
+reboot
 
 ---
 
