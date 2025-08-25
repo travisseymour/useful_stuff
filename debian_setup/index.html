@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Linux Setup (Debian) - Stuff I Find Useful</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Linux Setup (Debian)";
+        var mkdocs_page_input_path = "debian_setup.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Stuff I Find Useful
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../marp_stuff/">Marp Stuff</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Linux Setup (Debian)</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#update-system">Update System</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#update-drivers-linux-mint">Update Drivers Linux Mint</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-the-ubuntu-driver-collection">Install the Ubuntu Driver Collection</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-nvidia-drive">Install Nvidia Drive</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-multimedia-support">Install Multimedia Support</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#improve-battery-power-management-approach-1">Improve Battery &amp; Power Management (Approach 1)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#improve-battery-power-management-approach-2-many-consider-it-to-manage-both-battery-life-and-cpu-power-unlike-tlp">Improve Battery &amp; Power Management (Approach 2 - many consider it to manage both battery life and cpu power, unlike tlp)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-gnome-customizations">Install GNOME Customizations</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-uv-tool-installer-and-python-manager">Install uv tool installer and Python manager</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#preparation-for-virtualization">Preparation for Virtualization</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#audio-sanity-tools">Audio sanity tools</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-virtualization-essentials">Install Virtualization Essentials</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-some-printer-stuff">Install Some Printer stuff</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-microsoft-fonts">Install Microsoft fonts</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#enable-firewall">Enable Firewall</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cpu-microcode-intel">CPU Microcode (Intel)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cpu-microcode-amd">CPU Microcode (AMD)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#enable-trim">Enable TRIM</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-gstreamer">Install GStreamer</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-text-to-speech-voices">Install Text-To-Speech Voices</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-rust">Install Rust</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-many-important-system-tools">Install Many Important System Tools</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-essential-development-tools">Install Essential Development Tools</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-dropbox">Install Dropbox</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-ffmpeg">Install ffmpeg</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#enable-flatpak-flathub">Enable Flatpak &amp; Flathub</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#gnome-resources-system-monitor">GNOME Resources (System Monitor)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pdf-app-for-viewingcommentingformfillingsignatures">PDF App for Viewing/Commenting/FormFilling/Signatures</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pdf-arranger">PDF Arranger</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#stimulator">Stimulator</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pika-backup">Pika Backup</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picocrypt">PicoCrypt</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#private-internet-access-pia-vpn-client">Private Internet Access (PIA) VPN Client</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mulvad-vpn-client">Mulvad VPN Client</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#speechnote">SpeechNote</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#elisa-music-player">Elisa Music Player</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#audacity">Audacity</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bitwarden">Bitwarden</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bleachbit">BleachBit</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#boxy-svg">Boxy SVG</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#brasero-disc-burner">Brasero Disc Burner</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#drawio-diagramsnet">draw.io / diagrams.net</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#easytag">EasyTAG</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#eyedropper">Eyedropper</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#filelight">Filelight</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#fluent-reader">Fluent Reader</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#flatseal">Flatseal</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#gimp">GIMP</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#gpu-screen-recorder">GPU Screen Recorder</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#gpu-viewer">GPU Viewer</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#inkscape">Inkscape</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#jasp-statistics">JASP (Statistics)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#jamovi-statistics">Jamovi (Statistics)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#k3b-disc-burner">K3b Disc Burner</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#kooha">Kooha</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#localsend">LocalSend</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#onionshare">OnionShare</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#losslesscut">LosslessCut</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#makemkv">MakeMKV</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#meld-diffmerge">Meld (Diff/Merge)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mullvad-browser">Mullvad Browser</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#musescore">MuseScore</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#musicbrainz-picard">MusicBrainz Picard</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#onlyoffice-desktop-editors">ONLYOFFICE Desktop Editors</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#peruse">Peruse</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#spectacle">Spectacle</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#switcheroo">Switcheroo</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#transmission">Transmission</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#vlc">VLC</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#vscodium">VSCodium</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#zotero">Zotero</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#jetbrains-toolbox">JetBrains Toolbox</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#quickgui">QuickGUI</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#sublime-text">Sublime Text</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#zoom">Zoom</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#simplescreenrecorder">SimpleScreenRecorder</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#gpt4all">GPT4All</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#kdiskmark">KDiskMark</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#appimage-pool">AppImage Pool</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#obs-studio">OBS Studio</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Stuff I Find Useful</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Linux Setup (Debian)</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="linux-setup-for-ubuntudebian-distros">Linux Setup for Ubuntu/Debian Distros</h1>
+<hr />
+<h2 id="update-system">Update System</h2>
+<blockquote>
+<p>Run this anytime you want to fully update your system from the terminal.</p>
+</blockquote>
+<ol>
+<li>go to terminal and do this</li>
+</ol>
+<pre><code class="language-bash">sudo apt update -y &amp;&amp; sudo apt upgrade -y &amp;&amp; sudo apt autoremove
+</code></pre>
+<h2 id="update-drivers-linux-mint">Update Drivers Linux Mint</h2>
+<pre><code class="language-bash">sudo apt update &amp;&amp; sudo apt full-upgrade -y
+# Driver Manager (pick NVIDIA/prop if needed)
+sudo mintdrivers
+sudo reboot
+</code></pre>
+<h2 id="install-the-ubuntu-driver-collection">Install the Ubuntu Driver Collection</h2>
+<pre><code class="language-bash">sudo apt install -y ubuntu-drivers-common
+sudo ubuntu-drivers install
+sudo reboot
+</code></pre>
+<h2 id="install-nvidia-drive">Install Nvidia Drive</h2>
+<blockquote>
+<p>⚠️ Only do this if you have an NVidia GPU!</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install -y nvidia-driver
+</code></pre>
+<h2 id="install-multimedia-support">Install Multimedia Support</h2>
+<pre><code class="language-bash">sudo apt install -y mint-meta-codecs
+</code></pre>
+<pre><code class="language-bash">sudo apt install -y libavcodec-extra vlc
+</code></pre>
+<h2 id="improve-battery-power-management-approach-1">Improve Battery &amp; Power Management (Approach 1)</h2>
+<blockquote>
+<p>⚠️ Only do this if you're setting up a laptop</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install -y tlp tlp-rdw
+sudo systemctl enable --now tlp
+</code></pre>
+<h2 id="improve-battery-power-management-approach-2-many-consider-it-to-manage-both-battery-life-and-cpu-power-unlike-tlp">Improve Battery &amp; Power Management (Approach 2 - many consider it to manage both battery life and cpu power, unlike tlp)</h2>
+<blockquote>
+<p>⚠️ Only do this if you're setting up a laptop</p>
+</blockquote>
+<ul>
+<li>Uninstall tlp, if it's installed</li>
+</ul>
+<pre><code class="language-bash">sudo apt autoremove tlp
+</code></pre>
+<ul>
+<li>Install auto-cpufreq</li>
+</ul>
+<pre><code class="language-bash">git clone https://github.com/AdnanHodzic/auto-cpufreq.git
+cd auto-cpufreq &amp;&amp; sudo ./auto-cpufreq-installer
+</code></pre>
+<h2 id="install-gnome-customizations">Install GNOME Customizations</h2>
+<blockquote>
+<p>⚠️ Only if you are using <strong>GNOME</strong> and your distro is missing this stuff.</p>
+</blockquote>
+<ol>
+<li>Install <code>gnome-tweaks</code> and <code>gnome-shell-extension-manager</code></li>
+</ol>
+<pre><code class="language-bash">sudo apt install -y gnome-tweaks gnome-shell-extension-manager
+</code></pre>
+<ol>
+<li>
+<p>Restore Dock Features (only required on some distros)</p>
+</li>
+<li>
+<p><a href="https://extensions.gnome.org/">Dash To Dock</a></p>
+</li>
+<li><a href="https://extensions.gnome.org/extension/615/appindicator-support">Tray Icons</a></li>
+</ol>
+<h2 id="install-uv-tool-installer-and-python-manager">Install uv tool installer and Python manager</h2>
+<blockquote>
+<p>Everyone needs this! It's how I manage Python and Various Apps</p>
+</blockquote>
+<ol>
+<li>Download &amp; run installer</li>
+</ol>
+<pre><code class="language-bash">curl -LsSf https://astral.sh/uv/install.sh | sh
+</code></pre>
+<ol>
+<li>Ensure uv is on PATH for this session</li>
+</ol>
+<pre><code class="language-bash">export PATH=&quot;$HOME/.local/bin:$PATH&quot;
+</code></pre>
+<h2 id="preparation-for-virtualization">Preparation for Virtualization</h2>
+<pre><code class="language-bash">sudo apt install -y qemu-kvm libvirt-daemon-system virt-manager
+sudo usermod -aG libvirt,kvm $USER
+sudo apt install -y gnome-boxes
+</code></pre>
+<blockquote>
+<p>Now log out and back in to set virtualization group membership</p>
+</blockquote>
+<h2 id="audio-sanity-tools">Audio sanity tools</h2>
+<blockquote>
+<p>Useful if something goes wrong with your audio system</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install -y pavucontrol
+</code></pre>
+<h2 id="install-virtualization-essentials">Install Virtualization Essentials</h2>
+<pre><code class="language-bash">sudo apt install -y qemu-kvm libvirt-daemon-system virt-manager
+sudo usermod -aG libvirt $USER
+</code></pre>
+<blockquote>
+<p>Now log out and back in to set virtualization group membership</p>
+</blockquote>
+<h2 id="install-some-printer-stuff">Install Some Printer stuff</h2>
+<ul>
+<li>Printing (CUPS) + driverless USB printing support</li>
+</ul>
+<pre><code class="language-bash">sudo apt install -y cups ipp-usb system-config-printer
+sudo systemctl enable --now cups ipp-usb
+# (optional) allow your user to manage printers
+sudo usermod -aG lpadmin &quot;$USER&quot;
+</code></pre>
+<ul>
+<li>Scanning</li>
+</ul>
+<pre><code class="language-bash">sudo apt install -y simple-scan sane-airscan sane-utils
+</code></pre>
+<h2 id="install-microsoft-fonts">Install Microsoft fonts</h2>
+<pre><code class="language-bash">sudo apt install -y ttf-mscorefonts-installer
+sudo fc-cache -f -v
+</code></pre>
+<h2 id="enable-firewall">Enable Firewall</h2>
+<ul>
+<li>Turn it ON (Home profile is fine)</li>
+</ul>
+<pre><code class="language-bash">sudo apt install -y gufw
+gufw
+</code></pre>
+<ul>
+<li>Allow SMB file sharing (adjust to your LAN as needed)</li>
+</ul>
+<pre><code class="language-bash">sudo ufw allow 445/tcp
+</code></pre>
+<h2 id="cpu-microcode-intel">CPU Microcode (Intel)</h2>
+<blockquote>
+<p>⚠️ <strong>Only</strong> install this if you have an <mark>Intel CPU!</mark></p>
+</blockquote>
+<pre><code class="language-bash"># Will immediately reboot!
+sudo apt install -y intel-microcode
+sudo reboot
+</code></pre>
+<h2 id="cpu-microcode-amd">CPU Microcode (AMD)</h2>
+<blockquote>
+<p>⚠️ <strong>Only</strong> install this if you have an <mark>AMD CPU!</mark></p>
+</blockquote>
+<pre><code class="language-bash"># Will immediately reboot!
+sudo apt install -y amd64-microcode
+sudo reboot
+</code></pre>
+<h2 id="enable-trim">Enable TRIM</h2>
+<ul>
+<li>First check if it is already running</li>
+</ul>
+<pre><code class="language-bash">systemctl status fstrim.timer
+</code></pre>
+<ul>
+<li>If, the above step suggests TRIM is not enabled, do this:</li>
+</ul>
+<pre><code class="language-bash">sudo systemctl enable --now fstrim.timer
+</code></pre>
+<h2 id="install-gstreamer">Install GStreamer</h2>
+<ul>
+<li>Core</li>
+</ul>
+<pre><code class="language-bash">sudo apt update -y &amp;&amp; sudo apt install -y gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav
+</code></pre>
+<ul>
+<li>Nice to Haves</li>
+</ul>
+<pre><code class="language-bash">sudo apt install -y gstreamer1.0-plugins-good gstreamer1.0-tools gstreamer1.0-gl
+</code></pre>
+<ul>
+<li>Optional GPU Acceleration for <mark>AMD GPU</mark></li>
+</ul>
+<pre><code class="language-bash">sudo apt install -y mesa-va-drivers gstreamer1.0-vaapi vainfo
+</code></pre>
+<ul>
+<li>Optional GPU Acceleration for <mark>INTEL/NVIDIA GPU</mark><blockquote>
+<p>On Linux Mint -- You already have what you need! Otherwise:</p>
+</blockquote>
+</li>
+</ul>
+<pre><code class="language-bash">sudo apt update -y
+# Install/refresh the proprietary driver automatically
+sudo ubuntu-drivers autoinstall
+sudo reboot
+</code></pre>
+<h2 id="install-text-to-speech-voices">Install Text-To-Speech Voices</h2>
+<ul>
+<li>eSpeak NG via Speech Dispatcher (classic &amp; tiny but works everywhere)</li>
+</ul>
+<pre><code class="language-bash">sudo apt update
+sudo apt install -y espeak-ng speech-dispatcher-espeak-ng
+spd-say &quot;Hello from e-Speak N.G. via Speech Dispatcher&quot;
+</code></pre>
+<ul>
+<li>RHVoice (higher-quality, lightweight voices)</li>
+</ul>
+<pre><code class="language-bash">sudo apt install -y rhvoice rhvoice-english speech-dispatcher-rhvoice
+spd-say -o rhvoice -l en &quot;Hello from R.H. Voice via Speech Dispatcher&quot;
+</code></pre>
+<h2 id="install-rust">Install Rust</h2>
+<ul>
+<li>Install rustup + stable toolchain</li>
+</ul>
+<pre><code class="language-bash">curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+source &quot;$HOME/.cargo/env&quot;
+</code></pre>
+<ul>
+<li>Install some handy Rust components</li>
+</ul>
+<pre><code class="language-bash">rustup component add rustfmt clippy
+</code></pre>
+<h2 id="install-many-important-system-tools">Install Many Important System Tools</h2>
+<blockquote>
+<p>Includes things like access to exfat and ntfs, compatability with 7zip, java sdk, linux headers, and others.</p>
+</blockquote>
+<ul>
+<li>Common Stuff</li>
+</ul>
+<pre><code class="language-bash">sudo apt install -y htop btop clang exfatprogs libu2f-udev samba-common-bin default-jdk curl wget unrar git unzip ntfs-3g p7zip-full
+</code></pre>
+<ul>
+<li>Linux headers (then pick the right headers meta (Debian/LMDE vs Ubuntu/Mint))</li>
+</ul>
+<pre><code class="language-bash">if apt-cache show linux-headers-amd64 &gt;/dev/null 2&gt;&amp;1; then
+  sudo apt install -y linux-headers-amd64
+elif apt-cache show linux-headers-generic &gt;/dev/null 2&gt;&amp;1; then
+  sudo apt install -y linux-headers-generic
+fi
+</code></pre>
+<ul>
+<li>Install fastfetch, but fallback to neofetch (older, arrested development) if fastfetch is not available.</li>
+</ul>
+<pre><code class="language-bash">sudo apt install -y fastfetch || sudo apt install -y neofetch
+</code></pre>
+<h2 id="install-essential-development-tools">Install Essential Development Tools</h2>
+<pre><code class="language-bash">sudo apt install -y build-essential pkg-config libssl-dev
+</code></pre>
+<h2 id="install-dropbox">Install Dropbox</h2>
+<blockquote>
+<p><mark>⚠️ Only download the one appropriate for your desktop file manager</mark>. That usually depends on which desktop type you use. Installing the correct file-manager integration will automatically pull in and install the Dropbox daemon on first run.</p>
+</blockquote>
+<ul>
+<li>Cinnamon (Linux Mint's Deafult Desktop)</li>
+</ul>
+<pre><code class="language-bash">sudo apt install -y nemo-dropbox
+</code></pre>
+<ul>
+<li>Nautilus (On GNOME Desktop)</li>
+</ul>
+<pre><code class="language-bash">sudo apt install -y nautilus-dropbox
+</code></pre>
+<ul>
+<li>Caja (On MATE Desktop)</li>
+</ul>
+<pre><code class="language-bash">sudo apt install -y caja-dropbox
+</code></pre>
+<ul>
+<li>Thunar (On Xfce Desktop)</li>
+</ul>
+<pre><code class="language-bash">sudo apt install -y thunar-dropbox-plugin
+</code></pre>
+<h2 id="install-ffmpeg">Install ffmpeg</h2>
+<blockquote>
+<p>Command-line toolkit for converting, recording, and streaming audio/video in virtually any format.</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install -y ffmpeg
+sudo apt install -y libavcodec-extra
+</code></pre>
+<h2 id="enable-flatpak-flathub">Enable Flatpak &amp; Flathub</h2>
+<blockquote>
+<p>Ensures Flatpak is installed and the Flathub repo is enabled (Mint usually has this already).</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt update
+sudo apt install -y flatpak
+flatpak remote-add --if-not-exists flathub [https://flathub.org/repo/flathub.flatpakrepo](https://flathub.org/repo/flathub.flatpakrepo)
+</code></pre>
+<h2 id="gnome-resources-system-monitor">GNOME Resources (System Monitor)</h2>
+<blockquote>
+<p>Modern GNOME system monitor for CPU, memory, disk, network, and GPU usage with basic app/process management.</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install -y gnome-usage
+</code></pre>
+<h2 id="pdf-app-for-viewingcommentingformfillingsignatures">PDF App for Viewing/Commenting/FormFilling/Signatures</h2>
+<blockquote>
+<p>If none of the FOSS apps are good enough, consider <b>PDF Studio</b></p>
+</blockquote>
+<ul>
+<li>Install Okular PDF Reader</li>
+</ul>
+<pre><code class="language-bash">sudo apt install okular
+</code></pre>
+<ul>
+<li>Install PDF Viewer (Free)</li>
+</ul>
+<pre><code class="language-bash">sh &lt;(wget -qO - https://download.qoppa.com/pdfstudioviewer/PDFStudioViewer_linux64.sh)
+</code></pre>
+<ul>
+<li>Install PDF Studio (<strong>PAID</strong>)</li>
+</ul>
+<pre><code class="language-bash">sh &lt;(wget -qO - https://download.qoppa.com/pdfstudio/PDFStudio_linux64.sh)
+</code></pre>
+<h2 id="pdf-arranger">PDF Arranger</h2>
+<blockquote>
+<p>Lightweight tool to merge, split, rotate, crop, and reorder PDF pages.</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install -y pdfarranger
+</code></pre>
+<h2 id="stimulator">Stimulator</h2>
+<blockquote>
+<p>Tool that keeps your system “awake” by temporarily preventing screen dimming and sleep.</p>
+</blockquote>
+<pre><code class="language-bash">flatpak install -y flathub io.github.sigmasd.stimulator
+</code></pre>
+<h2 id="pika-backup">Pika Backup</h2>
+<blockquote>
+<p>User data backup solution</p>
+</blockquote>
+<pre><code class="language-bash">flatpak install -y flathub org.gnome.World.PikaBackup
+</code></pre>
+<h2 id="picocrypt">PicoCrypt</h2>
+<blockquote>
+<p>Free, open-source disk-encryption tool. It encrypts data on the fly so files are readable only after you unlock them, and they appear as a normal mounted drive while in use.</p>
+</blockquote>
+<ul>
+<li>Download Debian Installer</li>
+</ul>
+<pre><code class="language-bash">flatpak install -y flathub io.github.picocrypt.Picocrypt
+</code></pre>
+<h2 id="private-internet-access-pia-vpn-client">Private Internet Access (PIA) VPN Client</h2>
+<pre><code class="language-bash">sh &lt;(wget -qO - https://installers.privateinternetaccess.com/download/pia-linux-3.6.2-08398.run)
+</code></pre>
+<h2 id="mulvad-vpn-client">Mulvad VPN Client</h2>
+<ul>
+<li>Download the Mullvad signing key</li>
+</ul>
+<pre><code class="language-bash">sudo curl -fsSLo /usr/share/keyrings/mullvad-keyring.asc https://repository.mullvad.net/deb/mullvad-keyring.asc
+</code></pre>
+<ul>
+<li>Add the Mullvad repository server to apt</li>
+</ul>
+<pre><code class="language-bash">echo &quot;deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=$( dpkg --print-architecture )] https://repository.mullvad.net/deb/stable stable main&quot; | sudo tee /etc/apt/sources.list.d/mullvad.list
+</code></pre>
+<ul>
+<li>Install the package</li>
+</ul>
+<pre><code class="language-bash">sudo apt update
+sudo apt install mullvad-vpn
+</code></pre>
+<h2 id="speechnote">SpeechNote</h2>
+<blockquote>
+<p>A lightweight note-taking app with built-in speech recognition (voice-to-text) <strong>and</strong> (text-to-speech).</p>
+</blockquote>
+<pre><code class="language-bash">flatpak install flathub net.mkiol.SpeechNote
+</code></pre>
+<h2 id="elisa-music-player">Elisa Music Player</h2>
+<blockquote>
+<p>KDE’s clean, modern music player and library manager for local audio collections.</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install elisa
+</code></pre>
+<h2 id="audacity">Audacity</h2>
+<blockquote>
+<p>Popular open-source audio recorder and multitrack editor.</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install -y audacity
+</code></pre>
+<h2 id="bitwarden">Bitwarden</h2>
+<blockquote>
+<p>Open-source password manager with end-to-end encryption.</p>
+</blockquote>
+<pre><code class="language-bash">flatpak install -y flathub com.bitwarden.desktop
+</code></pre>
+<h2 id="bleachbit">BleachBit</h2>
+<blockquote>
+<p>System cleaner that frees disk space and removes traces.</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install -y bleachbit
+</code></pre>
+<h2 id="boxy-svg">Boxy SVG</h2>
+<blockquote>
+<p>User-friendly SVG vector editor optimized for UI/web graphics.</p>
+</blockquote>
+<pre><code class="language-bash">flatpak install -y flathub com.boxy\_svg.BoxySVG
+</code></pre>
+<h2 id="brasero-disc-burner">Brasero Disc Burner</h2>
+<blockquote>
+<p>Simple CD/DVD burning application for creating data and audio discs.</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install -y brasero
+</code></pre>
+<h2 id="drawio-diagramsnet">draw.io / diagrams.net</h2>
+<blockquote>
+<p>Full-featured diagramming tool for flowcharts, UML, mind maps, and more.</p>
+</blockquote>
+<pre><code class="language-bash">flatpak install -y flathub com.jgraph.drawio.desktop
+</code></pre>
+<h2 id="easytag">EasyTAG</h2>
+<blockquote>
+<p>Audio tag editor that quickly fixes and organizes music metadata.</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install -y easytag
+</code></pre>
+<h2 id="eyedropper">Eyedropper</h2>
+<blockquote>
+<p>Handy color picker for grabbing and managing colors from your screen.</p>
+</blockquote>
+<pre><code class="language-bash">flatpak install -y flathub com.github.finefindus.eyedropper
+</code></pre>
+<h2 id="filelight">Filelight</h2>
+<blockquote>
+<p>Sunburst-style disk usage viewer to find large folders and files fast.</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install -y filelight
+</code></pre>
+<h2 id="fluent-reader">Fluent Reader</h2>
+<blockquote>
+<p>Modern, cross-platform RSS reader with a clean, distraction-free UI.</p>
+</blockquote>
+<pre><code class="language-bash">flatpak install -y flathub me.hyliu.fluentreader
+</code></pre>
+<h2 id="flatseal">Flatseal</h2>
+<blockquote>
+<p>GUI to review and adjust Flatpak app permissions per application.</p>
+</blockquote>
+<pre><code class="language-bash">flatpak install -y flathub com.github.tchx84.Flatseal
+</code></pre>
+<h2 id="gimp">GIMP</h2>
+<blockquote>
+<p>Powerful raster graphics editor for photo retouching and image creation.</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install -y gimp
+</code></pre>
+<h2 id="gpu-screen-recorder">GPU Screen Recorder</h2>
+<blockquote>
+<p>Low-overhead screen recorder leveraging GPU encoders for high performance.</p>
+</blockquote>
+<pre><code class="language-bash">flatpak install -y flathub com.dec05eba.gpu\_screen\_recorder
+</code></pre>
+<h2 id="gpu-viewer">GPU Viewer</h2>
+<blockquote>
+<p>Shows detailed OpenGL/Vulkan/Mesa/driver information for your system.</p>
+</blockquote>
+<pre><code class="language-bash">flatpak install -y flathub io.github.arunsivaramanneo.GPUViewer
+</code></pre>
+<h2 id="inkscape">Inkscape</h2>
+<blockquote>
+<p>Professional-grade vector graphics editor ideal for logos and illustrations.</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install -y inkscape
+</code></pre>
+<h2 id="jasp-statistics">JASP (Statistics)</h2>
+<blockquote>
+<p>Easy-to-use statistical analysis suite with APA-style outputs and plots.</p>
+</blockquote>
+<pre><code class="language-bash">flatpak install -y flathub org.jaspstats.JASP
+</code></pre>
+<h2 id="jamovi-statistics">Jamovi (Statistics)</h2>
+<blockquote>
+<p>Free, open-source statistical spreadsheet and analysis suite (SPSS-like) with R-based add-ons; the official Linux build is distributed via Flathub.</p>
+</blockquote>
+<pre><code class="language-bash">flatpak install -y flathub org.jamovi.jamovi
+</code></pre>
+<h2 id="k3b-disc-burner">K3b Disc Burner</h2>
+<blockquote>
+<p>Feature-rich disc authoring tool for CDs, DVDs, and Blu-ray.</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install -y k3b
+</code></pre>
+<h2 id="kooha">Kooha</h2>
+<blockquote>
+<p>Minimal screen recording app with a simple, elegant GNOME-style UI.</p>
+</blockquote>
+<pre><code class="language-bash">flatpak install -y flathub io.github.seadve.Kooha
+</code></pre>
+<h2 id="localsend">LocalSend</h2>
+<blockquote>
+<p>Share files securely over your local network without the internet or cloud.</p>
+</blockquote>
+<pre><code class="language-bash">flatpak install -y flathub org.localsend.localsend\_app
+</code></pre>
+<h2 id="onionshare">OnionShare</h2>
+<blockquote>
+<p>Share files, host websites, and chat securely over Tor.</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install -y onionshare
+</code></pre>
+<h2 id="losslesscut">LosslessCut</h2>
+<blockquote>
+<p>Ultra-fast lossless video/audio trimming, splitting, and merging.</p>
+</blockquote>
+<pre><code class="language-bash">flatpak install -y flathub no.mifi.losslesscut
+</code></pre>
+<h2 id="makemkv">MakeMKV</h2>
+<blockquote>
+<p>Rips DVDs/Blu-rays to high-quality MKV files while preserving most metadata.</p>
+</blockquote>
+<ul>
+<li>Add the MakeMKV beta PPA and install</li>
+</ul>
+<pre><code class="language-bash">sudo add-apt-repository -y ppa\:heyarje/makemkv-beta
+sudo apt update
+sudo apt install -y makemkv-oss makemkv-bin
+</code></pre>
+<h2 id="meld-diffmerge">Meld (Diff/Merge)</h2>
+<blockquote>
+<p>Visual diff and merge tool for comparing files and directories.</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install -y meld
+</code></pre>
+<h2 id="mullvad-browser">Mullvad Browser</h2>
+<blockquote>
+<p>Privacy-focused web browser with anti-tracking and fingerprinting defenses.</p>
+</blockquote>
+<ul>
+<li>Open the official download page (install the latest .deb via the site)</li>
+</ul>
+<pre><code class="language-bash">xdg-open [https://mullvad.net/download/browser](https://mullvad.net/download/browser)
+</code></pre>
+<h2 id="musescore">MuseScore</h2>
+<blockquote>
+<p>Full music notation editor and playback tool for composers and students.</p>
+</blockquote>
+<pre><code class="language-bash">flatpak install -y flathub org.musescore.MuseScore
+</code></pre>
+<h2 id="musicbrainz-picard">MusicBrainz Picard</h2>
+<blockquote>
+<p>Tag your music files using the MusicBrainz database with acoustic fingerprints.</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install -y picard
+</code></pre>
+<h2 id="onlyoffice-desktop-editors">ONLYOFFICE Desktop Editors</h2>
+<blockquote>
+<p>Full office suite for text documents, spreadsheets, and presentations.</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install -y onlyoffice-desktopeditors
+</code></pre>
+<h2 id="peruse">Peruse</h2>
+<blockquote>
+<p>Comic book reader supporting CBZ/CBR/PDF with a library view.</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install -y peruse
+</code></pre>
+<h2 id="spectacle">Spectacle</h2>
+<blockquote>
+<p>Screenshot utility with region/window/full-screen capture and annotation.</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install -y spectacle
+</code></pre>
+<h2 id="switcheroo">Switcheroo</h2>
+<blockquote>
+<p>Batch convert and resize images through a simple, drag-and-drop interface.</p>
+</blockquote>
+<pre><code class="language-bash">flatpak install -y flathub io.gitlab.adhami3310.Converter
+</code></pre>
+<h2 id="transmission">Transmission</h2>
+<blockquote>
+<p>Lightweight, reliable BitTorrent client with a clean interface.</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install -y transmission-gtk
+</code></pre>
+<h2 id="vlc">VLC</h2>
+<blockquote>
+<p>Swiss-army-knife media player with wide codec support and streaming tools.</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install -y vlc
+</code></pre>
+<h2 id="vscodium">VSCodium</h2>
+<blockquote>
+<p>Telemetry-free builds of VS Code from upstream open-source sources.</p>
+</blockquote>
+<ul>
+<li>Add VSCodium repo &amp; install</li>
+</ul>
+<pre><code class="language-bash">wget -qO- [https://download.vscodium.com/debs/pgp/public.key](https://download.vscodium.com/debs/pgp/public.key) | gpg --dearmor | sudo tee /usr/share/keyrings/vscodium-archive-keyring.gpg &gt; /dev/null
+echo &quot;deb \[signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg] [https://download.vscodium.com/debs](https://download.vscodium.com/debs) vscodium main&quot; | sudo tee /etc/apt/sources.list.d/vscodium.list
+sudo apt update
+sudo apt install -y codium
+</code></pre>
+<h2 id="zotero">Zotero</h2>
+<blockquote>
+<p>Reference manager for collecting, organizing, citing, and sharing research.</p>
+</blockquote>
+<pre><code class="language-bash">flatpak install -y flathub org.zotero.Zotero
+</code></pre>
+<h2 id="jetbrains-toolbox">JetBrains Toolbox</h2>
+<blockquote>
+<p>Installer/manager for JetBrains IDEs that keeps them updated automatically.</p>
+</blockquote>
+<pre><code class="language-bash">wget -O jetbrains-toolbox.tar.gz &quot;[https://data.services.jetbrains.com/products/download?platform=linux\&amp;code=TBA](https://data.services.jetbrains.com/products/download?platform=linux&amp;code=TBA)&quot;
+tar -xzf jetbrains-toolbox.tar.gz
+cd jetbrains-toolbox-\* &amp;&amp; ./jetbrains-toolbox
+</code></pre>
+<h2 id="quickgui">QuickGUI</h2>
+<blockquote>
+<p>Simple GUI for creating and running virtual machines using Quickemu.</p>
+</blockquote>
+<ul>
+<li>Add PPA &amp; install</li>
+</ul>
+<pre><code class="language-bash">sudo add-apt-repository -y ppa\:flexiondotorg/quickemu
+sudo apt update
+sudo apt install -y quickgui
+</code></pre>
+<h2 id="sublime-text">Sublime Text</h2>
+<blockquote>
+<p>Fast, extensible text editor with powerful search, multi-cursor, and plugins.</p>
+</blockquote>
+<ul>
+<li>Add Sublime repo &amp; install</li>
+</ul>
+<pre><code class="language-bash">wget -qO- [https://download.sublimetext.com/sublimehq-pub.gpg](https://download.sublimetext.com/sublimehq-pub.gpg) | gpg --dearmor | sudo tee /usr/share/keyrings/sublimehq-archive.gpg &gt; /dev/null
+echo &quot;deb \[signed-by=/usr/share/keyrings/sublimehq-archive.gpg] [https://download.sublimetext.com/](https://download.sublimetext.com/) apt/stable/&quot; | sudo tee /etc/apt/sources.list.d/sublime-text.list
+sudo apt update
+sudo apt install -y sublime-text
+</code></pre>
+<h2 id="zoom">Zoom</h2>
+<blockquote>
+<p>Video conferencing client with screen sharing and breakout rooms.</p>
+</blockquote>
+<pre><code class="language-bash">flatpak install -y flathub us.zoom.Zoom
+</code></pre>
+<h2 id="simplescreenrecorder">SimpleScreenRecorder</h2>
+<blockquote>
+<p>Feature-rich screen recorder with live preview and fine-grained control.</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install -y simplescreenrecorder
+</code></pre>
+<h2 id="gpt4all">GPT4All</h2>
+<blockquote>
+<p>Desktop app for running and managing local LLMs on your machine.</p>
+</blockquote>
+<pre><code class="language-bash">flatpak install -y flathub io.gpt4all.gpt4all
+</code></pre>
+<h2 id="kdiskmark">KDiskMark</h2>
+<blockquote>
+<p>Cross-platform disk benchmarking utility inspired by CrystalDiskMark.</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install -y kdiskmark
+</code></pre>
+<h2 id="appimage-pool">AppImage Pool</h2>
+<blockquote>
+<p>Browse, download, and manage AppImages from a convenient catalog.</p>
+</blockquote>
+<pre><code class="language-bash">flatpak install -y flathub io.github.prateekmedia.appimagepool
+</code></pre>
+<h2 id="obs-studio">OBS Studio</h2>
+<blockquote>
+<p>Free, open-source live streaming and screen recording app with scenes/sources and hardware encoding (NVENC/VAAPI) when drivers are installed.</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install -y obs-studio
+</code></pre>
+<ul>
+<li>(Optional, ⚠️ Ubuntu-based Mint Only) Use the official OBS PPA for newer versions</li>
+</ul>
+<pre><code class="language-bash">sudo add-apt-repository -y ppa:obsproject/obs-studio
+sudo apt update
+sudo apt install -y obs-studio
+</code></pre>
+<ul>
+<li>(Optional) Enable Virtual Camera (so OBS appears as a webcam)</li>
+</ul>
+<pre><code class="language-bash">sudo apt install -y v4l2loopback-dkms
+sudo modprobe v4l2loopback devices=1 video_nr=10 card_label=&quot;OBS Virtual Camera&quot; exclusive_caps=1
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../marp_stuff/" class="btn btn-neutral float-left" title="Marp Stuff"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../marp_stuff/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

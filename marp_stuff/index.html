@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Marp Stuff - Stuff I Find Useful</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Marp Stuff";
+        var mkdocs_page_input_path = "marp_stuff.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Stuff I Find Useful
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Marp Stuff</a>
+    <ul class="current">
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../debian_setup/">Linux Setup (Debian)</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Stuff I Find Useful</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Marp Stuff</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="my-marp-faq">My MARP FAQ</h1>
+<ul>
+<li><a href="#what-is-marp">What is Marp?</a></li>
+<li><a href="#installing-marp">How do you install Marp?</a></li>
+<li><a href="#marp-cli-workflow">My Marp Workflow</a></li>
+<li><a href="#what-is-marp-to-pdf">What is Marp2PDF?</a></li>
+<li><a href="#header-slides">Header Slides</a></li>
+<li><a href="#images">Images</a></li>
+<li><a href="#videos">Videos</a></li>
+<li><a href="#columnate-content">Putting Content Into Columns</a></li>
+<li><a href="#slide-links">Linking Slides</a></li>
+<li><a href="#override-presentation-defaults">Override Presentation Defaults</a></li>
+<li><a href="#override-slide-defaults">Override Slide Defaults</a></li>
+<li><a href="#fit-text-width">Fit Text To Slide Width</a></li>
+<li><a href="#styling-color">Change Word or Phrase Color</a></li>
+<li><a href="#styling-font">Change Word or Phrase Size</a></li>
+<li><a href="#mermaid-marp">Using Mermaid Diagrams With Marp</a></li>
+<li><a href="#plotly-marp">Using Plotly Graphs With Marp</a></li>
+<li><a href="#useful-websites">Useful Websites</a></li>
+</ul>
+<hr />
+<h1 id="what-is-marp">what-is-marp</h1>
+<p>| Marp (also known as the Markdown Presentation Ecosystem) provides an intuitive experience for creating beautiful slide decks. You only have to focus on writing your story in a Markdown document.</p>
+<p>I use Marp instead of Powerpoint to create presenations I use in lectures, talks, and tutorials. If you're a coder or otherwise comfortable with creating documents with plaintext (especially Markdown), then this might be for you. However, for most people, using PowerPoint or some other presenetaiton software package will be faaar easier! An easy way to get started is to use Marp via <a href="https://code.visualstudio.com/">VSCode</a> or <a href="https://vscodium.com/">VSCodium</a>, but I use Marp CLI with <a href="https://www.jetbrains.com/pycharm/">PyCharm</a>.</p>
+<p>Quick Overview Video: <a href="https://www.youtube.com/watch?v=EzQ-p41wNEE">https://www.youtube.com/watch?v=EzQ-p41wNEE</a>
+More about Marp Here: <a href="https://marp.app/">https://marp.app/</a>
+Quick video</p>
+<hr />
+<h1 id="installing-marp">installing-marp</h1>
+<h2 id="basic-setup">Basic Setup</h2>
+<p>If you want to use Marp with <a href="https://code.visualstudio.com/">VSCode</a> or <a href="https://vscodium.com/">VSCodium</a>, you can find it in the normal VSCode marketplace, e.g.:</p>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=marp-team.marp-vscode">Marp for VS Code</a></p>
+<p>If you want to use Marp with another editor or IDE (I use <a href="https://www.jetbrains.com/pycharm/">PyCharm</a> becasue I already use it frequently for Python development, otherwise I'd probably use <a href="https://vscodium.com/">VSCodium</a>. This means that I use use Marp-CLI (i.e., the commandline interface). You can learn more more here:</p>
+<p><a href="https://github.com/marp-team/marp-cli">Marp-CLI</a></p>
+<p>By far the easiest way to install Marp is to use one of the standalone binaries from the marp-cli [Releases Page].</p>
+<p>I recommend putting the resulting Marp executable somewhere in your system Path. </p>
+<p>NOTE that if you instead use pip or npx to install Marp, it may already be on your path. Use the <a href="https://github.com/marp-team/marp-cli">Marp-CLI</a> instructions for info on how to get to the point where you can run Marp from anywhere on your system.</p>
+<h2 id="setup-chrome-browser-for-rendering">Setup Chrome Browser for Rendering</h2>
+<p>The Marp-CLI page discusses how to make sure you have chrome setup for rendering. On <a href="https://ubuntu.com/download/desktop">Ubuntu Linux</a> (actually, I use <a href="https://pop.system76.com/">Pop!_OS</a>, an OS by system76 based on Ubuntu), I used these instructions:</p>
+<pre><code class="language-bash">sudo add-apt-repository ppa:savoury1/chromium
+sudo apt update
+sudo apt install chromium-browser
+export CHROME_PATH=/usr/bin/chromium-browser
+</code></pre>
+<hr />
+<h1 id="marp-cli-workflow">marp-cli-workflow</h1>
+<h2 id="setup">Setup</h2>
+<h3 id="for-each-new-slideshow">For each new slideshow:</h3>
+<ul>
+<li>create a new folder to hold the slideshow</li>
+<li>create 2 subfloders, "images" and "media"</li>
+<li>create a markdown file called "slides.md"</li>
+<li>create a batch file called dev.sh (mac or linux, dev.bat on windows??) and make it executable.</li>
+<li>create a batch file called make_pdf.sh (mak or linux, make_pdf.sh on windows??) and make it executable.</li>
+</ul>
+<h3 id="boilerplate-for-the-top-of-slidesmd">Boilerplate for the top of slides.md</h3>
+<pre><code class="language-markdown">---
+marp: true
+theme: gaia  # default, uncover, gaia
+class: invert   # invert for dark mode of any theme
+math: mathjax
+footer: &quot;&quot;  /*  @@@@@@@@@@ You could put whatever text you want at the bottom of each slide  @@@@@@@@@@@ */
+html: true
+size: 4:3 # 16:9 4:3 etc.
+style: |
+  .two_columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .two_columns_60_40 {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    gap: 1rem;
+  }
+
+  .two_columns_70_30 {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    gap: 1rem;
+  }
+
+  .three_columns {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  /* 
+  make sure there are spaces above and below the content, e.g.:
+  &lt;div class=&quot;centerit&quot;&gt;
+
+  [w:480px]('./images/my_image.png')
+
+  &lt;/div&gt;
+  */
+  .centerit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  /* small font bulleted list */
+  .small_list ul {
+    font-size: 22px;
+  }
+
+  /* Watermark (after=off, before=on)*/
+  section::after {
+    position: absolute;
+    display: flex;
+
+    /* Copyright text */
+    content: &quot;.&quot;;  /*  @@@@@@@@@@ You could put copyright info here, or use image below  @@@@@@@@@@@ */
+    font-size: 20px;
+    color: #C0C0C0;
+    padding-left: 1980px;
+    align-items: center;
+
+    /* Position and size */
+    left: 30px;
+    bottom: 200px;
+    height: 350px;
+
+    /* Watermark image no-repeat or repeat */
+    /* THIS WILL ONLY SHOW UP IF YOU SET &quot;section::before&quot; above. to disble, use &quot;section::after&quot; */
+    background: url(&quot;./images/watermark2.png&quot;) repeat;   /*  @@@@@@@@@@ I have my copyright info in this watermark image  @@@@@@@@@@@ */
+    opacity: 0.4;
+
+    /* Allow to control elements under the wa termark */
+    pointer-events: none;
+  }
+---
+</code></pre>
+<h3 id="contents-of-devsh">Contents of dev.sh</h3>
+<p>NOTE: This may need to be adjusted for Windows.
+NOTE: This may need to be adjusted on Macos if you are not using bash.</p>
+<pre><code class="language-bash">#!/bin/bash
+marp -w -p --html slides.md
+</code></pre>
+<h3 id="contents-of-make_pdfsh">Contents of make_pdf.sh</h3>
+<p>NOTE: This may need to be adjusted for Windows.
+NOTE: This may need to be adjusted on Macos if you are not using bash.</p>
+<pre><code class="language-bash">#!/bin/bash
+export CHROME_PATH=/usr/bin/chromium-browser
+marp --pdf --html --output=. --input-dir=. --allow-local-files
+# marp2pdf
+</code></pre>
+<h3 id="development-workflow">Development Workflow</h3>
+<p>NOTE: the command in <code>dev.sh</code> will automatically re-create slides.html from your <code>slides.md</code> file (that's what the <code>-w</code> flag does). It will also render the current slideshow in a little window so you can see what you are doing (that's what the <code>-p</code> flag does). Here is my workflow:</p>
+<ul>
+<li>run <code>./dev.sh</code></li>
+<li>Make a change to slides.md</li>
+<li>Whenever I want to see what I've done in the preview window, I save the file (or enable auto-save for continous updates)</li>
+<li>If I want to see a full-size version in a webbrowser, I drag slides.html to my webbrowser (I use <a href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a>), but I have to refresh to see any subsequent changes (which is why I prefer to use the preview window).</li>
+<li>To include images, I save them to the images folder and then refer to them as something like <code>./images/imagename.png</code></li>
+<li>To include videos, I save them to the media folder then refer to them as something like <code>./media/videoname.mp4</code></li>
+<li>When donw editing, I cancel out of the process running <code>./dev.sh</code> (e.g., using CTRL-C).</li>
+<li>To create a PDF, I run <code>./make_pdf.sh</code></li>
+</ul>
+<p>That's it. Making changes to  my slides is as easy as editing the text in <code>slides.md</code>.</p>
+<h3 id="using-my-presentations">Using My Presentations</h3>
+<p>Marp renders your markdown presentation code into a working static HTML presentation. 
+Thus, to show your presentation, just drag <code>slides.html</code> into your browser!
+I do the following:</p>
+<ul>
+<li>Drag <code>slides.html</code> into Firefox</li>
+<li>Click the Presenter's View Icon on the right side of the slide navigation bar at the bottom, which creates another webpage showing the presenter's view.</li>
+<li>I keep the presenter's view page on the primary monitor where I can see it and I drag the normal presentation window onto the external monitor so the audiene can see it.</li>
+<li>moving around in presenter's view automatically controls the audience view.</li>
+<li>Note: To show videos, you have to press start/stop/etc. on the normal presentation window.</li>
+<li>When done, just close the slideshow browser tabs and you're done.</li>
+</ul>
+<hr />
+<h1 id="what-is-marp-to-pdf">what-is-marp-to-pdf</h1>
+<p>In the <a href="#marp-cli-workflow">My Marp Workflow</a> section, <code>the make_pdf.sh</code> contents has a command called <code>marp2pdf</code> that is commented out. What is this? Marp2PDF is a tool I wrote which does the following:</p>
+<ul>
+<li>looks for the file slides.md and makes a temporary copy of it</li>
+<li>edits the copy to remove any image markup that is followed with this text: <code>&lt;!-- nopdf --&gt;</code></li>
+<li>in the watermark subsection of the style frontmatter, replaces the text <code>section::after</code> with <code>section::before</code></li>
+<li>uses Marp-cli to re-render this temp file to <code>slides_public.pdf</code></li>
+<li>uses ghostscript to do a medium-level image compressed version of the content in <code>slides_public.pdf</code> and saves it using the same name.</li>
+</ul>
+<p>The result is a considerably smaller PDF that has my watermark image repated across it and that omits images I think would be inappropriate for a public copy (e.g., copyrighted images, etc.). All of this occurs without altering either the original <code>slides.md</code> or the standard <code>slides.pdf</code> generated by Marp.</p>
+<p>Marp2PDF assumes the following:</p>
+<ul>
+<li>chromium-browser is installed (e.g., mine is installed at <code>/usr/bin/chromium-browser</code>)</li>
+<li>ghostscript is installed (e.g., mine is installed at <code>/usr/bin/gs</code>)</li>
+<li>marp-cli is installed (e.g., mine is installed at <code>/home/[USERNAME]/Applications/marp</code>)</li>
+</ul>
+<p>Why is <code>marp2pdf</code> commented out in <code>make_pdf.sh</code>?</p>
+<p>That's because it's not yet available publically. When it is, I'll adjust the relevant FAQs. For now, you can just use the default PDF Marp produces, or make the changes I indicated above yourself and then regenerate the PDF.</p>
+<hr />
+<h1 id="header-slides">header-slides</h1>
+<p>I like headers largeish text over a full-slide images:</p>
+<pre><code class="language-markdown">![bg](images/fullslide_background_image.png)  &lt;!-- nopdf --&gt;
+
+# &lt;span style=&quot;color:orange&quot;&gt;&lt;!--fit--&gt;My Main Title&lt;/span&gt;
+## &lt;center&gt;My Subtitle If Needed&lt;/center&gt;
+### &lt;center&gt;For Lectures, I include Course, Quarter and Year&lt;/center&gt;
+</code></pre>
+<hr />
+<h1 id="images">images</h1>
+<h2 id="plain-markdown-image-spec">Plain markdown image spec:</h2>
+<pre><code class="language-markdown">![](./images/myimage.jpg)
+</code></pre>
+<h2 id="with-width-specified-in-pixels-height-will-be-auto-computed">With width specified in pixels (height will be auto-computed)</h2>
+<pre><code class="language-markdown">![w:800px](./images/myimage.jpg)
+</code></pre>
+<h2 id="centered">Centered</h2>
+<p>Note: spaces between <code>div</code> tags and markdown is crucial!</p>
+<pre><code class="language-markdown">&lt;div class=&quot;centerit&quot;&gt;
+
+![w:800px](./images/myimage.jpg)
+
+&lt;/div&gt;
+</code></pre>
+<h1 id="absolute-positioning">Absolute positioning</h1>
+<p>This allows you to place an image anywhere on the slide!
+<strong>Make sure you adjust the top, right, width, and height parameters</strong>.</p>
+<pre><code class="language-markdown">&lt;img src=&quot;./images/myimage.png&quot; alt=&quot;My Image&quot; style=&quot;position: absolute; top: 20px; right: 20px; width: 350px; height: auto;&quot; /&gt;
+</code></pre>
+<h1 id="marp-image-filters">Marp Image Filters</h1>
+<p>These work on bg and regular images</p>
+<pre><code class="language-markdown">![grayscale](./images/my_image.jpg)
+![sepia](./images/my_image.jpg)
+![blur](./images/my_image.jpg)
+![opacity](./images/my_image.jpg)
+</code></pre>
+<p>You can combine and parameterize them</p>
+<pre><code class="language-markdown">![brightness:.75 sepia:50%](./images/my_image.jpg)
+</code></pre>
+<hr />
+<h1 id="videos">videos</h1>
+<h2 id="play-video-files-on-your-computer">Play video files on your computer</h2>
+<pre><code class="language-markdown">&lt;iframe width=&quot;100%&quot; height=&quot;100%&quot;
+  src=&quot;./media/my_video_file.mp4&quot;&gt;
+&lt;/iframe&gt; 
+</code></pre>
+<h2 id="play-youtube-videos">Play youtube videos</h2>
+<pre><code class="language-markdown">&lt;iframe width=&quot;100%&quot; height=&quot;100%&quot;
+  src=&quot;https://www.youtube.com/embed/EzQ-p41wNEE&quot;&gt;
+&lt;/iframe&gt; 
+</code></pre>
+<hr />
+<h1 id="columnate-content">columnate-content</h1>
+<p>If you want to columnate you content with equal columns, this is the section for you!</p>
+<h2 id="text-on-right-image-on-left">Text on Right, Image on Left</h2>
+<p>Note: Image size is in inches, you could also use <code>px</code> to specify size in pixels.</p>
+<pre><code class="language-markdown"># Two Cols, one pic, one text
+
+- One
+- Two
+- Three
+- Four
+
+![bg right width:4in](images/my_image.jpg)
+</code></pre>
+<h2 id="text-on-left-image-on-right">Text on Left, Image on Right</h2>
+<p>Two Columns with a 50/50 Split</p>
+<pre><code class="language-markdown"># Two Cols, one pic, one text
+
+- One
+- Two
+- Three
+- Four
+
+![bg left width:4in](images/my_image.jpg)
+</code></pre>
+<h2 id="text-or-whatever-on-both-sides">Text (or whatever) on both sides</h2>
+<p>Make sure you have a space between the HTML tags and markdown content!</p>
+<p>Two Columns with 50/50 Split</p>
+<pre><code class="language-markdown">&lt;div class=&quot;two_columns&quot;&gt;
+&lt;div&gt;
+
+- aa 
+- bb
+- cc
+
+&lt;/div&gt;
+&lt;div&gt;
+
+- 1
+- 2
+- 3
+
+An Image:&lt;br/&gt;
+![w:240](./images/my_image.jpg)
+
+&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h1 id="three-columns">Three Columns</h1>
+<p>Three Columns with 33/33/33 Split</p>
+<div class="three_columns">
+<div>
+
+- aa 
+- bb
+- cc
+
+</div>
+<div>
+
+- a
+- b
+- c
+
+</div>
+<div>
+
+- x
+- y
+- z
+
+</div>
+</div>
+
+<h1 id="two-columns-but-with-unequal-columns">Two Columns, but with Unequal Columns</h1>
+<p>For a Two-Column 60/40 Split:</p>
+<pre><code class="language-markdown">&lt;div class=&quot;two_columns_60_40&quot;&gt;
+&lt;div&gt;
+
+![](./images/my_image.jpg)
+
+&lt;/div&gt;
+&lt;div&gt;
+
+- a
+- b
+- c
+
+&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>For a Two-Column 70/30 Split:</p>
+<pre><code class="language-markdown">&lt;div class=&quot;two_columns_70_30&quot;&gt;
+&lt;div&gt;
+
+![](./images/my_image.jpg)
+
+&lt;/div&gt;
+&lt;div&gt;
+
+- a
+- b
+- c
+
+&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>For arbritrary Two-Column Splits Using an Image one One Side and Text On Another</p>
+<pre><code class="language-markdown">
+- The Text I Want On The Right
+- More Rightside Text
+
+![bg left:35%](./images/my_image.jpg)
+
+&lt;!--
+the text will take up the remaining space!
+--&gt;
+
+</code></pre>
+<p>You can also use the bg directive to divy up slide into two unequal columns:</p>
+<pre><code class="language-markdown">![bg left:33%](./images/my_image.jpg)
+</code></pre>
+<hr />
+<h1 id="slide-links">slide-links</h1>
+<pre><code class="language-markdown">[Jump to Slide 2](#2)
+</code></pre>
+<p>NOTE: You don't have to do anything on slide 2, Marp will automatically make the link for you. Now when you're viewing your slides, you just click the link and you will jump to that slide.</p>
+<hr />
+<h1 id="override-slide-defaults">override-slide-defaults</h1>
+<p>If you want to change the default background and/or foreground for an individual slide, use these directives within a slide:</p>
+<pre><code class="language-markdown">&lt;!--_backgroundColor: black--&gt;
+&lt;!--_color: red--&gt;
+</code></pre>
+<hr />
+<h1 id="override-presentation-defaults">override-presentation-defaults</h1>
+<p>Put this at the top of the first slide.
+This will only change the tags you override. 
+I think <code>:root</code> changed the default text.</p>
+<pre><code class="language-markdown">&lt;style&gt;
+  :root {
+    --color-background: #101010;
+    --color-foreground: #f9f06b;
+  }
+
+  h1 {
+    font-family: Courier New;
+  }
+&lt;/style&gt;
+</code></pre>
+<hr />
+<h1 id="fit-text-width">fit-text-width</h1>
+<p>If you want to make some text fill up the slide, use this:</p>
+<pre><code class="language-markdown">&lt;!--fit--&gt;Huge Text!!
+</code></pre>
+<hr />
+<h1 id="styling-color">styling-color</h1>
+<pre><code class="language-markdown">This is some **bold** text.
+This is some &lt;span style=&quot;color:yellow&quot;&gt;&lt;u&gt;underlined&lt;/u&gt;&lt;/span&gt; text.
+&lt;span style=&quot;color:orange&quot;&gt;This text is all orange&lt;/span&gt;
+</code></pre>
+<hr />
+<h1 id="styling-font">styling-font</h1>
+<p>Keep a space between the span tags and the markdown list</p>
+<pre><code class="language-markdown">&lt;span style=&quot;font-size: 28px&quot;&gt;
+
+- this is a ine of **bulleted** text
+- this is another line
+- this markedth the third line
+- ok, this is enough!
+
+&lt;/span&gt;
+</code></pre>
+<hr />
+<h1 id="mermaid-marp">mermaid-marp</h1>
+<p>To add a Mermaid chart to your presentation, try the code below.</p>
+<p>NOTE: This works in a real web browser, so it should be good to go for your presentations. However, be aware that the letters aren't rendering correctly in the little Marp chrome preview window.</p>
+<p>NOTE: You can put the last 3 lines at the top of your first slide for presentation wide Mermaid use. Otherwise, if it's just for one slide, you could use as shown.</p>
+<pre><code class="language-markdown">&lt;!-- mermaid.js --&gt;
+&lt;script src=&quot;https://unpkg.com/mermaid@8.1.0/dist/mermaid.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;mermaid.initialize({startOnLoad:true});&lt;/script&gt;
+
+&lt;div class=&quot;mermaid&quot;&gt;
+graph TD;
+    A--&gt;B;
+    A--&gt;C;
+    B--&gt;D;
+    C--&gt;D;
+&lt;/div&gt;
+</code></pre>
+<p>You can position diagrams using absolute coordinates and/or alter the bounding box like this:</p>
+<pre><code class="language-markdown">&lt;div class=&quot;mermaid&quot; style=&quot;position: absolute; top: 20px; right: 20px; width: 350px; height: auto;&quot;&gt;
+graph TD;
+    A--&gt;B;
+    A--&gt;C;
+    B--&gt;D;
+    C--&gt;D;
+&lt;/div&gt;
+</code></pre>
+<p>You can style nodes by creating a style for the node you'd like to style:</p>
+<pre><code class="language-markdown">&lt;div class=&quot;mermaid&quot;&gt;
+graph TD;
+  Node1--&gt;Node2
+  Node1--&gt;Node3
+  Node1--&gt;Node4
+  style Node4 fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+&lt;/div&gt;
+</code></pre>
+<p><font color:"orange">Unfortunately, this ^^^ styling renders correctly for me in the preview, but <strong>NOT</strong> in Firefox!?</font> </p>
+<p>By default, Mermaid diagrams can be small. You can put something like this in the Marp frontmatter section to adjust Mermaid diagram size:</p>
+<pre><code>  svg[id^=&quot;mermaid-&quot;] { 
+    min-width: 480px; 
+    max-width: 960px; 
+    min-height: 360px; 
+    max-height: 600px; 
+  }
+</code></pre>
+<p><font color="orange">WARNING</font>: Mermaid doesn't work completely as expected in the Marp preview window.. If you want to preview Mermaid diagrams, drag slides.html to a real browser! <strong>Even If You Do</strong>, Mermaid diagrams <i>still</i> won't look as is should, though they will be readable. You have been warned!</p>
+<hr />
+<h1 id="plotly-marp">plotly-marp</h1>
+<p>To add a Plotly graph to your presentation, try the code below.</p>
+<p>NOTE: You can put the first 3 lines at the top of your first slide for presentation wide Plotly use. Otherwise, if it's just for one slide, you could use as shown.</p>
+<pre><code class="language-markdown">
+&lt;!-- Import Plotly dependencies --&gt;
+---
+
+&lt;script src=&quot;https://cdn.plot.ly/plotly-latest.min.js&quot;&gt;&lt;/script&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.plot.ly/plotly-1.58.4.min.css&quot; /&gt;
+
+# Rate of Learning
+
+(Total Time Hypothesis)
+
+&lt;div id=&quot;my-graph&quot;&gt;&lt;/div&gt;
+
+&lt;style scoped&gt;
+.plotly-graph-container {
+  margin-top: 0;
+  padding-top: 0;
+}
+&lt;/style&gt;
+
+&lt;script&gt;
+// JavaScript code to create a Plotly graph
+var data = [
+  {
+    x: [7.5, 20],
+    y: [64, 8],
+    type: 'scatter',
+    line: {width: 4},
+    marker: {size: 10} 
+  }
+];
+
+var layout = {
+  yaxis: {
+    title: {text: &quot;# Repetitions on Day 1&quot;, font: {size: 24}},
+    autorange: 'reversed',
+    range: [72, 0],
+    tickvals: [0, 8, 16, 24, 32, 40, 48, 56, 64, 72]
+  },
+  xaxis: {
+    title: {text: &quot;Relearn Time on Day 2 (minutes)&quot;, font: {size: 24}},
+    range: [0, 25],
+    dtick: 5
+  },
+  margin: {t: 0, r: 0} // set top &amp; right margins to 0
+};
+// 
+Plotly.newPlot('my-graph', data, layout);
+&lt;/script&gt;
+
+---
+
+</code></pre>
+<p>The above example is a little odd given it's reversed y-axis. Here is a slightly more conventional graph:</p>
+<pre><code class="language-markdown">
+---
+
+&lt;div id=&quot;plotly-graph&quot;&gt;&lt;/div&gt;
+
+&lt;script src=&quot;https://cdn.plot.ly/plotly-latest.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+  // Sample data
+  const x = [1, 2, 3, 4, 5];
+  const y = [10, 15, 13, 17, 20];
+
+  // Create the Plotly graph
+  const trace = {
+    x: x,
+    y: y,
+    mode: 'lines+markers',
+    type: 'scatter',
+  };
+  const data = [trace];
+  const layout = {
+    title: 'My Plotly Line Graph',
+    xaxis: { title: 'X-axis' },
+    yaxis: { title: 'Y-axis' },
+  };
+  Plotly.newPlot('plotly-graph', data, layout);
+&lt;/script&gt;
+
+---
+
+</code></pre>
+<hr />
+<h1 id="useful-websites">useful-websites</h1>
+<ul>
+<li>CommonMark Markdown Syntax <a href="https://commonmark.org/help/">https://commonmark.org/help/</a></li>
+<li>Marp Documentation <a href="https://marpit.marp.app/markdown">https://marpit.marp.app/markdown</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../debian_setup/" class="btn btn-neutral float-right" title="Linux Setup (Debian)">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../debian_setup/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
