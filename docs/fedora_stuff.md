@@ -102,3 +102,12 @@ Now VirtualBox will work, but GNOME Boxes / QEMU won’t.
 
 Honestly, on Fedora the most robust hypervisor is **KVM (Boxes/virt-manager)**. VirtualBox is a bit of a second-class citizen on Fedora because the kernel moves so fast, and it constantly collides with KVM. If you just want Linux Mint guests, Boxes with `spice-vdagent` is much less painful.
 
+---
+
+## Installing Virt-Manager
+
+1. Install Virtual Machine Manager if it's not already installed
+
+```bash
+sudo dnf install virt-manager
+```
