@@ -55,6 +55,24 @@
                 <li class="toctree-l1"><a class="reference internal" href="../vmware_stuff/">VMWare Workstation Notes</a>
                 </li>
               </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Fedora Stuff</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#robust-install-of-virutalbox-on-fedora-42">Robust Install of VirutalBox on Fedora 42</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#error-virtualbox-cant-enable-the-amd-v-extension">ERROR: VirtualBox can't enable the AMD-V extension</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#whats-happening">What’s happening:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#solutions">Solutions</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installing-virt-manager">Installing Virt-Manager</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
       </div>
     </div>
     </nav>
@@ -155,9 +173,19 @@ Now VirtualBox will work, but GNOME Boxes / QEMU won’t.</p>
 <li>Stick with KVM/Boxes and skip VirtualBox</li>
 </ol>
 <p>Honestly, on Fedora the most robust hypervisor is <strong>KVM (Boxes/virt-manager)</strong>. VirtualBox is a bit of a second-class citizen on Fedora because the kernel moves so fast, and it constantly collides with KVM. If you just want Linux Mint guests, Boxes with <code>spice-vdagent</code> is much less painful.</p>
+<hr />
+<h2 id="installing-virt-manager">Installing Virt-Manager</h2>
+<ol>
+<li>Install Virtual Machine Manager if it's not already installed</li>
+</ol>
+<pre><code class="language-bash">sudo dnf install virt-manager
+</code></pre>
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../vmware_stuff/" class="btn btn-neutral float-left" title="VMWare Workstation Notes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
 
   <hr/>
 
@@ -178,6 +206,8 @@ Now VirtualBox will work, but GNOME Boxes / QEMU won’t.</p>
   <div class="rst-versions" role="note" aria-label="Versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     
+    
+      <span><a href="../vmware_stuff/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
   </span>

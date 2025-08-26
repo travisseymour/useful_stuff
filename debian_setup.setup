@@ -14,8 +14,10 @@ title: Update Drivers <mark>Linux Mint</mark>
 bash:
 sudo apt update && sudo apt full-upgrade -y
 # Driver Manager (pick NVIDIA/prop if needed)
+bash:
 sudo mintdrivers
 note: If you end up installing any drivers from that, it could be wise to reboot
+bash:
 sudo reboot
 
 ---
@@ -38,7 +40,6 @@ sudo apt install -y nvidia-driver
 title: Install Multimedia Support
 bash:
 sudo apt install -y mint-meta-codecs
-bash:
 sudo apt install -y libavcodec-extra vlc
 
 ---
