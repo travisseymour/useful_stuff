@@ -1,4 +1,4 @@
-# Linux Setup for Ubuntu/Debian Distros
+# Linux Setup and Useful Apps for Ubuntu/Debian Distros
 ---
 
 ## Update System
@@ -16,7 +16,15 @@ sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove
 ```bash
 sudo apt update && sudo apt full-upgrade -y
 # Driver Manager (pick NVIDIA/prop if needed)
+```
+
+```bash
 sudo mintdrivers
+```
+
+> If you end up installing any drivers from that, it could be wise to reboot
+
+```bash
 sudo reboot
 ```
 
@@ -40,9 +48,6 @@ sudo apt install -y nvidia-driver
 
 ```bash
 sudo apt install -y mint-meta-codecs
-```
-
-```bash
 sudo apt install -y libavcodec-extra vlc
 ```
 
@@ -55,7 +60,7 @@ sudo apt install -y tlp tlp-rdw
 sudo systemctl enable --now tlp
 ```
 
-## Improve Battery & Power Management (Approach 2 - many consider it to manage both battery life and cpu power, unlike tlp)
+## Improve Battery & Power Management (Approach 2 - May manage both battery life and cpu power monitoring, unlike tlp, which foces on battery)
 
 > ⚠️ Only do this if you're setting up a laptop
 
@@ -111,14 +116,26 @@ sudo apt install -y gnome-boxes
 
 > Now log out and back in to set virtualization group membership
 
-> Note that after you install a linux distro as a guest, you may need to do something like this:
+## Post Virtual Machine Install (GNOME-Boxes)
 
+> Linux VMs
+
+- After you install a linux distro as a guest VM, you may need to install the spice system to get proper integration and desktop resizing:
 ```bash
 # Inside the Linux VM
 sudo apt update -y
-sudo apt install spice-vdagent
+sudo apt install spice-vdagent qemu-guest-agent -y
 reboot
 ```
+
+- With Boxes, Cinnamon (e.g., Linux Mint) doesn't work properly with spice. So <mark>**BEFORE** running the above command</mark>, switch to the _XFCE_ destkop.
+```bash
+sudo apt install mint-meta-xfce -y
+```
+
+> After running the above command: 1) Log out of Cinnamon, 2) Choose the Xfce desktop, 3) Log back in, 4) Run the above commands.
+
+> Windows VMs...tba
 
 ## Audio sanity tools
 
@@ -128,16 +145,9 @@ reboot
 sudo apt install -y pavucontrol
 ```
 
-## Install Virtualization Essentials
-
-```bash
-sudo apt install -y qemu-kvm libvirt-daemon-system virt-manager
-sudo usermod -aG libvirt $USER
-```
-
-> Now log out and back in to set virtualization group membership
-
 ## Install Some Printer stuff
+
+> These are already installed installed on Linux Mint!
 
 - Printing (CUPS) + driverless USB printing support
 ```bash
@@ -154,12 +164,19 @@ sudo apt install -y simple-scan sane-airscan sane-utils
 
 ## Install Microsoft fonts
 
+- Install MS fonts, many applications and previous documents may rely on these.
 ```bash
 sudo apt install -y ttf-mscorefonts-installer
+```
+
+- Refresh the font cache
+```bash
 sudo fc-cache -f -v
 ```
 
 ## Enable Firewall
+
+> Already installed on Linux Mint
 
 - Turn it ON (Home profile is fine)
 ```bash
@@ -235,7 +252,7 @@ sudo reboot
 
 - eSpeak NG via Speech Dispatcher (classic & tiny but works everywhere)
 ```bash
-sudo apt update
+sudo apt update -y
 sudo apt install -y espeak-ng speech-dispatcher-espeak-ng
 spd-say "Hello from e-Speak N.G. via Speech Dispatcher"
 ```
@@ -326,9 +343,9 @@ sudo apt install -y libavcodec-extra
 > Ensures Flatpak is installed and the Flathub repo is enabled (Mint usually has this already).
 
 ```bash
-sudo apt update
+sudo apt update -y
 sudo apt install -y flatpak
-flatpak remote-add --if-not-exists flathub [https://flathub.org/repo/flathub.flatpakrepo](https://flathub.org/repo/flathub.flatpakrepo)
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 ```
 
 ## Install the NPM package
@@ -355,19 +372,28 @@ sudo apt install -y gnome-usage
 
 > If none of the FOSS apps are good enough, consider <b>PDF Studio</b>
 
-- Install Okular PDF Reader
+- ~~Install Okular PDF Reader~~
 ```bash
-sudo apt install okular
+# Note: This installs needs to install a huge number of libraries and other files. Use PDFStudioViewer instead.
+# sudo apt install okular -y
 ```
 
 - Install PDF Viewer (Free)
 ```bash
-sh <(wget -qO - https://download.qoppa.com/pdfstudioviewer/PDFStudioViewer_linux64.sh)
+mkdir -p ~/tmp_installs
+cd ~/tmp_installs
+wget https://download.qoppa.com/pdfstudioviewer/PDFStudioViewer_linux64.sh
+chmod +x PDFStudioViewer_linux64.sh
+./PDFStudioViewer_linux64.sh
 ```
 
 - Install PDF Studio (**PAID**)
 ```bash
-sh <(wget -qO - https://download.qoppa.com/pdfstudio/PDFStudio_linux64.sh)
+mkdir -p ~/tmp_installs
+cd ~/tmp_installs
+wget https://download.qoppa.com/pdfstudio/PDFStudio_linux64.sh
+chmod +x PDFStudioViewer_linux64.sh
+./PDFStudioViewer_linux64.sh
 ```
 
 ## PDF Arranger
@@ -406,7 +432,9 @@ flatpak install -y flathub io.github.picocrypt.Picocrypt
 ## Private Internet Access (PIA) VPN Client
 
 ```bash
-sh <(wget -qO - https://installers.privateinternetaccess.com/download/pia-linux-3.6.2-08398.run)
+wget https://installers.privateinternetaccess.com/download/pia-linux-3.6.2-08398.run
+chmod +x pia-linux-3.6.2-08398.run
+./pia-linux-3.6.2-08398.run
 ```
 
 ## Mulvad VPN Client
@@ -414,16 +442,8 @@ sh <(wget -qO - https://installers.privateinternetaccess.com/download/pia-linux-
 - Download the Mullvad signing key
 ```bash
 sudo curl -fsSLo /usr/share/keyrings/mullvad-keyring.asc https://repository.mullvad.net/deb/mullvad-keyring.asc
-```
-
-- Add the Mullvad repository server to apt
-```bash
 echo "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=$( dpkg --print-architecture )] https://repository.mullvad.net/deb/stable stable main" | sudo tee /etc/apt/sources.list.d/mullvad.list
-```
-
-- Install the package
-```bash
-sudo apt update
+sudo apt update -y
 sudo apt install mullvad-vpn
 ```
 
@@ -432,7 +452,7 @@ sudo apt install mullvad-vpn
 > A lightweight note-taking app with built-in speech recognition (voice-to-text) **and** (text-to-speech).
 
 ```bash
-flatpak install flathub net.mkiol.SpeechNote
+flatpak install -y flathub net.mkiol.SpeechNote
 ```
 
 ## Elisa Music Player
@@ -440,7 +460,7 @@ flatpak install flathub net.mkiol.SpeechNote
 > KDE’s clean, modern music player and library manager for local audio collections.
 
 ```bash
-sudo apt install elisa
+sudo apt install elisa -y
 ```
 
 ## Audacity
@@ -453,7 +473,7 @@ sudo apt install -y audacity
 
 ## Bitwarden
 
-> Open-source password manager with end-to-end encryption.
+> Open-source password manager with end-to-end encryption. ⚠️ You don't really need this desktop app if you mostly use Bitwarden in your browser.
 
 ```bash
 flatpak install -y flathub com.bitwarden.desktop
@@ -607,8 +627,14 @@ flatpak install -y flathub org.localsend.localsend\_app
 
 > Share files, host websites, and chat securely over Tor.
 
+- System (Debian) Installer: Installs a lot of stuff, maybe consider the flatpak version instead?
 ```bash
 sudo apt install -y onionshare
+```
+
+- Flatpak Installer:
+```bash
+sudo flatpak install -y onionshare
 ```
 
 ## LosslessCut
@@ -626,7 +652,7 @@ flatpak install -y flathub no.mifi.losslesscut
 - Add the MakeMKV beta PPA and install
 ```bash
 sudo add-apt-repository -y ppa\:heyarje/makemkv-beta
-sudo apt update
+sudo apt update -y
 sudo apt install -y makemkv-oss makemkv-bin
 ```
 
@@ -640,11 +666,22 @@ sudo apt install -y meld
 
 ## Mullvad Browser
 
-> Privacy-focused web browser with anti-tracking and fingerprinting defenses.
+> Privacy-focused web browser with anti-tracking and fingerprinting defenses. ⚠️ It won't run unless there is an active VPN!
 
-- Open the official download page (install the latest .deb via the site)
+- Download the Mullvad signing key
 ```bash
-xdg-open [https://mullvad.net/download/browser](https://mullvad.net/download/browser)
+sudo curl -fsSLo /usr/share/keyrings/mullvad-keyring.asc https://repository.mullvad.net/deb/mullvad-keyring.asc
+```
+
+- Add the Mullvad repository server to apt
+```bash
+echo "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=$( dpkg --print-architecture )] https://repository.mullvad.net/deb/stable stable main" | sudo tee /etc/apt/sources.list.d/mullvad.list
+```
+
+- Install the package
+```bash
+sudo apt update -y
+sudo apt install -y mullvad-browser
 ```
 
 ## MuseScore
@@ -668,7 +705,7 @@ sudo apt install -y picard
 > Full office suite for text documents, spreadsheets, and presentations.
 
 ```bash
-sudo apt install -y onlyoffice-desktopeditors
+flatpak install -y flathub org.onlyoffice.desktopeditors
 ```
 
 ## Peruse
@@ -676,28 +713,12 @@ sudo apt install -y onlyoffice-desktopeditors
 > Comic book reader supporting CBZ/CBR/PDF with a library view.
 
 ```bash
-sudo apt install -y peruse
-```
-
-## Spectacle
-
-> Screenshot utility with region/window/full-screen capture and annotation.
-
-```bash
-sudo apt install -y spectacle
-```
-
-## Switcheroo
-
-> Batch convert and resize images through a simple, drag-and-drop interface.
-
-```bash
-flatpak install -y flathub io.gitlab.adhami3310.Converter
+flatpak install -y org.kde.peruse
 ```
 
 ## Transmission
 
-> Lightweight, reliable BitTorrent client with a clean interface.
+> Lightweight, reliable BitTorrent client with a clean interface. <mark>This is already installed on Linux Mint</mark>
 
 ```bash
 sudo apt install -y transmission-gtk
@@ -715,12 +736,22 @@ sudo apt install -y vlc
 
 > Telemetry-free builds of VS Code from upstream open-source sources.
 
-- Add VSCodium repo & install
+- Import the GPG key
 ```bash
-wget -qO- [https://download.vscodium.com/debs/pgp/public.key](https://download.vscodium.com/debs/pgp/public.key) | gpg --dearmor | sudo tee /usr/share/keyrings/vscodium-archive-keyring.gpg > /dev/null
-echo "deb \[signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg] [https://download.vscodium.com/debs](https://download.vscodium.com/debs) vscodium main" | sudo tee /etc/apt/sources.list.d/vscodium.list
-sudo apt update
-sudo apt install -y codium
+wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | \
+  gpg --dearmor | sudo tee /usr/share/keyrings/vscodium.gpg > /dev/null
+```
+
+- Add the VSCodium repository (Mint 22.1 = Ubuntu 24.04 base = "noble")
+```bash
+echo 'deb [signed-by=/usr/share/keyrings/vscodium.gpg] https://download.vscodium.com/debs vscodium main' | \
+  sudo tee /etc/apt/sources.list.d/vscodium.list
+```
+
+- Update package lists and install VSCodium
+```bash
+sudo apt update -y
+sudo apt install codium -y
 ```
 
 ## Zotero
@@ -729,16 +760,6 @@ sudo apt install -y codium
 
 ```bash
 flatpak install -y flathub org.zotero.Zotero
-```
-
-## JetBrains Toolbox
-
-> Installer/manager for JetBrains IDEs that keeps them updated automatically.
-
-```bash
-wget -O jetbrains-toolbox.tar.gz "[https://data.services.jetbrains.com/products/download?platform=linux\&code=TBA](https://data.services.jetbrains.com/products/download?platform=linux&code=TBA)"
-tar -xzf jetbrains-toolbox.tar.gz
-cd jetbrains-toolbox-\* && ./jetbrains-toolbox
 ```
 
 ## QuickGUI
@@ -752,16 +773,34 @@ sudo apt update
 sudo apt install -y quickgui
 ```
 
-## Sublime Text
+## Sublime Text 3 (not v4)
 
 > Fast, extensible text editor with powerful search, multi-cursor, and plugins.
 
-- Add Sublime repo & install
+> ⚠️ I only have lic for v3, so this approach forces v3. If you want the latest, look in the app store.
+
+- <mark>Optional</mark> remove any Sublime apt repo you might have added earlier
 ```bash
-wget -qO- [https://download.sublimetext.com/sublimehq-pub.gpg](https://download.sublimetext.com/sublimehq-pub.gpg) | gpg --dearmor | sudo tee /usr/share/keyrings/sublimehq-archive.gpg > /dev/null
-echo "deb \[signed-by=/usr/share/keyrings/sublimehq-archive.gpg] [https://download.sublimetext.com/](https://download.sublimetext.com/) apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
-sudo apt update
-sudo apt install -y sublime-text
+sudo rm -f /etc/apt/sources.list.d/sublime-text.list /etc/apt/sources.list.d/sublime-text.sources
+sudo rm -f /etc/apt/keyrings/sublimehq-pub.asc /usr/share/keyrings/sublimehq-archive.gpg
+sudo apt update -y
+```
+
+- Download Sublime Text 3 (Build 3211) .deb
+```bash
+mkdir -p ~/tmp_installs && cd ~/tmp_installs
+wget -O sublime-text_3211_amd64.deb "https://download.sublimetext.com/sublime-text_build-3211_amd64.deb"
+```
+
+- Install it
+```bash
+sudo apt install ./sublime-text_3211_amd64.deb -y
+```
+
+- Hold the package so apt won’t upgrade it to ST4
+```bash
+sudo apt-mark hold sublime-text
+apt-mark showhold
 ```
 
 ## Zoom
@@ -815,7 +854,7 @@ sudo apt install -y obs-studio
 - (Optional, ⚠️ Ubuntu-based Mint Only) Use the official OBS PPA for newer versions
 ```bash
 sudo add-apt-repository -y ppa:obsproject/obs-studio
-sudo apt update
+sudo apt update -y
 sudo apt install -y obs-studio
 ```
 
