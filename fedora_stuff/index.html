@@ -117,7 +117,44 @@ sudo modprobe vboxdrv
 <p><code>bash
   systemctl status akmods</code></p>
 <hr />
-<p>👉 Do you want me to also show you how to <strong>install the Extension Pack</strong> (USB 2/3, RDP, PXE, NVMe) the safe way on Fedora?</p>
+<h2 id="error-virtualbox-cant-enable-the-amd-v-extension">ERROR: VirtualBox can't enable the AMD-V extension</h2>
+<p>If you see this:</p>
+<pre><code class="language-bash">VirtualBox can't enable the AMD-V extension.
+Please disable the KVM kernel extension, recompile your kernel and reboot (VERR_SVM_IN_USE).
+</code></pre>
+<h3 id="whats-happening">What’s happening:</h3>
+<ul>
+<li>VirtualBox wants to use <strong>AMD-V hardware virtualization</strong> (SVM).</li>
+<li>But your <strong>host Fedora 42</strong> already has <strong>KVM/QEMU</strong> loaded (because GNOME Boxes uses it).</li>
+<li>AMD-V / Intel VT-x can only be held by <em>one hypervisor</em> at a time → VirtualBox and KVM fight for it → VirtualBox fails with <code>VERR_SVM_IN_USE</code>.</li>
+</ul>
+<p>This is a classic conflict between <strong>VirtualBox vs KVM</strong>.</p>
+<h3 id="solutions">Solutions</h3>
+<ol>
+<li>Temporarily disable KVM modules (before running VirtualBox)</li>
+</ol>
+<p>Unload KVM modules from the host kernel:</p>
+<pre><code class="language-bash">sudo modprobe -r kvm_amd kvm_intel kvm
+</code></pre>
+<p>Then start your VirtualBox VM.
+⚠️ Downside: this breaks GNOME Boxes/virt-manager until you reboot or reload the modules:</p>
+<pre><code class="language-bash">sudo modprobe kvm_amd   # (or kvm_intel if Intel CPU)
+sudo modprobe kvm
+</code></pre>
+<ol>
+<li>Prevent KVM from autoloading at boot (if you want to switch fully to VirtualBox)</li>
+</ol>
+<p>Blacklist KVM modules:</p>
+<pre><code class="language-bash">echo &quot;blacklist kvm&quot; | sudo tee /etc/modprobe.d/disable-kvm.conf
+echo &quot;blacklist kvm_amd&quot; | sudo tee -a /etc/modprobe.d/disable-kvm.conf
+</code></pre>
+<p>(or <code>kvm_intel</code> if Intel CPU).
+Then reboot.
+Now VirtualBox will work, but GNOME Boxes / QEMU won’t.</p>
+<ol>
+<li>Stick with KVM/Boxes and skip VirtualBox</li>
+</ol>
+<p>Honestly, on Fedora the most robust hypervisor is <strong>KVM (Boxes/virt-manager)</strong>. VirtualBox is a bit of a second-class citizen on Fedora because the kernel moves so fast, and it constantly collides with KVM. If you just want Linux Mint guests, Boxes with <code>spice-vdagent</code> is much less painful.</p>
               
             </div>
           </div><footer>
