@@ -15,6 +15,7 @@ bash:
 sudo apt update && sudo apt full-upgrade -y
 # Driver Manager (pick NVIDIA/prop if needed)
 sudo mintdrivers
+note: If you end up installing any drivers from that, it could be wise to reboot
 sudo reboot
 
 ---
@@ -50,7 +51,7 @@ sudo systemctl enable --now tlp
 
 ---
 
-title: Improve Battery & Power Management (Approach 2 - <mark>many consider it to manage both battery life and cpu power, unlike tlp</mark>)
+title: Improve Battery & Power Management (Approach 2 - <mark>May manage both battery life and cpu power monitoring, unlike tlp, which foces on battery</mark>)
 note: ⚠️ Only do this if you're setting up a laptop
 item: Uninstall tlp, if it's installed
 bash:
@@ -89,13 +90,22 @@ sudo apt install -y qemu-kvm libvirt-daemon-system virt-manager
 sudo usermod -aG libvirt,kvm $USER
 sudo apt install -y gnome-boxes
 note: Now log out and back in to set virtualization group membership
-note: Note that after you install a linux distro as a guest, you may need to do something like this:
+
+---
+
+title: Post Virtual Machine Install (GNOME-Boxes)
+note: Linux VMs
+item: After you install a linux distro as a guest VM, you may need to install the spice system to get proper integration and desktop resizing:
 bash:
 # Inside the Linux VM
 sudo apt update -y
-sudo apt install spice-vdagent
+sudo apt install spice-vdagent qemu-guest-agent -y
 reboot
-
+item: With Boxes, Cinnamon (e.g., Linux Mint) doesn't work properly with spice. So <mark>**BEFORE** running the above command</mark>, switch to the _XFCE_ destkop.
+bash:
+sudo apt install mint-meta-xfce -y
+note: After running the above command: 1) Log out of Cinnamon, 2) Choose the Xfce desktop, 3) Log back in, 4) Run the above commands.
+note: Windows VMs...tba
 ---
 
 title: Audio sanity tools
@@ -105,15 +115,8 @@ sudo apt install -y pavucontrol
 
 ---
 
-title: Install Virtualization Essentials
-bash:
-sudo apt install -y qemu-kvm libvirt-daemon-system virt-manager
-sudo usermod -aG libvirt $USER
-note: Now log out and back in to set virtualization group membership
-
----
-
 title: Install Some Printer stuff
+note: These are already installed installed on Linux Mint!
 item: Printing (CUPS) + driverless USB printing support
 bash:
 sudo apt install -y cups ipp-usb system-config-printer
@@ -127,13 +130,17 @@ sudo apt install -y simple-scan sane-airscan sane-utils
 ---
 
 title: Install Microsoft fonts
+item: Install MS fonts, many applications and previous documents may rely on these.
 bash:
 sudo apt install -y ttf-mscorefonts-installer
+item: Refresh the font cache
+bash:
 sudo fc-cache -f -v
 
 ---
 
 title: Enable Firewall
+note: Already installed on Linux Mint
 item: Turn it ON (Home profile is fine)
 bash:
 sudo apt install -y gufw
