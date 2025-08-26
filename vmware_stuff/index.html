@@ -60,6 +60,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#uninstall">Uninstall</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#what-to-do-when-kernel-modules-wont-compile">What to do when kernel modules wont' compile</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -91,11 +93,11 @@
 <h2 id="obtaining-installer">Obtaining Installer</h2>
 <p>I go to support.broadcom.com and download the installer. Current ones I have:</p>
 <ul>
-<li>VMware-Workstation-Full-16.2.5-20904516.x86_64.bundle</li>
-<li>VMware-Workstation-Full-17.5.2-23775571.x86_64.bundle</li>
-<li>VMware-Workstation-Full-17.6.1-24319023.x86_64.bundle</li>
-<li>VMware-Workstation-Full-17.6.2-24409262.x86_64.bundle</li>
-<li>VMware-Workstation-Full-17.6.3-24583834.x86_64.bundle</li>
+<li><code>VMware-Workstation-Full-16.2.5-20904516.x86_64.bundle</code></li>
+<li><code>VMware-Workstation-Full-17.5.2-23775571.x86_64.bundle</code></li>
+<li><code>VMware-Workstation-Full-17.6.1-24319023.x86_64.bundle</code></li>
+<li><code>VMware-Workstation-Full-17.6.2-24409262.x86_64.bundle</code></li>
+<li><code>VMware-Workstation-Full-17.6.3-24583834.x86_64.bundle</code></li>
 </ul>
 <h2 id="install">Install</h2>
 <ol>
@@ -110,6 +112,17 @@
 </code></pre>
 <h2 id="uninstall">Uninstall</h2>
 <pre><code class="language-bash">sudo ./VMware-Workstation-Full-17.6.3-24583834.x86_64.bundle --uninstall-product vmware-workstation
+</code></pre>
+<h2 id="what-to-do-when-kernel-modules-wont-compile">What to do when kernel modules wont' compile</h2>
+<blockquote>
+<p>assumes hat mkubecek has the ones you need</p>
+</blockquote>
+<p>E.g.:</p>
+<pre><code class="language-bash">git clone https://github.com/mkubecek/vmware-host-modules.git -b workstation-17.5.2
+cd vmware-host-modules
+make
+sudo make install
+sudo systemctl restart vmware
 </code></pre>
               
             </div>
