@@ -308,13 +308,6 @@ npm -v
 
 
 ---
-
-title: GNOME Resources (System Monitor)
-note: Modern GNOME system monitor for CPU, memory, disk, network, and GPU usage with basic app/process management.
-bash:
-sudo apt install -y gnome-usage
-
----
 title: PDF App for Viewing/Commenting/FormFilling/Signatures
 note: If none of the FOSS apps are good enough, consider <b>PDF Studio</b>
 item: ~~Install Okular PDF Reader~~
