@@ -360,14 +360,6 @@ node -v
 npm -v
 ```
 
-## GNOME Resources (System Monitor)
-
-> Modern GNOME system monitor for CPU, memory, disk, network, and GPU usage with basic app/process management.
-
-```bash
-sudo apt install -y gnome-usage
-```
-
 ## PDF App for Viewing/Commenting/FormFilling/Signatures
 
 > If none of the FOSS apps are good enough, consider <b>PDF Studio</b>
