@@ -9,4 +9,4 @@ nav:
   - VMWare Workstation Notes: vmware_stuff.md
   - Fedora Stuff: fedora_stuff.md
   - Uninstall Snap: uninstall_snap.md
-
+  - Install Podman: install_podman.md
