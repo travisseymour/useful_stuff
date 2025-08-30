@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Swapt Docker 4 Podman - Stuff I Find Useful</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Swapt Docker 4 Podman";
+        var mkdocs_page_input_path = "swap_docker_for_podman.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Stuff I Find Useful
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../marp_stuff/">Marp Stuff</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../debian_setup/">Debian Linux Setup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../vmware_stuff/">VMWare Workstation Notes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fedora_stuff/">Fedora Stuff</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../uninstall_snap/">Uninstall Snap</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Swapt Docker 4 Podman</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#0-cleanup-podman">0. Cleanup Podman</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1-remove-podman-and-its-shims">1. Remove Podman (and its shims)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-add-dockers-official-repo">2. Add Docker’s official repo</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-install-docker-ce-and-plugins-includes-compose-v2">3. Install Docker CE and plugins (includes Compose v2)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-enable-start-docker">4. Enable &amp; start Docker</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5-add-your-user-to-the-docker-group-optional-avoids-sudo">5. Add your user to the docker group (optional, avoids sudo)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#6-test-it">6. Test it</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#-">---</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Stuff I Find Useful</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Swapt Docker 4 Podman</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="swap-docker-for-podman-on-fedora-39-42">Swap <strong>Docker</strong> For <strong>Podman</strong> on <mark>Fedora 39-42</mark>:</h1>
+<hr />
+<h2 id="0-cleanup-podman">0. Cleanup Podman</h2>
+<ol>
+<li>Force remove all containers: </li>
+</ol>
+<pre><code class="language-bash">podman rm -a -f
+</code></pre>
+<ol>
+<li>Force remove all pods: </li>
+</ol>
+<pre><code class="language-bash">podman pod rm -a -f
+</code></pre>
+<ol>
+<li>Force remove all images: </li>
+</ol>
+<pre><code class="language-bash">podman rmi -a -f
+</code></pre>
+<ol>
+<li>Force remove all podman machines and reset: </li>
+</ol>
+<pre><code class="language-bash">podman machine reset -f
+</code></pre>
+<hr />
+<h2 id="1-remove-podman-and-its-shims">1. Remove Podman (and its shims)</h2>
+<pre><code class="language-bash">sudo dnf remove -y podman podman-docker podman-compose
+</code></pre>
+<ul>
+<li><code>podman</code> = engine itself</li>
+<li><code>podman-docker</code> = the “shim” that makes <code>/usr/bin/docker</code> call Podman</li>
+<li><code>podman-compose</code> = Podman’s alternative Compose tool</li>
+</ul>
+<p>This ensures no “fake docker” commands get in your way.</p>
+<hr />
+<h2 id="2-add-dockers-official-repo">2. Add Docker’s official repo</h2>
+<p>Fedora doesn’t ship Docker CE anymore, so grab Docker’s maintained repo:</p>
+<pre><code class="language-bash"># set up the repo
+sudo dnf -y install dnf-plugins-core
+sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+</code></pre>
+<hr />
+<h2 id="3-install-docker-ce-and-plugins-includes-compose-v2">3. Install Docker CE and plugins (includes Compose v2)</h2>
+<pre><code class="language-bash">sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+</code></pre>
+<ul>
+<li><code>docker-compose-plugin</code> gives you <code>docker compose …</code> (v2, built into the <code>docker</code> CLI).</li>
+<li>No need for the old <code>docker-compose</code> Python package.</li>
+</ul>
+<hr />
+<h2 id="4-enable-start-docker">4. Enable &amp; start Docker</h2>
+<pre><code class="language-bash">sudo systemctl enable --now docker
+</code></pre>
+<hr />
+<h2 id="5-add-your-user-to-the-docker-group-optional-avoids-sudo">5. Add your user to the <code>docker</code> group (optional, avoids <code>sudo</code>)</h2>
+<pre><code class="language-bash">sudo usermod -aG docker $USER
+newgrp docker   # refresh group membership in current shell
+</code></pre>
+<hr />
+<h2 id="6-test-it">6. Test it</h2>
+<pre><code class="language-bash">docker --version
+docker compose version
+docker run hello-world
+</code></pre>
+<p>You should see Docker CE’s version info and a successful “Hello from Docker!” run.</p>
+<hr />
+<p><strong>At this point:</strong></p>
+<ul>
+<li>Podman is gone.</li>
+<li>You have the real Docker engine + socket at <code>/var/run/docker.sock</code>.</li>
+<li><code>docker</code> and <code>docker compose</code> commands will behave exactly as WinBoat (or any Docker-dependent app) expects.</li>
+</ul>
+<h2 id="-">---</h2>
+<h1 id="undo-the-above-and-go-back-to-fedoras-podman-first-setup">Undo the above and go back to Fedora’s <strong>Podman-first</strong> setup.:</h1>
+<hr />
+<h2 id="1-stop-and-remove-docker">1. Stop and remove Docker</h2>
+<pre><code class="language-bash">sudo systemctl disable --now docker
+sudo dnf remove -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+</code></pre>
+<p>That clears out Docker CE and its supporting runtime bits.</p>
+<hr />
+<h2 id="2-re-install-podman-extras">2. Re-install Podman + extras</h2>
+<pre><code class="language-bash">sudo dnf install -y podman podman-docker podman-compose
+</code></pre>
+<ul>
+<li><code>podman</code> → main engine</li>
+<li><code>podman-docker</code> → provides <code>/usr/bin/docker</code> shim (so <code>docker run …</code> maps to <code>podman run …</code>)</li>
+<li><code>podman-compose</code> → lets you run <code>podman-compose up</code> with <code>docker-compose.yml</code> files</li>
+</ul>
+<hr />
+<h2 id="3-optional-enable-docker-compat-socket-for-podman">3. (Optional) Enable Docker-compat socket for Podman</h2>
+<p>If you want tools like Compose v2 to talk to Podman as if it were Docker:</p>
+<pre><code class="language-bash">systemctl --user enable --now podman.socket
+export DOCKER_HOST=unix:///run/user/$UID/podman/podman.sock
+</code></pre>
+<p>(You can drop that <code>export</code> into <code>~/.bashrc</code> or <code>~/.zshrc</code> if you want it permanent.)</p>
+<hr />
+<h2 id="4-verify-podman-is-back">4. Verify Podman is back</h2>
+<pre><code class="language-bash">podman --version
+docker --version   # now points to Podman if podman-docker is installed
+podman run hello-world
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../uninstall_snap/" class="btn btn-neutral float-left" title="Uninstall Snap"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../uninstall_snap/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
