@@ -111,3 +111,25 @@ Honestly, on Fedora the most robust hypervisor is **KVM (Boxes/virt-manager)**. 
 ```bash
 sudo dnf install virt-manager
 ```
+
+---
+
+## Setup KDE Wallet (Needed, for example by PikaBackup)
+
+1. Install
+
+```bash
+sudo dnf install kwallet kwalletmanager pam-kwallet libsecret
+```
+
+2. Open System Settings and
+  - Check **Enable the KDE wallet subsystem**
+  - Check **Use KWallet for the Secret Service interface** (exposes the Freedesktop Secret Service that Pika expects)
+
+3. Log Out and Log In
+
+4. Open System Settings and
+  - Create a new wallet (e.g., "kwallet") and set a password
+  - It might seem like nothing happened, that's ok, log-out and log back in.
+  
+3. Now Pika should allow you to create an encrypted backup.
