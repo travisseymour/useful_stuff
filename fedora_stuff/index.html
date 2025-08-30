@@ -70,6 +70,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#installing-virt-manager">Installing Virt-Manager</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#setup-kde-wallet-needed-for-example-by-pikabackup">Setup KDE Wallet (Needed, for example by PikaBackup)</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -188,6 +190,33 @@ Now VirtualBox will work, but GNOME Boxes / QEMU won’t.</p>
 </ol>
 <pre><code class="language-bash">sudo dnf install virt-manager
 </code></pre>
+<hr />
+<h2 id="setup-kde-wallet-needed-for-example-by-pikabackup">Setup KDE Wallet (Needed, for example by PikaBackup)</h2>
+<ol>
+<li>Install</li>
+</ol>
+<pre><code class="language-bash">sudo dnf install kwallet kwalletmanager pam-kwallet libsecret
+</code></pre>
+<ol>
+<li>Open System Settings and</li>
+<li>Check <strong>Enable the KDE wallet subsystem</strong></li>
+<li>
+<p>Check <strong>Use KWallet for the Secret Service interface</strong> (exposes the Freedesktop Secret Service that Pika expects)</p>
+</li>
+<li>
+<p>Log Out and Log In</p>
+</li>
+<li>
+<p>Open System Settings and</p>
+</li>
+<li>Create a new wallet (e.g., "kwallet") and set a password</li>
+<li>
+<p>It might seem like nothing happened, that's ok, log-out and log back in.</p>
+</li>
+<li>
+<p>Now Pika should allow you to create an encrypted backup.</p>
+</li>
+</ol>
               
             </div>
           </div><footer>
