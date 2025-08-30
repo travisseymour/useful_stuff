@@ -5,8 +5,8 @@ theme:
 nav:
   - Home: index.md
   - Marp Stuff: marp_stuff.md
-  - Linux Setup (Debian): debian_setup.md
+  - Debian Linux Setup: debian_setup.md
   - VMWare Workstation Notes: vmware_stuff.md
   - Fedora Stuff: fedora_stuff.md
   - Uninstall Snap: uninstall_snap.md
-  - Install Podman: install_podman.md
+  - Swapt Docker 4 Podman: swap_docker_for_podman.md
