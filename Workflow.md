@@ -4,5 +4,5 @@
 2. in docs, run `sh do_convert.sh`  # only really needed if you change SOMETHING.setup
 3. `git add .`
 4. `git commit -m "[commit message]"`
-5. `git push`
+5. ~~`git push`~~
 6. `sh deploy.sh`
