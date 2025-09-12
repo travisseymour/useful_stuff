@@ -360,6 +360,25 @@ node -v
 npm -v
 ```
 
+## Install Flatpaks From Previous Exported List
+
+1. On Previous Machine With Flatpaks Installed, Create Restore List
+
+> Note: This will only save flatpaks with flathub as the origin!
+
+```bash
+flatpak list --app --columns=ref,origin | awk '$2 == "flathub" {print $1}' > flatpaks.txt
+```
+
+2. On New Machine Where You Want To Install Flatpaks Frm Restore List
+
+```bash
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+xargs -a flatpaks.txt -r flatpak install -y flathub
+```
+
+---
+
 ## PDF App for Viewing/Commenting/FormFilling/Signatures
 
 > If none of the FOSS apps are good enough, consider <b>PDF Studio</b>
