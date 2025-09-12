@@ -51,7 +51,7 @@ sudo apt install -y mint-meta-codecs
 sudo apt install -y libavcodec-extra vlc
 ```
 
-## Improve Battery & Power Management (Approach 1)
+## Improve Battery and Power Management (Approach 1)
 
 > ⚠️ Only do this if you're setting up a laptop
 
@@ -60,7 +60,7 @@ sudo apt install -y tlp tlp-rdw
 sudo systemctl enable --now tlp
 ```
 
-## Improve Battery & Power Management (Approach 2 - May manage both battery life and cpu power monitoring, unlike tlp, which foces on battery)
+## Improve Battery and Power Management (Approach 2 - May manage both battery life and cpu power monitoring, unlike tlp, which foces on battery)
 
 > ⚠️ Only do this if you're setting up a laptop
 
@@ -94,7 +94,7 @@ sudo apt install -y gnome-tweaks gnome-shell-extension-manager
 
 > Everyone needs this! It's how I manage Python and Various Apps
 
-1. Download & run installer
+1. Download and run installer
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -250,7 +250,7 @@ sudo reboot
 
 ## Install Text-To-Speech Voices
 
-- eSpeak NG via Speech Dispatcher (classic & tiny but works everywhere)
+- eSpeak NG via Speech Dispatcher (classic and tiny but works everywhere)
 ```bash
 sudo apt update -y
 sudo apt install -y espeak-ng speech-dispatcher-espeak-ng
@@ -338,7 +338,7 @@ sudo apt install -y ffmpeg
 sudo apt install -y libavcodec-extra
 ```
 
-## Enable Flatpak & Flathub
+## Enable Flatpak and Flathub
 
 > Ensures Flatpak is installed and the Flathub repo is enabled (Mint usually has this already).
 
@@ -359,6 +359,29 @@ sudo apt install -y nodejs
 node -v
 npm -v
 ```
+
+## Install Flatpaks From Previous Exported List
+
+1. On Previous Machine With Flatpaks Installed, Create Restore List
+
+> Note: This will only save flatpaks with flathub as the origin!
+
+```bash
+flatpak list --app --columns=ref,origin | awk '$2 == "flathub" {print $1}' > flatpaks.txt
+```
+
+2. On New Machine Where You Want To Install Flatpaks Frm Restore List
+
+```bash
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+xargs -a flatpaks.txt -r flatpak install -y flathub
+```
+
+---
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# @@@@@@@@@@@@@@@@@ USER APPS @@@@@@@@@@@@@@@@@
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+---
 
 ## PDF App for Viewing/Commenting/FormFilling/Signatures
 
@@ -758,7 +781,7 @@ flatpak install -y flathub org.zotero.Zotero
 
 > Simple GUI for creating and running virtual machines using Quickemu.
 
-- Add PPA & install
+- Add PPA, then install
 ```bash
 sudo add-apt-repository -y ppa\:flexiondotorg/quickemu
 sudo apt update
