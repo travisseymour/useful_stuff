@@ -10,3 +10,5 @@ nav:
   - Fedora Stuff: fedora_stuff.md
   - Uninstall Snap: uninstall_snap.md
   - Swapt Docker 4 Podman: swap_docker_for_podman.md
+  - Machine Transfer: machine_transfer.md
+  
