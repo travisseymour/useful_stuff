@@ -345,6 +345,7 @@ cd auto-cpufreq &amp;&amp; sudo ./auto-cpufreq-installer
 <pre><code class="language-bash">sudo apt install -y qemu-kvm libvirt-daemon-system virt-manager
 sudo usermod -aG libvirt,kvm $USER
 sudo apt install -y gnome-boxes
+sudo apt install -y virtualbox
 </code></pre>
 <blockquote>
 <p>Now log out and back in to set virtualization group membership</p>
@@ -511,8 +512,10 @@ source &quot;$HOME/.cargo/env&quot;
 <ul>
 <li>Linux headers (then pick the right headers meta (Debian/LMDE vs Ubuntu/Mint))</li>
 </ul>
-<pre><code class="language-bash">if apt-cache show linux-headers-amd64 &gt;/dev/null 2&gt;&amp;1; then
+<pre><code class="language-bash"># on Debian
+if apt-cache show linux-headers-amd64 &gt;/dev/null 2&gt;&amp;1; then
   sudo apt install -y linux-headers-amd64
+# on Ubuntu/Mint
 elif apt-cache show linux-headers-generic &gt;/dev/null 2&gt;&amp;1; then
   sudo apt install -y linux-headers-generic
 fi
