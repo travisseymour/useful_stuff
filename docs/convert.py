@@ -88,7 +88,7 @@ import typer
 app = typer.Typer(help="Build Markdown setup guides from simple config files.")
 
 SECTION_SPLIT_RE = re.compile(r"^\s*---\s*$", re.MULTILINE)
-KEY_RE = re.compile(r"^(maintitle|title|step|bash|note|item):\s*(.*)$", re.IGNORECASE)
+KEY_RE = re.compile(r"^(maintitle|title|step|bash|note|item|download):\s*(.*)$", re.IGNORECASE)
 MARK_TAG_RE = re.compile(r"</?mark>", re.IGNORECASE)
 
 
@@ -155,7 +155,7 @@ def _parse_block(block: str) -> Tuple[Optional[str], List[Tuple[str, str]]]:
             continue
 
         # Single-line keys: step, note, item, (maintitle allowed but ignored here)
-        if key in {"step", "note", "item"}:
+        if key in {"step", "note", "item", "download"}:
             events.append((key, rest.strip()))
         # maintitle in a section is ignored
         idx += 1
@@ -223,6 +223,12 @@ def render_markdown(maintitle: Optional[str], sections) -> str:
                 out.append(val)
                 out.append("```")
                 out.append("")
+            elif key == "download":
+                href = val
+                filename = Path(href).name
+                out.append(f'<a href="{href}" download="{filename}">Download as {filename}</a>')
+                out.append("")
+
         # ensure a blank line between sections
         if out and out[-1] != "":
             out.append("")
