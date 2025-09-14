@@ -90,6 +90,7 @@ bash:
 sudo apt install -y qemu-kvm libvirt-daemon-system virt-manager
 sudo usermod -aG libvirt,kvm $USER
 sudo apt install -y gnome-boxes
+sudo apt install -y virtualbox
 note: Now log out and back in to set virtualization group membership
 
 ---
@@ -231,8 +232,10 @@ bash:
 sudo apt install -y htop btop clang exfatprogs libu2f-udev samba-common-bin default-jdk curl wget unrar git unzip ntfs-3g p7zip-full
 item: Linux headers (then pick the right headers meta (Debian/LMDE vs Ubuntu/Mint))
 bash:
+# on Debian
 if apt-cache show linux-headers-amd64 >/dev/null 2>&1; then
   sudo apt install -y linux-headers-amd64
+# on Ubuntu/Mint
 elif apt-cache show linux-headers-generic >/dev/null 2>&1; then
   sudo apt install -y linux-headers-generic
 fi
