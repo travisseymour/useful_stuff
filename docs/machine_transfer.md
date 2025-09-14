@@ -23,4 +23,4 @@ xargs -a flatpaks.txt -r flatpak install -y flathub
 
 ## My Flatpak App List as of 9/13/25
 
-<a href="docs/flatpaks.txt" download="flatpaks.txt">Download as flatpaks.txt</a>
+<a href="../flatpaks.txt" download="flatpaks.txt">Download as flatpaks.txt</a>
