@@ -295,7 +295,17 @@ sudo apt install -y nodejs
 node -v
 npm -v
 
+---
 
+title: Install better commandline search (fd-find)
+item: Installation:
+bash:
+sudo apt install fd-find -y
+item: to find files with "deploy" (any casing) in the name that ends with ".sh", use this:
+bash:
+fdfind -i "deply.*\.sh$" ~
+
+---
 
 
 
@@ -630,7 +640,7 @@ sudo apt install -y vlc
 ---
 
 title: VSCodium
-note: Telemetry-free builds of VS Code from upstream open-source sources.
+note: Install telemetry-free build of VS Code from upstream open-source sources.
 item: Import the GPG key
 bash:
 wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | \
@@ -643,6 +653,35 @@ item: Update package lists and install VSCodium
 bash:
 sudo apt update -y
 sudo apt install codium -y
+note: Change global font scaling
+item: open the Command Palette (Ctrl+Shift+P) → “Preferences: Open User Settings (JSON)” and add:
+bash:
+{
+  "editor.fontSize": 16,
+  "window.zoomLevel": 2.0
+}
+item: save and restart
+
+---
+
+title: PyCharm Professional
+note: ⚠️ Install: TBA
+note: Scale The Interface: Finding and editing `idea.properties`:
+item: Linux Mint:
+bash:
+/.config/JetBrains/<pycharm-version>/idea.properties
+item: Windows:
+bash:
+%USERPROFILE%\.PyCharm<version>\config\idea.properties
+item: MacOS:
+bash:
+~/Library/Preferences/PyCharm<version>/idea.properties
+note: Scale The Interface: Edit content:
+item: Make changes
+bash:
+# Custom UI scaling factor
+ide.ui.scale=1.5
+item: Save and Restart PyCharm to see changes
 
 ---
 
@@ -683,6 +722,49 @@ bash:
 sudo apt-mark hold sublime-text
 apt-mark showhold
 
+---
+
+title: Pulsar text editor
+note: Install Editor
+bash:
+# You have to go to the website and make sure you are linking to the latest version.
+# https://pulsar-edit.dev/download/
+sudo apt install https://github.com/pulsar-edit/pulsar/releases/download/v1.129.0/Linux.pulsar_1.129.0_amd64.deb
+note: Manually setup useful plugins by going to Settings->Install and installing:
+item: language-epic (singular)
+item: Sublime-Style-Column-Selection (uses Shift-LeftMouse for column select)
+item: markdown-preview
+item: markdown-pdf
+note: **OR** Setup useful plugins via commandline:
+bash:
+pulsar --package install language-epic
+pulsar --package install Sublime-Style-Column-Selection
+pulsar --package install markdown-preview
+pulsar --package install markdown-pdf
+note: Setup Default Font
+item: Press Ctrl/Shift/P, choose "Application: Open Your Stylesheet"
+item: Enter this code and save (takes place immediately)
+bash:
+// Editor text font size
+atom-text-editor {
+  font-size: 19px;          // <- change this value as needed
+  line-height: 1.6;
+  font-family: "Fira Code", monospace;
+}
+
+// Project tree sidebar (Tree View)
+.tree-view {
+  font-size: 19px;
+  font-family: "Fira Code", monospace;
+  line-height: 1.5;
+}
+
+// Markdown Preview pane (doesn't seek to have any effect)
+.markdown-preview {
+  font-size: 19px;
+  line-height: 1.6;
+  padding: 1em;
+}
 ---
 
 title: Zoom

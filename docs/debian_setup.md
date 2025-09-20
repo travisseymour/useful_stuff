@@ -112,6 +112,7 @@ export PATH="$HOME/.local/bin:$PATH"
 sudo apt install -y qemu-kvm libvirt-daemon-system virt-manager
 sudo usermod -aG libvirt,kvm $USER
 sudo apt install -y gnome-boxes
+sudo apt install -y virtualbox
 ```
 
 > Now log out and back in to set virtualization group membership
@@ -287,8 +288,10 @@ sudo apt install -y htop btop clang exfatprogs libu2f-udev samba-common-bin defa
 
 - Linux headers (then pick the right headers meta (Debian/LMDE vs Ubuntu/Mint))
 ```bash
+# on Debian
 if apt-cache show linux-headers-amd64 >/dev/null 2>&1; then
   sudo apt install -y linux-headers-amd64
+# on Ubuntu/Mint
 elif apt-cache show linux-headers-generic >/dev/null 2>&1; then
   sudo apt install -y linux-headers-generic
 fi
@@ -358,6 +361,18 @@ curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 sudo apt install -y nodejs
 node -v
 npm -v
+```
+
+## Install better commandline search (fd-find)
+
+- Installation:
+```bash
+sudo apt install fd-find -y
+```
+
+- to find files with "deploy" (any casing) in the name that ends with ".sh", use this:
+```bash
+fdfind -i "deply.*\.sh$" ~
 ```
 
 ## PDF App for Viewing/Commenting/FormFilling/Signatures
@@ -726,7 +741,7 @@ sudo apt install -y vlc
 
 ## VSCodium
 
-> Telemetry-free builds of VS Code from upstream open-source sources.
+> Install telemetry-free build of VS Code from upstream open-source sources.
 
 - Import the GPG key
 ```bash
@@ -745,6 +760,49 @@ echo 'deb [signed-by=/usr/share/keyrings/vscodium.gpg] https://download.vscodium
 sudo apt update -y
 sudo apt install codium -y
 ```
+
+> Change global font scaling
+
+- open the Command Palette (Ctrl+Shift+P) → “Preferences: Open User Settings (JSON)” and add:
+```bash
+{
+  "editor.fontSize": 16,
+  "window.zoomLevel": 2.0
+}
+```
+
+- save and restart
+
+## PyCharm Professional
+
+> ⚠️ Install: TBA
+
+> Scale The Interface: Finding and editing `idea.properties`:
+
+- Linux Mint:
+```bash
+/.config/JetBrains/<pycharm-version>/idea.properties
+```
+
+- Windows:
+```bash
+%USERPROFILE%\.PyCharm<version>\config\idea.properties
+```
+
+- MacOS:
+```bash
+~/Library/Preferences/PyCharm<version>/idea.properties
+```
+
+> Scale The Interface: Edit content:
+
+- Make changes
+```bash
+# Custom UI scaling factor
+ide.ui.scale=1.5
+```
+
+- Save and Restart PyCharm to see changes
 
 ## Zotero
 
@@ -793,6 +851,56 @@ sudo apt install ./sublime-text_3211_amd64.deb -y
 ```bash
 sudo apt-mark hold sublime-text
 apt-mark showhold
+```
+
+## Pulsar text editor
+
+> Install Editor
+
+```bash
+# You have to go to the website and make sure you are linking to the latest version.
+# https://pulsar-edit.dev/download/
+sudo apt install https://github.com/pulsar-edit/pulsar/releases/download/v1.129.0/Linux.pulsar_1.129.0_amd64.deb
+```
+
+> Manually setup useful plugins by going to Settings->Install and installing:
+
+- language-epic (singular)
+- Sublime-Style-Column-Selection (uses Shift-LeftMouse for column select)
+- markdown-preview
+- markdown-pdf
+> **OR** Setup useful plugins via commandline:
+
+```bash
+pulsar --package install language-epic
+pulsar --package install Sublime-Style-Column-Selection
+pulsar --package install markdown-preview
+pulsar --package install markdown-pdf
+```
+
+> Setup Default Font
+
+- Press Ctrl/Shift/P, choose "Application: Open Your Stylesheet"
+- Enter this code and save (takes place immediately)
+```bash
+// Editor text font size
+atom-text-editor {
+  font-size: 19px;          // <- change this value as needed
+  line-height: 1.6;
+  font-family: "Fira Code", monospace;
+}
+// Project tree sidebar (Tree View)
+.tree-view {
+  font-size: 19px;
+  font-family: "Fira Code", monospace;
+  line-height: 1.5;
+}
+// Markdown Preview pane (doesn't seek to have any effect)
+.markdown-preview {
+  font-size: 19px;
+  line-height: 1.6;
+  padding: 1em;
+}
 ```
 
 ## Zoom
