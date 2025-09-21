@@ -11,4 +11,6 @@ nav:
   - Uninstall Snap: uninstall_snap.md
   - Swapt Docker 4 Podman: swap_docker_for_podman.md
   - Machine Transfer: machine_transfer.md
+  - Setup SSH for Github: setup_ssh_for_github.md
+
   
