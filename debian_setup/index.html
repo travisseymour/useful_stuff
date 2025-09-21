@@ -104,6 +104,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#install-the-npm-package">Install the NPM package</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-better-commandline-search-fd-find">Install better commandline search (fd-find)</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#pdf-app-for-viewingcommentingformfillingsignatures">PDF App for Viewing/Commenting/FormFilling/Signatures</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#pdf-arranger">PDF Arranger</a>
@@ -186,11 +188,15 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#vscodium">VSCodium</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pycharm-professional">PyCharm Professional</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#zotero">Zotero</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#quickgui">QuickGUI</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#sublime-text-3-not-v4">Sublime Text 3 (not v4)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pulsar-text-editor">Pulsar text editor</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#zoom">Zoom</a>
     </li>
@@ -577,6 +583,17 @@ sudo apt install -y nodejs
 node -v
 npm -v
 </code></pre>
+<h2 id="install-better-commandline-search-fd-find">Install better commandline search (fd-find)</h2>
+<ul>
+<li>Installation:</li>
+</ul>
+<pre><code class="language-bash">sudo apt install fd-find -y
+</code></pre>
+<ul>
+<li>to find files with "deploy" (any casing) in the name that ends with ".sh", use this:</li>
+</ul>
+<pre><code class="language-bash">fdfind -i &quot;deply.*\.sh$&quot; ~
+</code></pre>
 <h2 id="pdf-app-for-viewingcommentingformfillingsignatures">PDF App for Viewing/Commenting/FormFilling/Signatures</h2>
 <blockquote>
 <p>If none of the FOSS apps are good enough, consider <b>PDF Studio</b></p>
@@ -873,7 +890,7 @@ sudo apt install -y mullvad-browser
 </code></pre>
 <h2 id="vscodium">VSCodium</h2>
 <blockquote>
-<p>Telemetry-free builds of VS Code from upstream open-source sources.</p>
+<p>Install telemetry-free build of VS Code from upstream open-source sources.</p>
 </blockquote>
 <ul>
 <li>Import the GPG key</li>
@@ -893,6 +910,52 @@ sudo apt install -y mullvad-browser
 <pre><code class="language-bash">sudo apt update -y
 sudo apt install codium -y
 </code></pre>
+<blockquote>
+<p>Change global font scaling</p>
+</blockquote>
+<ul>
+<li>open the Command Palette (Ctrl+Shift+P) → “Preferences: Open User Settings (JSON)” and add:</li>
+</ul>
+<pre><code class="language-bash">{
+  &quot;editor.fontSize&quot;: 16,
+  &quot;window.zoomLevel&quot;: 2.0
+}
+</code></pre>
+<ul>
+<li>save and restart</li>
+</ul>
+<h2 id="pycharm-professional">PyCharm Professional</h2>
+<blockquote>
+<p>⚠️ Install: TBA</p>
+<p>Scale The Interface: Finding and editing <code>idea.properties</code>:</p>
+</blockquote>
+<ul>
+<li>Linux Mint:</li>
+</ul>
+<pre><code class="language-bash">/.config/JetBrains/&lt;pycharm-version&gt;/idea.properties
+</code></pre>
+<ul>
+<li>Windows:</li>
+</ul>
+<pre><code class="language-bash">%USERPROFILE%\.PyCharm&lt;version&gt;\config\idea.properties
+</code></pre>
+<ul>
+<li>MacOS:</li>
+</ul>
+<pre><code class="language-bash">~/Library/Preferences/PyCharm&lt;version&gt;/idea.properties
+</code></pre>
+<blockquote>
+<p>Scale The Interface: Edit content:</p>
+</blockquote>
+<ul>
+<li>Make changes</li>
+</ul>
+<pre><code class="language-bash"># Custom UI scaling factor
+ide.ui.scale=1.5
+</code></pre>
+<ul>
+<li>Save and Restart PyCharm to see changes</li>
+</ul>
 <h2 id="zotero">Zotero</h2>
 <blockquote>
 <p>Reference manager for collecting, organizing, citing, and sharing research.</p>
@@ -938,6 +1001,57 @@ wget -O sublime-text_3211_amd64.deb &quot;https://download.sublimetext.com/subli
 </ul>
 <pre><code class="language-bash">sudo apt-mark hold sublime-text
 apt-mark showhold
+</code></pre>
+<h2 id="pulsar-text-editor">Pulsar text editor</h2>
+<blockquote>
+<p>Install Editor</p>
+</blockquote>
+<pre><code class="language-bash"># You have to go to the website and make sure you are linking to the latest version.
+# https://pulsar-edit.dev/download/
+sudo apt install https://github.com/pulsar-edit/pulsar/releases/download/v1.129.0/Linux.pulsar_1.129.0_amd64.deb
+</code></pre>
+<blockquote>
+<p>Manually setup useful plugins by going to Settings-&gt;Install and installing:</p>
+</blockquote>
+<ul>
+<li>language-epic (singular)</li>
+<li>Sublime-Style-Column-Selection (uses Shift-LeftMouse for column select)</li>
+<li>markdown-preview</li>
+<li>markdown-pdf<blockquote>
+<p><strong>OR</strong> Setup useful plugins via commandline:</p>
+</blockquote>
+</li>
+</ul>
+<pre><code class="language-bash">pulsar --package install language-epic
+pulsar --package install Sublime-Style-Column-Selection
+pulsar --package install markdown-preview
+pulsar --package install markdown-pdf
+</code></pre>
+<blockquote>
+<p>Setup Default Font</p>
+</blockquote>
+<ul>
+<li>Press Ctrl/Shift/P, choose "Application: Open Your Stylesheet"</li>
+<li>Enter this code and save (takes place immediately)</li>
+</ul>
+<pre><code class="language-bash">// Editor text font size
+atom-text-editor {
+  font-size: 19px;          // &lt;- change this value as needed
+  line-height: 1.6;
+  font-family: &quot;Fira Code&quot;, monospace;
+}
+// Project tree sidebar (Tree View)
+.tree-view {
+  font-size: 19px;
+  font-family: &quot;Fira Code&quot;, monospace;
+  line-height: 1.5;
+}
+// Markdown Preview pane (doesn't seek to have any effect)
+.markdown-preview {
+  font-size: 19px;
+  line-height: 1.6;
+  padding: 1em;
+}
 </code></pre>
 <h2 id="zoom">Zoom</h2>
 <blockquote>
