@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Setup SSH for Github - Stuff I Find Useful</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Setup SSH for Github";
+        var mkdocs_page_input_path = "setup_ssh_for_github.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Stuff I Find Useful
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../marp_stuff/">Marp Stuff</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../debian_setup/">Debian Linux Setup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../vmware_stuff/">VMWare Workstation Notes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fedora_stuff/">Fedora Stuff</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../uninstall_snap/">Uninstall Snap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../swap_docker_for_podman/">Swapt Docker 4 Podman</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../machine_transfer/">Machine Transfer</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Setup SSH for Github</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#a-create-and-load-an-ssh-key-one-time">A) Create and load an SSH key (one-time)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#b-point-your-local-repo-at-the-ssh-url">B) Point your local repo at the SSH URL</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#c-configure-pycharm-to-use-ssh">C) Configure PyCharm to use SSH</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Stuff I Find Useful</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Setup SSH for Github</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="end-to-end-setup-to-use-ssh-so-pycharm-can-push-a-projects-changes-to-github">End-to-end setup to use <strong>SSH</strong> so PyCharm can push a project's changes to github.</h1>
+<h2 id="a-create-and-load-an-ssh-key-one-time">A) Create and load an SSH key (one-time)</h2>
+<ol>
+<li>Generate a key (accept defaults unless you already have one):</li>
+</ol>
+<pre><code class="language-bash">ssh-keygen -t ed25519 -C &quot;your_email@example.com&quot;
+# Press Enter for default path (~/.ssh/id_ed25519)
+# Optionally set a passphrase
+</code></pre>
+<ol>
+<li>Start the agent and add your key:</li>
+</ol>
+<pre><code class="language-bash">eval &quot;$(ssh-agent -s)&quot;
+ssh-add ~/.ssh/id_ed25519
+</code></pre>
+<ul>
+<li>
+<p>If you set a passphrase, you’ll be prompted once; your desktop keyring may remember it.</p>
+</li>
+<li>
+<p>Add the <strong>public</strong> key to GitHub:</p>
+</li>
+</ul>
+<pre><code class="language-bash">cat ~/.ssh/id_ed25519.pub
+</code></pre>
+<p>Copy the whole line, then in GitHub: <strong>Settings → SSH and GPG keys → New SSH key</strong> → paste → Save.</p>
+<ol>
+<li>Test the auth:</li>
+</ol>
+<pre><code class="language-bash">ssh -T git@github.com
+</code></pre>
+<p>You should see a “Hi <username>! You’ve successfully authenticated…” message.</p>
+<h2 id="b-point-your-local-repo-at-the-ssh-url">B) Point your local repo at the SSH URL</h2>
+<p>In your project folder:</p>
+<pre><code class="language-bash">git remote -v
+# if you see https://..., switch it to SSH:
+git remote set-url origin git@github.com:&lt;USERNAME&gt;/&lt;REPO&gt;.git
+git remote -v   # confirm it shows git@github.com:...
+</code></pre>
+<h2 id="c-configure-pycharm-to-use-ssh">C) Configure PyCharm to use SSH</h2>
+<ol>
+<li>
+<p><strong>Git executable</strong>:
+   PyCharm → <strong>Settings/Preferences → Version Control → Git</strong></p>
+</li>
+<li>
+<p>Ensure “Path to Git executable” points to your system <code>git</code> (PyCharm usually auto-detects).</p>
+</li>
+<li>
+<p><strong>SSH handling</strong>:
+   PyCharm → <strong>Settings/Preferences → Tools → SSH Configurations</strong></p>
+</li>
+<li>
+<p>You usually don’t need to add anything here; PyCharm uses your system OpenSSH by default.
+  PyCharm → <strong>Settings/Preferences → Version Control → Git</strong></p>
+</li>
+<li>
+<p>Make sure <strong>SSH executable</strong> is <strong>Native</strong> (not “Built-in”).</p>
+</li>
+<li>
+<p><strong>Clear any old HTTPS login</strong> (so PyCharm stops prompting for a password/token):
+   PyCharm → <strong>Settings/Preferences → Version Control → GitHub</strong></p>
+</li>
+<li>
+<p>Remove any stored GitHub accounts tied to HTTPS.</p>
+</li>
+<li>
+<p><strong>Map the project to Git</strong> (if not already):
+   VCS → <strong>Enable Version Control Integration…</strong> → choose <strong>Git</strong>.</p>
+</li>
+<li>
+<p><strong>Trust the GitHub host key</strong> (first time from inside PyCharm it may ask):</p>
+</li>
+<li>
+<p>If prompted “Do you trust the host github.com?”, accept.</p>
+</li>
+</ol>
+<h1 id="d-push-from-pycharm">D) Push from PyCharm</h1>
+<ul>
+<li>VCS → <strong>Commit</strong> → <strong>Commit and Push</strong> (or the <strong>Push</strong> action).</li>
+<li>If your SSH key has a passphrase and the agent/keyring isn’t holding it yet, you’ll get a prompt once.</li>
+</ul>
+<hr />
+<h2 id="common-pitfalls-quick-fixes">Common pitfalls &amp; quick fixes</h2>
+<ul>
+<li><strong>Still seeing password prompts?</strong> Your remote is still HTTPS. Run:</li>
+</ul>
+<p><code>bash
+  git remote -v
+  git remote set-url origin git@github.com:&lt;USERNAME&gt;/&lt;REPO&gt;.git</code>
+* <strong>Key not used / asks every time:</strong> Ensure the agent has the key:</p>
+<p><code>bash
+  ssh-add -l               # list keys loaded
+  ssh-add ~/.ssh/id_ed25519</code></p>
+<p>On Linux desktops, your keyring can auto-load keys on login. If not, add the <code>eval "$(ssh-agent -s)"</code> and <code>ssh-add</code> to your shell init or use your DE’s keyring settings.
+* <strong>Multiple keys / multiple GitHub accounts:</strong> Use <code>~/.ssh/config</code>:</p>
+<p><code>Host github.com
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_ed25519
+    IdentitiesOnly yes</code>
+* <strong>Permissions error:</strong> Make sure <code>~/.ssh</code> is <code>700</code> and private key is <code>600</code>:</p>
+<p><code>bash
+  chmod 700 ~/.ssh
+  chmod 600 ~/.ssh/id_ed25519</code></p>
+<p>That’s it—once the remote is SSH and your key is added, PyCharm pushes should “just work.” If anything still blocks you, paste your <code>git remote -v</code> and the output of <code>ssh -T git@github.com</code>, and I’ll zero in on it.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../machine_transfer/" class="btn btn-neutral float-left" title="Machine Transfer"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../machine_transfer/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
