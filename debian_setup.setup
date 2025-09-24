@@ -318,7 +318,11 @@ fdfind -i "deply.*\.sh$" ~
 
 
 
-
+---
+title: ShortWave Radio Client
+note: Shortwave is a modern looking open source Internet Radio player for Linux desktop
+bash:
+flatpak install flathub de.haeckerfelix.Shortwave
 
 ---
 title: PDF App for Viewing/Commenting/FormFilling/Signatures
