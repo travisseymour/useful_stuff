@@ -375,6 +375,14 @@ sudo apt install fd-find -y
 fdfind -i "deply.*\.sh$" ~
 ```
 
+## ShortWave Radio Client
+
+> Shortwave is a modern looking open source Internet Radio player for Linux desktop
+
+```bash
+flatpak install flathub de.haeckerfelix.Shortwave
+```
+
 ## PDF App for Viewing/Commenting/FormFilling/Signatures
 
 > If none of the FOSS apps are good enough, consider <b>PDF Studio</b>

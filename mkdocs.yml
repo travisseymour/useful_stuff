@@ -12,5 +12,5 @@ nav:
   - Swapt Docker 4 Podman: swap_docker_for_podman.md
   - Machine Transfer: machine_transfer.md
   - Setup SSH for Github: setup_ssh_for_github.md
-
+  - Clear Github Project History: clear_github_project_history.md
   
