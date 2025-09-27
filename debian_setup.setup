@@ -347,6 +347,12 @@ wget https://download.qoppa.com/pdfstudio/PDFStudio_linux64.sh
 chmod +x PDFStudioViewer_linux64.sh
 ./PDFStudioViewer_linux64.sh
 
+---
+
+title: Asunder CD Ripper
+note: Supportes WAV, FLAC, OGG, MP3 AND ACC
+bash:
+sudo apt install asunder
 
 ---
 
