@@ -316,7 +316,12 @@ fdfind -i "deply.*\.sh$" ~
 
 
 
+---
 
+title: Anki
+note: Flashcard App
+bash:
+flatpak install -y flathub net.ankiweb.Anki
 
 ---
 title: ShortWave Radio Client

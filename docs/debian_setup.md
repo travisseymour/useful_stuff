@@ -375,6 +375,14 @@ sudo apt install fd-find -y
 fdfind -i "deply.*\.sh$" ~
 ```
 
+## Anki
+
+> Flashcard App
+
+```bash
+flatpak install -y flathub net.ankiweb.Anki
+```
+
 ## ShortWave Radio Client
 
 > Shortwave is a modern looking open source Internet Radio player for Linux desktop

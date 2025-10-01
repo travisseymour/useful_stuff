@@ -15,6 +15,9 @@ stage:
 commit:
 	@$(GITCOMMIT)
 
+compile:
+	@sh docs/do_convert.sh
+
 push:
 	@git push
 
@@ -22,6 +25,7 @@ deploy:
 	@sh ./deploy.sh
 
 update:
+	@$(MAKE) compile
 	@$(MAKE) stage
 	@$(MAKE) commit
 	@$(MAKE) push
