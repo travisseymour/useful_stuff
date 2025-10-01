@@ -25,3 +25,4 @@ update:
 	@$(MAKE) stage
 	@$(MAKE) commit
 	@$(MAKE) push
+	@$(MAKE) deploy
