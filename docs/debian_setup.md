@@ -28,6 +28,22 @@ sudo mintdrivers
 sudo reboot
 ```
 
+## Install the Ubuntu Driver Collection
+
+```bash
+sudo apt install -y ubuntu-drivers-common
+sudo ubuntu-drivers install
+sudo reboot
+```
+
+## Install Nvidia Drive
+
+> ⚠️ Only do this if you have an NVidia GPU!
+
+```bash
+sudo apt install -y nvidia-driver
+```
+
 ## Install Multimedia Support
 
 ```bash
@@ -37,7 +53,7 @@ sudo apt install -y libavcodec-extra vlc
 
 ## Improve Battery & Power Management (Approach 1)
 
-> ⚠️ Only do this if you're setting up a LAPTOP
+> ⚠️ Only do this if you're setting up a laptop
 
 ```bash
 sudo apt install -y tlp tlp-rdw
@@ -46,7 +62,7 @@ sudo systemctl enable --now tlp
 
 ## Improve Battery & Power Management (Approach 2 - May manage both battery life and cpu power monitoring, unlike tlp, which foces on battery)
 
-> ⚠️ Only do this if you're setting up a LAPTOP
+> ⚠️ Only do this if you're setting up a laptop
 
 - Uninstall tlp, if it's installed
 ```bash
@@ -124,6 +140,24 @@ sudo apt install mint-meta-xfce -y
 
 ## Audio sanity tools
 
+> Useful if something goes wrong with your audio system
+
+```bash
+sudo apt install -y pavucontrol
+```
+
+## Install Some Printer stuff
+
+> These are already installed installed on Linux Mint!
+
+- Printing (CUPS) + driverless USB printing support
+```bash
+sudo apt install -y cups ipp-usb system-config-printer
+sudo systemctl enable --now cups ipp-usb
+# (optional) allow your user to manage printers
+sudo usermod -aG lpadmin "$USER"
+```
+
 - Scanning
 ```bash
 sudo apt install -y simple-scan sane-airscan sane-utils
@@ -156,6 +190,26 @@ gufw
 sudo ufw allow 445/tcp
 ```
 
+## CPU Microcode (Intel)
+
+> ⚠️ **Only** install this if you have an <mark>Intel CPU!</mark>
+
+```bash
+# Will immediately reboot!
+sudo apt install -y intel-microcode
+sudo reboot
+```
+
+## CPU Microcode (AMD)
+
+> ⚠️ **Only** install this if you have an <mark>AMD CPU!</mark>
+
+```bash
+# Will immediately reboot!
+sudo apt install -y amd64-microcode
+sudo reboot
+```
+
 ## Enable TRIM
 
 - First check if it is already running
@@ -180,6 +234,36 @@ sudo apt update -y && sudo apt install -y gstreamer1.0-plugins-bad gstreamer1.0-
 sudo apt install -y gstreamer1.0-plugins-good gstreamer1.0-tools gstreamer1.0-gl
 ```
 
+- Optional GPU Acceleration for <mark>AMD GPU</mark>
+```bash
+sudo apt install -y mesa-va-drivers gstreamer1.0-vaapi vainfo
+```
+
+- Optional GPU Acceleration for <mark>INTEL/NVIDIA GPU</mark>
+> On Linux Mint -- You already have what you need! Otherwise:
+
+```bash
+sudo apt update -y
+# Install/refresh the proprietary driver automatically
+sudo ubuntu-drivers autoinstall
+sudo reboot
+```
+
+## Install Text-To-Speech Voices
+
+- eSpeak NG via Speech Dispatcher (classic & tiny but works everywhere)
+```bash
+sudo apt update -y
+sudo apt install -y espeak-ng speech-dispatcher-espeak-ng
+spd-say "Hello from e-Speak N.G. via Speech Dispatcher"
+```
+
+- RHVoice (higher-quality, lightweight voices)
+```bash
+sudo apt install -y rhvoice rhvoice-english speech-dispatcher-rhvoice
+spd-say -o rhvoice -l en "Hello from R.H. Voice via Speech Dispatcher"
+```
+
 ## Install Rust
 
 - Install rustup + stable toolchain
@@ -202,9 +286,20 @@ rustup component add rustfmt clippy
 sudo apt install -y htop btop clang exfatprogs libu2f-udev samba-common-bin default-jdk curl wget unrar git unzip ntfs-3g p7zip-full
 ```
 
-- Linux headers (Ubuntu/Mint)
+- Linux headers (then pick the right headers meta (Debian/LMDE vs Ubuntu/Mint))
 ```bash
-sudo apt install linux-headers-generic
+# on Debian
+if apt-cache show linux-headers-amd64 >/dev/null 2>&1; then
+  sudo apt install -y linux-headers-amd64
+# on Ubuntu/Mint
+elif apt-cache show linux-headers-generic >/dev/null 2>&1; then
+  sudo apt install -y linux-headers-generic
+fi
+```
+
+- Install fastfetch, but fallback to neofetch (older, arrested development) if fastfetch is not available.
+```bash
+sudo apt install -y fastfetch || sudo apt install -y neofetch
 ```
 
 ## Install Essential Development Tools
@@ -294,7 +389,8 @@ flatpak install flathub de.haeckerfelix.Shortwave
 
 - ~~Install Okular PDF Reader~~
 ```bash
-flatpak install flathub org.kde.okular
+# Note: This installs needs to install a huge number of libraries and other files. Use PDFStudioViewer instead.
+# sudo apt install okular -y
 ```
 
 - Install PDF Viewer (Free)
@@ -320,7 +416,7 @@ chmod +x PDFStudioViewer_linux64.sh
 > Supportes WAV, FLAC, OGG, MP3 AND ACC
 
 ```bash
-flatpak install ca.littlesvr.asunder
+sudo apt install asunder
 ```
 
 ## PDF Arranger
@@ -328,7 +424,7 @@ flatpak install ca.littlesvr.asunder
 > Lightweight tool to merge, split, rotate, crop, and reorder PDF pages.
 
 ```bash
-flatpak install -y com.github.jeromerobert.pdfarr
+sudo apt install -y pdfarranger
 ```
 
 ## Stimulator
@@ -395,7 +491,7 @@ sudo apt install elisa -y
 > Popular open-source audio recorder and multitrack editor.
 
 ```bash
-flatpak install -y org.audacityteam.Audacity
+sudo apt install -y audacity
 ```
 
 ## Bitwarden
@@ -427,7 +523,7 @@ flatpak install -y flathub com.boxy\_svg.BoxySVG
 > Simple CD/DVD burning application for creating data and audio discs.
 
 ```bash
-flatpak install -y org.gnome.Brasero
+sudo apt install -y brasero
 ```
 
 ## draw\.io / diagrams.net
@@ -443,7 +539,7 @@ flatpak install -y flathub com.jgraph.drawio.desktop
 > Audio tag editor that quickly fixes and organizes music metadata.
 
 ```bash
-flatpak install -y flathub org.gnome.EasyTag
+sudo apt install -y easytag
 ```
 
 ## Eyedropper
@@ -459,7 +555,7 @@ flatpak install -y flathub com.github.finefindus.eyedropper
 > Sunburst-style disk usage viewer to find large folders and files fast.
 
 ```bash
-flatpak install -y flathub org.kde.filelight
+sudo apt install -y filelight
 ```
 
 ## Fluent Reader
@@ -483,7 +579,7 @@ flatpak install -y flathub com.github.tchx84.Flatseal
 > Powerful raster graphics editor for photo retouching and image creation.
 
 ```bash
-flatpak install -y flathub org.gimp.GIMP
+sudo apt install -y gimp
 ```
 
 ## GPU Screen Recorder
@@ -507,7 +603,7 @@ flatpak install -y flathub io.github.arunsivaramanneo.GPUViewer
 > Professional-grade vector graphics editor ideal for logos and illustrations.
 
 ```bash
-flatpak install -y flathub org.inkscape.Inkscape
+sudo apt install -y inkscape
 ```
 
 ## JASP (Statistics)
@@ -550,6 +646,20 @@ flatpak install -y flathub io.github.seadve.Kooha
 flatpak install -y flathub org.localsend.localsend\_app
 ```
 
+## OnionShare
+
+> Share files, host websites, and chat securely over Tor.
+
+- System (Debian) Installer: Installs a lot of stuff, maybe consider the flatpak version instead?
+```bash
+sudo apt install -y onionshare
+```
+
+- Flatpak Installer:
+```bash
+sudo flatpak install -y onionshare
+```
+
 ## LosslessCut
 
 > Ultra-fast lossless video/audio trimming, splitting, and merging.
@@ -564,7 +674,9 @@ flatpak install -y flathub no.mifi.losslesscut
 
 - Add the MakeMKV beta PPA and install
 ```bash
-flatpak install -y flathub com.makemkv.MakeMKV
+sudo add-apt-repository -y ppa\:heyarje/makemkv-beta
+sudo apt update -y
+sudo apt install -y makemkv-oss makemkv-bin
 ```
 
 ## Meld (Diff/Merge)
@@ -608,7 +720,7 @@ flatpak install -y flathub org.musescore.MuseScore
 > Tag your music files using the MusicBrainz database with acoustic fingerprints.
 
 ```bash
-flatpak install -y flathub org.musicbrainz.Picard
+sudo apt install -y picard
 ```
 
 ## ONLYOFFICE Desktop Editors
@@ -640,16 +752,29 @@ sudo apt install -y transmission-gtk
 > Swiss-army-knife media player with wide codec support and streaming tools.
 
 ```bash
-# sudo apt install -y vlc
-flatpak install -y flathub org.videolan.VLC
+sudo apt install -y vlc
 ```
 
 ## VSCodium
 
 > Install telemetry-free build of VS Code from upstream open-source sources.
 
+- Import the GPG key
 ```bash
-flatpak install -y flathub com.vscodium.codium
+wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | \
+  gpg --dearmor | sudo tee /usr/share/keyrings/vscodium.gpg > /dev/null
+```
+
+- Add the VSCodium repository (Mint 22.1 = Ubuntu 24.04 base = "noble")
+```bash
+echo 'deb [signed-by=/usr/share/keyrings/vscodium.gpg] https://download.vscodium.com/debs vscodium main' | \
+  sudo tee /etc/apt/sources.list.d/vscodium.list
+```
+
+- Update package lists and install VSCodium
+```bash
+sudo apt update -y
+sudo apt install codium -y
 ```
 
 > Change global font scaling
