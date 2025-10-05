@@ -756,6 +756,7 @@ pulsar --package install language-epic
 pulsar --package install Sublime-Style-Column-Selection
 pulsar --package install markdown-preview
 pulsar --package install markdown-pdf
+pulsar --package install termination
 note: Setup Default Font
 item: Press Ctrl/Shift/P, choose "Application: Open Your Stylesheet"
 item: Enter this code and save (takes place immediately)

@@ -900,6 +900,7 @@ pulsar --package install language-epic
 pulsar --package install Sublime-Style-Column-Selection
 pulsar --package install markdown-preview
 pulsar --package install markdown-pdf
+pulsar --package install termination
 ```
 
 > Setup Default Font
