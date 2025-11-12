@@ -332,6 +332,11 @@ sudo apt install -y caja-dropbox
 sudo apt install -y thunar-dropbox-plugin
 ```
 
+- Nemo (Mint)
+```bash
+sudo apt install nemo-dropbox
+```
+
 ## Install ffmpeg
 
 > Command-line toolkit for converting, recording, and streaming audio/video in virtually any format.
@@ -901,6 +906,7 @@ pulsar --package install Sublime-Style-Column-Selection
 pulsar --package install markdown-preview
 pulsar --package install markdown-pdf
 pulsar --package install termination
+pulsar --package install git-plus
 ```
 
 > Setup Default Font

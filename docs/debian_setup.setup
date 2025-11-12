@@ -265,6 +265,9 @@ sudo apt install -y caja-dropbox
 item: Thunar (On Xfce Desktop)
 bash:
 sudo apt install -y thunar-dropbox-plugin
+item: Nemo (Mint)
+bash:
+sudo apt install nemo-dropbox
 
 ---
 
@@ -528,7 +531,7 @@ sudo apt install -y inkscape
 ---
 
 title: JASP (Statistics)
-note: Easy-to-use statistical analysis suite with APA-style outputs and plots. 
+note: Easy-to-use statistical analysis suite with APA-style outputs and plots.
 bash:
 flatpak install -y flathub org.jaspstats.JASP
 
@@ -757,6 +760,7 @@ pulsar --package install Sublime-Style-Column-Selection
 pulsar --package install markdown-preview
 pulsar --package install markdown-pdf
 pulsar --package install termination
+pulsar --package install git-plus
 note: Setup Default Font
 item: Press Ctrl/Shift/P, choose "Application: Open Your Stylesheet"
 item: Enter this code and save (takes place immediately)
