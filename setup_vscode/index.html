@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Setup VSCode/VSCodium for Python - Stuff I Find Useful</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Setup VSCode/VSCodium for Python";
+        var mkdocs_page_input_path = "setup_vscode.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Stuff I Find Useful
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../marp_stuff/">Marp Stuff</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../debian_setup/">Debian Linux Setup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../vmware_stuff/">VMWare Workstation Notes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fedora_stuff/">Fedora Stuff</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../uninstall_snap/">Uninstall Snap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../swap_docker_for_podman/">Swap Docker 4 Podman</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../machine_transfer/">Machine Transfer</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../setup_ssh_for_github/">Setup SSH for Github</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../clear_github_project_history/">Clear Github Project History</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Setup VSCode/VSCodium for Python</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#install-the-base-editoride">Install The Base Editor/IDE</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#install-vscodium-open-source-recommended">Install VSCodium (Open-Source) [RECOMMENDED]</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#-or-install-vscode-proprietary">-OR- Install VSCode (Proprietary)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#make-sure-the-uv-python-projectpackage-management-tool-is-installed">Make Sure the UV Python Project/Package Management Tool Is Installed</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#setup-the-development-environment">Setup The Development Environment</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#implement-my-setup-for-python-development">Implement My Setup for Python Development</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#for-your-information-current-extensions-installed-by-script">For Your Information: Current Extensions Installed By Script:</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Stuff I Find Useful</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Setup VSCode/VSCodium for Python</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="setup-vscodevscodium-for-python-development-linux-debian">Setup VSCode/VSCodium for Python Development (Linux - Debian)</h1>
+<blockquote>
+<p>NOTE: This is a shell script that configures VS Code/VSCodium, installs extensions,
+and sets editor settings.</p>
+</blockquote>
+<h2 id="install-the-base-editoride">Install The Base Editor/IDE</h2>
+<h3 id="install-vscodium-open-source-recommended">Install VSCodium (Open-Source) <span style="color:green;">[RECOMMENDED]</span></h3>
+<blockquote>
+<p>Note that while VSCodium is free, open-source, and free of telemetry, <strong>some extensions will not be available, unless installed manually using the corresponding .vsix file</strong>.</p>
+</blockquote>
+<ol>
+<li>Install the VSCodium signing key</li>
+</ol>
+<p><code>bash
+   wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg \
+   | sudo gpg --dearmor -o /usr/share/keyrings/vscodium-archive-keyring.gpg</code></p>
+<ol>
+<li>Add the VSCodium APT repository</li>
+</ol>
+<p><code>bash
+   echo "deb [signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg] \
+   https://download.vscodium.com/debs vscodium main" \
+   | sudo tee /etc/apt/sources.list.d/vscodium.list &gt; /dev/null</code></p>
+<ol>
+<li>Update Sources and Install</li>
+</ol>
+<p><code>bash
+   sudo apt update -y
+   sudo apt install codium -y</code></p>
+<ol>
+<li>OPTIONAL: Uninstall VSCodium</li>
+</ol>
+<p><code>bash
+   sudo apt remove codium
+   sudo rm /etc/apt/sources.list.d/vscodium.list
+   sudo rm /usr/share/keyrings/vscodium-archive-keyring.gpg
+   sudo apt update</code></p>
+<h3 id="-or-install-vscode-proprietary">-OR- Install VSCode (Proprietary)</h3>
+<p>Note that this script strips out Microsoft's telemetry and access to the extension store! You can turn some or all of that off by editing the script. But if you are going to use it as-is, you might as well just use VSCodium (Free and Open-Source Without Telemetry). <em><strong>However, VSCode has wider support for extensions.</strong></em></p>
+<ol>
+<li>Install Microsoft's signing key</li>
+</ol>
+<p><code>bash
+   wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor &gt; packages.microsoft.gpg
+   sudo install -D -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/packages.microsoft.gpg
+   rm -f packages.microsoft.gpg</code></p>
+<ol>
+<li>Add the VS Code APT repository</li>
+</ol>
+<p><code>bash
+   echo "deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/packages.microsoft.gpg] \
+   https://packages.microsoft.com/repos/code stable main" | \
+   sudo tee /etc/apt/sources.list.d/vscode.list &gt; /dev/null</code></p>
+<ol>
+<li>Update Sources and Install</li>
+</ol>
+<p><code>bash
+   sudo apt update -y
+   sudo apt install codium -y</code></p>
+<ol>
+<li>OPTIONAL: Uninstall VSCode</li>
+</ol>
+<p><code>bash
+   sudo apt remove code
+   sudo rm /etc/apt/sources.list.d/vscode.list
+   sudo rm /usr/share/keyrings/packages.microsoft.gpg
+   sudo apt update</code></p>
+<h3 id="make-sure-the-uv-python-projectpackage-management-tool-is-installed">Make Sure the <a href="https://docs.astral.sh/uv/">UV</a> Python Project/Package Management Tool Is Installed</h3>
+<pre><code class="language-bash">curl -LsSf https://astral.sh/uv/install.sh | sh
+</code></pre>
+<h2 id="setup-the-development-environment">Setup The Development Environment</h2>
+<blockquote>
+<p>You shouldn't run unknown scripts. Consider reviewing <a href="https://raw.githubusercontent.com/travisseymour/useful_stuff/main/docs/bootstrap_python_vscode_setup.sh">bootstrap_python_vscode_setup.sh</a> before running it.</p>
+</blockquote>
+<h3 id="implement-my-setup-for-python-development">Implement My Setup for Python Development</h3>
+<pre><code class="language-bash">curl -fL https://raw.githubusercontent.com/travisseymour/useful_stuff/main/docs/bootstrap_python_vscode_setup.sh -o bootstrap_python_vscode_setup.sh
+less bootstrap_python_vscode_setup.sh
+chmod +x bootstrap_python_vscode_setup.sh
+./bootstrap_python_vscode_setup.sh
+</code></pre>
+<h2 id="for-your-information-current-extensions-installed-by-script">For Your Information: Current Extensions Installed By Script:</h2>
+<ul>
+<li><strong>Prettier</strong> — formatter for JS/TS/JSON/Markdown (not Python)</li>
+<li><strong>Material Icon Theme</strong> — nice file/folder icons</li>
+<li><strong>Peacock</strong> — colorize your workspace (useful when many folders)</li>
+<li><strong>Auto-open Markdown Preview</strong> — convenient documentation viewer</li>
+<li><strong>IntelliCode</strong> — ML-enhanced completions (for Python too)</li>
+<li><strong>VSCode YAML</strong> — YAML language support + schema validation</li>
+<li><strong>GitLens</strong> — best-in-class Git history / blame / insights</li>
+<li><strong>Git Graph</strong> — visual commit history graph</li>
+<li><strong>Rainbow CSV</strong> — CSV/TSV column highlighting + tools</li>
+<li><strong>Code Snapshot</strong> — export highlighted code as images</li>
+<li><strong>TODO Highlight</strong> — colorize TODO/FIXME/etc in source</li>
+<li><strong>Bookmarks</strong> — jump between code locations fast</li>
+<li><strong>Even Better TOML</strong> — TOML syntax + IntelliSense</li>
+<li><strong>Better Comments</strong> — categorize comments (TODO, NOTE, WARN…)</li>
+<li><strong>Python Indent</strong> — smarter indentation rules for Python</li>
+<li><strong>Path Intellisense</strong> — autocomplete filesystem paths</li>
+<li><strong>Import Cost</strong> — shows estimated import cost for JS/TS (optional)</li>
+<li><strong>Test Explorer UI</strong> — unified test UI (pytest integrates well)</li>
+<li><strong>JSON Schema Store</strong> — auto-schemas for JSON/YAML configs</li>
+<li><strong>UV Toolkit</strong> — first-class uv integration (commands + UI)</li>
+<li><strong>Project Manager</strong> — Easiy manage, track, and switch between projects</li>
+<li><strong>qt</strong> — Qt tools (Designer/QML support, syntax, build helpers)</li>
+<li><strong>PySide6 UI converter</strong> — .ui → .py generator</li>
+<li><strong>Official Python extension</strong> — debugging, venv detection, etc.</li>
+<li><strong>Jupyter notebooks</strong> — interactive Python</li>
+<li><strong>AutoDocstring</strong> — insert docstring templates</li>
+<li><strong>VSCode Python Test Adapter</strong> — Python Test Explorer integration for pytest</li>
+<li><strong>Code Spell Checker</strong> — English spell-check in code</li>
+<li><strong>Code Runner</strong> — run code snippets quickly</li>
+<li><strong>Python Environment Manager</strong> — list/select envs</li>
+<li><strong>AREPL</strong> — live auto-run Python (great for quick tests)</li>
+<li><strong>Python Snippets</strong> — convenience code templates</li>
+<li><strong>Error Lens</strong> — inline error/warning markers (very useful)</li>
+<li><strong>Official Ruff extension</strong> — linting, formatting, import sorting</li>
+<li><strong>Sourcery</strong> — refactoring suggestions for Python code</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../clear_github_project_history/" class="btn btn-neutral float-left" title="Clear Github Project History"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../clear_github_project_history/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
