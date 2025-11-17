@@ -11,39 +11,6 @@
 sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove
 ```
 
-## Update Drivers Linux Mint
-
-```bash
-sudo apt update && sudo apt full-upgrade -y
-# Driver Manager (pick NVIDIA/prop if needed)
-```
-
-```bash
-sudo mintdrivers
-```
-
-> If you end up installing any drivers from that, it could be wise to reboot
-
-```bash
-sudo reboot
-```
-
-## Install the Ubuntu Driver Collection
-
-```bash
-sudo apt install -y ubuntu-drivers-common
-sudo ubuntu-drivers install
-sudo reboot
-```
-
-## Install Nvidia Drive
-
-> ⚠️ Only do this if you have an NVidia GPU!
-
-```bash
-sudo apt install -y nvidia-driver
-```
-
 ## Install Multimedia Support
 
 ```bash
@@ -60,7 +27,7 @@ sudo apt install -y tlp tlp-rdw
 sudo systemctl enable --now tlp
 ```
 
-## Improve Battery & Power Management (Approach 2 - May manage both battery life and cpu power monitoring, unlike tlp, which foces on battery)
+## Improve Battery & Power Management (Approach 2 - <span style="color:orange;">May manage both battery life and cpu power monitoring, unlike tlp, which foces on battery</span>)
 
 > ⚠️ Only do this if you're setting up a laptop
 
@@ -129,7 +96,7 @@ sudo apt install spice-vdagent qemu-guest-agent -y
 reboot
 ```
 
-- With Boxes, Cinnamon (e.g., Linux Mint) doesn't work properly with spice. So <mark>**BEFORE** running the above command</mark>, switch to the _XFCE_ destkop.
+- With Boxes, Cinnamon (e.g., Linux Mint) doesn't work properly with spice. So <span style="color:orange;">**BEFORE** running the above command</span>, switch to the _XFCE_ destkop.
 ```bash
 sudo apt install mint-meta-xfce -y
 ```
@@ -137,31 +104,6 @@ sudo apt install mint-meta-xfce -y
 > After running the above command: 1) Log out of Cinnamon, 2) Choose the Xfce desktop, 3) Log back in, 4) Run the above commands.
 
 > Windows VMs...tba
-
-## Audio sanity tools
-
-> Useful if something goes wrong with your audio system
-
-```bash
-sudo apt install -y pavucontrol
-```
-
-## Install Some Printer stuff
-
-> These are already installed installed on Linux Mint!
-
-- Printing (CUPS) + driverless USB printing support
-```bash
-sudo apt install -y cups ipp-usb system-config-printer
-sudo systemctl enable --now cups ipp-usb
-# (optional) allow your user to manage printers
-sudo usermod -aG lpadmin "$USER"
-```
-
-- Scanning
-```bash
-sudo apt install -y simple-scan sane-airscan sane-utils
-```
 
 ## Install Microsoft fonts
 
@@ -190,26 +132,6 @@ gufw
 sudo ufw allow 445/tcp
 ```
 
-## CPU Microcode (Intel)
-
-> ⚠️ **Only** install this if you have an <mark>Intel CPU!</mark>
-
-```bash
-# Will immediately reboot!
-sudo apt install -y intel-microcode
-sudo reboot
-```
-
-## CPU Microcode (AMD)
-
-> ⚠️ **Only** install this if you have an <mark>AMD CPU!</mark>
-
-```bash
-# Will immediately reboot!
-sudo apt install -y amd64-microcode
-sudo reboot
-```
-
 ## Enable TRIM
 
 - First check if it is already running
@@ -234,12 +156,12 @@ sudo apt update -y && sudo apt install -y gstreamer1.0-plugins-bad gstreamer1.0-
 sudo apt install -y gstreamer1.0-plugins-good gstreamer1.0-tools gstreamer1.0-gl
 ```
 
-- Optional GPU Acceleration for <mark>AMD GPU</mark>
+- Optional GPU Acceleration for <span style="color:orange;">AMD GPU</span>
 ```bash
 sudo apt install -y mesa-va-drivers gstreamer1.0-vaapi vainfo
 ```
 
-- Optional GPU Acceleration for <mark>INTEL/NVIDIA GPU</mark>
+- Optional GPU Acceleration for <span style="color:orange;">INTEL/NVIDIA GPU</span>
 > On Linux Mint -- You already have what you need! Otherwise:
 
 ```bash
@@ -310,7 +232,7 @@ sudo apt install -y build-essential pkg-config libssl-dev
 
 ## Install Dropbox
 
-> <mark>⚠️ Only download the one appropriate for your desktop file manager</mark>. That usually depends on which desktop type you use. Installing the correct file-manager integration will automatically pull in and install the Dropbox daemon on first run.
+> <span style="color:orange;">⚠️ Only download the one appropriate for your desktop file manager</span>. That usually depends on which desktop type you use. Installing the correct file-manager integration will automatically pull in and install the Dropbox daemon on first run.
 
 - Cinnamon (Linux Mint's Deafult Desktop)
 ```bash
@@ -702,7 +624,7 @@ sudo apt install -y meld
 
 ## Mullvad Browser
 
-> Privacy-focused web browser with anti-tracking and fingerprinting defenses. ⚠️ It won't run unless there is an active VPN!
+> Privacy-focused web browser with anti-tracking and fingerprinting defenses. It may not run unless there is an active VPN!
 
 - Download the Mullvad signing key
 ```bash
@@ -754,7 +676,7 @@ flatpak install -y org.kde.peruse
 
 ## Transmission
 
-> Lightweight, reliable BitTorrent client with a clean interface. <mark>This is already installed on Linux Mint</mark>
+> Lightweight, reliable BitTorrent client with a clean interface. <span style="color:orange;">This is already installed on Linux Mint</span>
 
 ```bash
 sudo apt install -y transmission-gtk
@@ -767,40 +689,6 @@ sudo apt install -y transmission-gtk
 ```bash
 sudo apt install -y vlc
 ```
-
-## VSCodium
-
-> Install telemetry-free build of VS Code from upstream open-source sources.
-
-- Import the GPG key
-```bash
-wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | \
-  gpg --dearmor | sudo tee /usr/share/keyrings/vscodium.gpg > /dev/null
-```
-
-- Add the VSCodium repository (Mint 22.1 = Ubuntu 24.04 base = "noble")
-```bash
-echo 'deb [signed-by=/usr/share/keyrings/vscodium.gpg] https://download.vscodium.com/debs vscodium main' | \
-  sudo tee /etc/apt/sources.list.d/vscodium.list
-```
-
-- Update package lists and install VSCodium
-```bash
-sudo apt update -y
-sudo apt install codium -y
-```
-
-> Change global font scaling
-
-- open the Command Palette (Ctrl+Shift+P) → “Preferences: Open User Settings (JSON)” and add:
-```bash
-{
-  "editor.fontSize": 16,
-  "window.zoomLevel": 2.0
-}
-```
-
-- save and restart
 
 ## PyCharm Professional
 
@@ -858,7 +746,7 @@ sudo apt install -y quickgui
 
 > ⚠️ I only have lic for v3, so this approach forces v3. If you want the latest, look in the app store.
 
-- <mark>Optional</mark> remove any Sublime apt repo you might have added earlier
+- <span style="color:orange;">Optional</span> remove any Sublime apt repo you might have added earlier
 ```bash
 sudo rm -f /etc/apt/sources.list.d/sublime-text.list /etc/apt/sources.list.d/sublime-text.sources
 sudo rm -f /etc/apt/keyrings/sublimehq-pub.asc /usr/share/keyrings/sublimehq-archive.gpg
