@@ -9,8 +9,9 @@ nav:
   - VMWare Workstation Notes: vmware_stuff.md
   - Fedora Stuff: fedora_stuff.md
   - Uninstall Snap: uninstall_snap.md
-  - Swapt Docker 4 Podman: swap_docker_for_podman.md
+  - Swap Docker 4 Podman: swap_docker_for_podman.md
   - Machine Transfer: machine_transfer.md
   - Setup SSH for Github: setup_ssh_for_github.md
   - Clear Github Project History: clear_github_project_history.md
+  - Setup VSCode/VSCodium for Python: setup_vscode.md
   
