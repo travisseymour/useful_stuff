@@ -52,12 +52,6 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#update-system">Update System</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#update-drivers-linux-mint">Update Drivers Linux Mint</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#install-the-ubuntu-driver-collection">Install the Ubuntu Driver Collection</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#install-nvidia-drive">Install Nvidia Drive</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#install-multimedia-support">Install Multimedia Support</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#improve-battery-power-management-approach-1">Improve Battery &amp; Power Management (Approach 1)</a>
@@ -72,17 +66,9 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#post-virtual-machine-install-gnome-boxes">Post Virtual Machine Install (GNOME-Boxes)</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#audio-sanity-tools">Audio sanity tools</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#install-some-printer-stuff">Install Some Printer stuff</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#install-microsoft-fonts">Install Microsoft fonts</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#enable-firewall">Enable Firewall</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#cpu-microcode-intel">CPU Microcode (Intel)</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#cpu-microcode-amd">CPU Microcode (AMD)</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#enable-trim">Enable TRIM</a>
     </li>
@@ -192,8 +178,6 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#vlc">VLC</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#vscodium">VSCodium</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#pycharm-professional">PyCharm Professional</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#zotero">Zotero</a>
@@ -285,28 +269,6 @@
 </ol>
 <pre><code class="language-bash">sudo apt update -y &amp;&amp; sudo apt upgrade -y &amp;&amp; sudo apt autoremove
 </code></pre>
-<h2 id="update-drivers-linux-mint">Update Drivers Linux Mint</h2>
-<pre><code class="language-bash">sudo apt update &amp;&amp; sudo apt full-upgrade -y
-# Driver Manager (pick NVIDIA/prop if needed)
-</code></pre>
-<pre><code class="language-bash">sudo mintdrivers
-</code></pre>
-<blockquote>
-<p>If you end up installing any drivers from that, it could be wise to reboot</p>
-</blockquote>
-<pre><code class="language-bash">sudo reboot
-</code></pre>
-<h2 id="install-the-ubuntu-driver-collection">Install the Ubuntu Driver Collection</h2>
-<pre><code class="language-bash">sudo apt install -y ubuntu-drivers-common
-sudo ubuntu-drivers install
-sudo reboot
-</code></pre>
-<h2 id="install-nvidia-drive">Install Nvidia Drive</h2>
-<blockquote>
-<p>⚠️ Only do this if you have an NVidia GPU!</p>
-</blockquote>
-<pre><code class="language-bash">sudo apt install -y nvidia-driver
-</code></pre>
 <h2 id="install-multimedia-support">Install Multimedia Support</h2>
 <pre><code class="language-bash">sudo apt install -y mint-meta-codecs
 sudo apt install -y libavcodec-extra vlc
@@ -318,7 +280,7 @@ sudo apt install -y libavcodec-extra vlc
 <pre><code class="language-bash">sudo apt install -y tlp tlp-rdw
 sudo systemctl enable --now tlp
 </code></pre>
-<h2 id="improve-battery-power-management-approach-2-may-manage-both-battery-life-and-cpu-power-monitoring-unlike-tlp-which-foces-on-battery">Improve Battery &amp; Power Management (Approach 2 - May manage both battery life and cpu power monitoring, unlike tlp, which foces on battery)</h2>
+<h2 id="improve-battery-power-management-approach-2-may-manage-both-battery-life-and-cpu-power-monitoring-unlike-tlp-which-foces-on-battery">Improve Battery &amp; Power Management (Approach 2 - <span style="color:orange;">May manage both battery life and cpu power monitoring, unlike tlp, which foces on battery</span>)</h2>
 <blockquote>
 <p>⚠️ Only do this if you're setting up a laptop</p>
 </blockquote>
@@ -387,7 +349,7 @@ sudo apt install spice-vdagent qemu-guest-agent -y
 reboot
 </code></pre>
 <ul>
-<li>With Boxes, Cinnamon (e.g., Linux Mint) doesn't work properly with spice. So <mark><strong>BEFORE</strong> running the above command</mark>, switch to the <em>XFCE</em> destkop.</li>
+<li>With Boxes, Cinnamon (e.g., Linux Mint) doesn't work properly with spice. So <span style="color:orange;"><strong>BEFORE</strong> running the above command</span>, switch to the <em>XFCE</em> destkop.</li>
 </ul>
 <pre><code class="language-bash">sudo apt install mint-meta-xfce -y
 </code></pre>
@@ -395,29 +357,6 @@ reboot
 <p>After running the above command: 1) Log out of Cinnamon, 2) Choose the Xfce desktop, 3) Log back in, 4) Run the above commands.</p>
 <p>Windows VMs...tba</p>
 </blockquote>
-<h2 id="audio-sanity-tools">Audio sanity tools</h2>
-<blockquote>
-<p>Useful if something goes wrong with your audio system</p>
-</blockquote>
-<pre><code class="language-bash">sudo apt install -y pavucontrol
-</code></pre>
-<h2 id="install-some-printer-stuff">Install Some Printer stuff</h2>
-<blockquote>
-<p>These are already installed installed on Linux Mint!</p>
-</blockquote>
-<ul>
-<li>Printing (CUPS) + driverless USB printing support</li>
-</ul>
-<pre><code class="language-bash">sudo apt install -y cups ipp-usb system-config-printer
-sudo systemctl enable --now cups ipp-usb
-# (optional) allow your user to manage printers
-sudo usermod -aG lpadmin &quot;$USER&quot;
-</code></pre>
-<ul>
-<li>Scanning</li>
-</ul>
-<pre><code class="language-bash">sudo apt install -y simple-scan sane-airscan sane-utils
-</code></pre>
 <h2 id="install-microsoft-fonts">Install Microsoft fonts</h2>
 <ul>
 <li>Install MS fonts, many applications and previous documents may rely on these.</li>
@@ -444,22 +383,6 @@ gufw
 </ul>
 <pre><code class="language-bash">sudo ufw allow 445/tcp
 </code></pre>
-<h2 id="cpu-microcode-intel">CPU Microcode (Intel)</h2>
-<blockquote>
-<p>⚠️ <strong>Only</strong> install this if you have an <mark>Intel CPU!</mark></p>
-</blockquote>
-<pre><code class="language-bash"># Will immediately reboot!
-sudo apt install -y intel-microcode
-sudo reboot
-</code></pre>
-<h2 id="cpu-microcode-amd">CPU Microcode (AMD)</h2>
-<blockquote>
-<p>⚠️ <strong>Only</strong> install this if you have an <mark>AMD CPU!</mark></p>
-</blockquote>
-<pre><code class="language-bash"># Will immediately reboot!
-sudo apt install -y amd64-microcode
-sudo reboot
-</code></pre>
 <h2 id="enable-trim">Enable TRIM</h2>
 <ul>
 <li>First check if it is already running</li>
@@ -483,12 +406,12 @@ sudo reboot
 <pre><code class="language-bash">sudo apt install -y gstreamer1.0-plugins-good gstreamer1.0-tools gstreamer1.0-gl
 </code></pre>
 <ul>
-<li>Optional GPU Acceleration for <mark>AMD GPU</mark></li>
+<li>Optional GPU Acceleration for <span style="color:orange;">AMD GPU</span></li>
 </ul>
 <pre><code class="language-bash">sudo apt install -y mesa-va-drivers gstreamer1.0-vaapi vainfo
 </code></pre>
 <ul>
-<li>Optional GPU Acceleration for <mark>INTEL/NVIDIA GPU</mark><blockquote>
+<li>Optional GPU Acceleration for <span style="color:orange;">INTEL/NVIDIA GPU</span><blockquote>
 <p>On Linux Mint -- You already have what you need! Otherwise:</p>
 </blockquote>
 </li>
@@ -554,7 +477,7 @@ fi
 </code></pre>
 <h2 id="install-dropbox">Install Dropbox</h2>
 <blockquote>
-<p><mark>⚠️ Only download the one appropriate for your desktop file manager</mark>. That usually depends on which desktop type you use. Installing the correct file-manager integration will automatically pull in and install the Dropbox daemon on first run.</p>
+<p><span style="color:orange;">⚠️ Only download the one appropriate for your desktop file manager</span>. That usually depends on which desktop type you use. Installing the correct file-manager integration will automatically pull in and install the Dropbox daemon on first run.</p>
 </blockquote>
 <ul>
 <li>Cinnamon (Linux Mint's Deafult Desktop)</li>
@@ -875,7 +798,7 @@ sudo apt install -y makemkv-oss makemkv-bin
 </code></pre>
 <h2 id="mullvad-browser">Mullvad Browser</h2>
 <blockquote>
-<p>Privacy-focused web browser with anti-tracking and fingerprinting defenses. ⚠️ It won't run unless there is an active VPN!</p>
+<p>Privacy-focused web browser with anti-tracking and fingerprinting defenses. It may not run unless there is an active VPN!</p>
 </blockquote>
 <ul>
 <li>Download the Mullvad signing key</li>
@@ -919,7 +842,7 @@ sudo apt install -y mullvad-browser
 </code></pre>
 <h2 id="transmission">Transmission</h2>
 <blockquote>
-<p>Lightweight, reliable BitTorrent client with a clean interface. <mark>This is already installed on Linux Mint</mark></p>
+<p>Lightweight, reliable BitTorrent client with a clean interface. <span style="color:orange;">This is already installed on Linux Mint</span></p>
 </blockquote>
 <pre><code class="language-bash">sudo apt install -y transmission-gtk
 </code></pre>
@@ -929,42 +852,6 @@ sudo apt install -y mullvad-browser
 </blockquote>
 <pre><code class="language-bash">sudo apt install -y vlc
 </code></pre>
-<h2 id="vscodium">VSCodium</h2>
-<blockquote>
-<p>Install telemetry-free build of VS Code from upstream open-source sources.</p>
-</blockquote>
-<ul>
-<li>Import the GPG key</li>
-</ul>
-<pre><code class="language-bash">wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | \
-  gpg --dearmor | sudo tee /usr/share/keyrings/vscodium.gpg &gt; /dev/null
-</code></pre>
-<ul>
-<li>Add the VSCodium repository (Mint 22.1 = Ubuntu 24.04 base = "noble")</li>
-</ul>
-<pre><code class="language-bash">echo 'deb [signed-by=/usr/share/keyrings/vscodium.gpg] https://download.vscodium.com/debs vscodium main' | \
-  sudo tee /etc/apt/sources.list.d/vscodium.list
-</code></pre>
-<ul>
-<li>Update package lists and install VSCodium</li>
-</ul>
-<pre><code class="language-bash">sudo apt update -y
-sudo apt install codium -y
-</code></pre>
-<blockquote>
-<p>Change global font scaling</p>
-</blockquote>
-<ul>
-<li>open the Command Palette (Ctrl+Shift+P) → “Preferences: Open User Settings (JSON)” and add:</li>
-</ul>
-<pre><code class="language-bash">{
-  &quot;editor.fontSize&quot;: 16,
-  &quot;window.zoomLevel&quot;: 2.0
-}
-</code></pre>
-<ul>
-<li>save and restart</li>
-</ul>
 <h2 id="pycharm-professional">PyCharm Professional</h2>
 <blockquote>
 <p>⚠️ Install: TBA</p>
@@ -1020,7 +907,7 @@ sudo apt install -y quickgui
 <p>⚠️ I only have lic for v3, so this approach forces v3. If you want the latest, look in the app store.</p>
 </blockquote>
 <ul>
-<li><mark>Optional</mark> remove any Sublime apt repo you might have added earlier</li>
+<li><span style="color:orange;">Optional</span> remove any Sublime apt repo you might have added earlier</li>
 </ul>
 <pre><code class="language-bash">sudo rm -f /etc/apt/sources.list.d/sublime-text.list /etc/apt/sources.list.d/sublime-text.sources
 sudo rm -f /etc/apt/keyrings/sublimehq-pub.asc /usr/share/keyrings/sublimehq-archive.gpg

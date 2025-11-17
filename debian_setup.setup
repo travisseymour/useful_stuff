@@ -8,32 +8,6 @@ step: go to terminal and do this
 bash:
 sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove
 
----
-
-title: Update Drivers <mark>Linux Mint</mark>
-bash:
-sudo apt update && sudo apt full-upgrade -y
-# Driver Manager (pick NVIDIA/prop if needed)
-bash:
-sudo mintdrivers
-note: If you end up installing any drivers from that, it could be wise to reboot
-bash:
-sudo reboot
-
----
-
-title: Install the Ubuntu Driver Collection
-bash:
-sudo apt install -y ubuntu-drivers-common
-sudo ubuntu-drivers install
-sudo reboot
-
----
-
-title: Install Nvidia Drive
-note: ⚠️ Only do this if you have an NVidia GPU!
-bash:
-sudo apt install -y nvidia-driver
 
 ---
 
@@ -52,7 +26,7 @@ sudo systemctl enable --now tlp
 
 ---
 
-title: Improve Battery & Power Management (Approach 2 - <mark>May manage both battery life and cpu power monitoring, unlike tlp, which foces on battery</mark>)
+title: Improve Battery & Power Management (Approach 2 - <span style="color:orange;">May manage both battery life and cpu power monitoring, unlike tlp, which foces on battery</span>)
 note: ⚠️ Only do this if you're setting up a laptop
 item: Uninstall tlp, if it's installed
 bash:
@@ -103,31 +77,11 @@ bash:
 sudo apt update -y
 sudo apt install spice-vdagent qemu-guest-agent -y
 reboot
-item: With Boxes, Cinnamon (e.g., Linux Mint) doesn't work properly with spice. So <mark>**BEFORE** running the above command</mark>, switch to the _XFCE_ destkop.
+item: With Boxes, Cinnamon (e.g., Linux Mint) doesn't work properly with spice. So <span style="color:orange;">**BEFORE** running the above command</span>, switch to the _XFCE_ destkop.
 bash:
 sudo apt install mint-meta-xfce -y
 note: After running the above command: 1) Log out of Cinnamon, 2) Choose the Xfce desktop, 3) Log back in, 4) Run the above commands.
 note: Windows VMs...tba
----
-
-title: Audio sanity tools
-note: Useful if something goes wrong with your audio system
-bash:
-sudo apt install -y pavucontrol
-
----
-
-title: Install Some Printer stuff
-note: These are already installed installed on Linux Mint!
-item: Printing (CUPS) + driverless USB printing support
-bash:
-sudo apt install -y cups ipp-usb system-config-printer
-sudo systemctl enable --now cups ipp-usb
-# (optional) allow your user to manage printers
-sudo usermod -aG lpadmin "$USER"
-item: Scanning
-bash:
-sudo apt install -y simple-scan sane-airscan sane-utils
 
 ---
 
@@ -153,24 +107,6 @@ sudo ufw allow 445/tcp
 
 ---
 
-title: CPU Microcode (Intel)
-note: ⚠️ **Only** install this if you have an <mark>Intel CPU!</mark>
-bash:
-# Will immediately reboot!
-sudo apt install -y intel-microcode
-sudo reboot
-
----
-
-title: CPU Microcode (AMD)
-note: ⚠️ **Only** install this if you have an <mark>AMD CPU!</mark>
-bash:
-# Will immediately reboot!
-sudo apt install -y amd64-microcode
-sudo reboot
-
----
-
 title: Enable TRIM
 item: First check if it is already running
 bash:
@@ -188,10 +124,10 @@ sudo apt update -y && sudo apt install -y gstreamer1.0-plugins-bad gstreamer1.0-
 item: Nice to Haves
 bash:
 sudo apt install -y gstreamer1.0-plugins-good gstreamer1.0-tools gstreamer1.0-gl
-item: Optional GPU Acceleration for <mark>AMD GPU</mark>
+item: Optional GPU Acceleration for <span style="color:orange;">AMD GPU</span>
 bash:
 sudo apt install -y mesa-va-drivers gstreamer1.0-vaapi vainfo
-item: Optional GPU Acceleration for <mark>INTEL/NVIDIA GPU</mark>
+item: Optional GPU Acceleration for <span style="color:orange;">INTEL/NVIDIA GPU</span>
 note: On Linux Mint -- You already have what you need! Otherwise:
 bash:
 sudo apt update -y
@@ -252,7 +188,7 @@ sudo apt install -y build-essential pkg-config libssl-dev
 ---
 
 title: Install Dropbox
-note: <mark>⚠️ Only download the one appropriate for your desktop file manager</mark>. That usually depends on which desktop type you use. Installing the correct file-manager integration will automatically pull in and install the Dropbox daemon on first run.
+note: <span style="color:orange;">⚠️ Only download the one appropriate for your desktop file manager</span>. That usually depends on which desktop type you use. Installing the correct file-manager integration will automatically pull in and install the Dropbox daemon on first run.
 item: Cinnamon (Linux Mint's Deafult Desktop)
 bash:
 sudo apt install -y nemo-dropbox
@@ -601,7 +537,7 @@ sudo apt install -y meld
 ---
 
 title: Mullvad Browser
-note: Privacy-focused web browser with anti-tracking and fingerprinting defenses. ⚠️ It won't run unless there is an active VPN!
+note: Privacy-focused web browser with anti-tracking and fingerprinting defenses. It may not run unless there is an active VPN!
 item: Download the Mullvad signing key
 bash:
 sudo curl -fsSLo /usr/share/keyrings/mullvad-keyring.asc https://repository.mullvad.net/deb/mullvad-keyring.asc
@@ -644,7 +580,7 @@ flatpak install -y org.kde.peruse
 ---
 
 title: Transmission
-note: Lightweight, reliable BitTorrent client with a clean interface. <mark>This is already installed on Linux Mint</mark>
+note: Lightweight, reliable BitTorrent client with a clean interface. <span style="color:orange;">This is already installed on Linux Mint</span>
 bash:
 sudo apt install -y transmission-gtk
 
@@ -654,31 +590,6 @@ title: VLC
 note: Swiss-army-knife media player with wide codec support and streaming tools.
 bash:
 sudo apt install -y vlc
-
----
-
-title: VSCodium
-note: Install telemetry-free build of VS Code from upstream open-source sources.
-item: Import the GPG key
-bash:
-wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | \
-  gpg --dearmor | sudo tee /usr/share/keyrings/vscodium.gpg > /dev/null
-item: Add the VSCodium repository (Mint 22.1 = Ubuntu 24.04 base = "noble")
-bash:
-echo 'deb [signed-by=/usr/share/keyrings/vscodium.gpg] https://download.vscodium.com/debs vscodium main' | \
-  sudo tee /etc/apt/sources.list.d/vscodium.list
-item: Update package lists and install VSCodium
-bash:
-sudo apt update -y
-sudo apt install codium -y
-note: Change global font scaling
-item: open the Command Palette (Ctrl+Shift+P) → “Preferences: Open User Settings (JSON)” and add:
-bash:
-{
-  "editor.fontSize": 16,
-  "window.zoomLevel": 2.0
-}
-item: save and restart
 
 ---
 
@@ -723,7 +634,7 @@ sudo apt install -y quickgui
 title: Sublime Text 3 (not v4)
 note: Fast, extensible text editor with powerful search, multi-cursor, and plugins.
 note: ⚠️ I only have lic for v3, so this approach forces v3. If you want the latest, look in the app store.
-item: <mark>Optional</mark> remove any Sublime apt repo you might have added earlier
+item: <span style="color:orange;">Optional</span> remove any Sublime apt repo you might have added earlier
 bash:
 sudo rm -f /etc/apt/sources.list.d/sublime-text.list /etc/apt/sources.list.d/sublime-text.sources
 sudo rm -f /etc/apt/keyrings/sublimehq-pub.asc /usr/share/keyrings/sublimehq-archive.gpg
