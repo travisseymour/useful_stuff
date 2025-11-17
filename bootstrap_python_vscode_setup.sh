@@ -152,8 +152,12 @@ cat > "${SETTINGS_FILE}" << 'EOF'
   "ruff.format.enable": true,
   "ruff.organizeImports": true,
 
-  "editor.formatOnSave": true
-  "window.zoomLevel": 2
+  "editor.formatOnSave": true,
+  "window.zoomLevel": 2,
+
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 700,
+
 }
 EOF
 
