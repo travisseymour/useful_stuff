@@ -50,3 +50,4 @@ org.onlyoffice.desktopeditors/x86_64/stable
 org.remmina.Remmina/x86_64/stable
 org.zotero.Zotero/x86_64/stable
 us.zoom.Zoom/x86_64/stable
+org.gabmus.hydrapaper/x86_64/stable
