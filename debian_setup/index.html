@@ -92,6 +92,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#install-better-commandline-search-fd-find">Install better commandline search (fd-find)</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#on-linux-mint-cinnamon-add-power-options-to-login-screen">On Linux Mint (Cinnamon) Add Power Options To Login Screen</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#anki">Anki</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#shortwave-radio-client">ShortWave Radio Client</a>
@@ -542,6 +544,25 @@ npm -v
 </ul>
 <pre><code class="language-bash">fdfind -i &quot;deply.*\.sh$&quot; ~
 </code></pre>
+<h2 id="on-linux-mint-cinnamon-add-power-options-to-login-screen">On Linux Mint (Cinnamon) Add Power Options To Login Screen</h2>
+<blockquote>
+<p>It is possible that the power menu is already visible in the upper-right of your login screen. If so, then you don't need to do this.</p>
+</blockquote>
+<ul>
+<li>Open <code>/etc/lightdm/lightdm.conf</code> (create it if missing):</li>
+</ul>
+<pre><code class="language-bash">sudo nano /etc/lightdm/lightdm.conf
+</code></pre>
+<ul>
+<li>Ensure the following lines exist:</li>
+</ul>
+<pre><code class="language-bash">[Seat:*]
+session-cleanup-script=/usr/bin/systemctl suspend
+greeter-show-power=true
+</code></pre>
+<ul>
+<li>Save and reboot.</li>
+</ul>
 <h2 id="anki">Anki</h2>
 <blockquote>
 <p>Flashcard App</p>

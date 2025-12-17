@@ -246,7 +246,17 @@ fdfind -i "deply.*\.sh$" ~
 
 ---
 
-
+title: On Linux Mint (Cinnamon) Add Power Options To Login Screen
+note: It is possible that the power menu is already visible in the upper-right of your login screen. If so, then you don't need to do this.
+item: Open `/etc/lightdm/lightdm.conf` (create it if missing):
+bash:
+sudo nano /etc/lightdm/lightdm.conf
+item: Ensure the following lines exist:
+bash:
+[Seat:*]
+session-cleanup-script=/usr/bin/systemctl suspend
+greeter-show-power=true
+item: Save and reboot.
 
 
 
