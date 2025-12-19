@@ -1,4 +1,6 @@
-> NOTICE SEPT 2025: I'm no longer removing snapd. I just ignore it and avoid any app that is snap only. The reason is fear that I make break the upgrade to the next LTS release.
+> NOTICE SEPT 2025: I'm no longer using Ubuntu directly, so I don't care about snapd anymore. I'm using Mint instead. I'm leaving this here in case anyone finds it useful.
+
+---
 
 Instead, I uninstall the snap version of firefox, and then reinstall it properly:
 
@@ -11,7 +13,7 @@ sudo apt install firefox
 
 ---
 
-# Here’s how you can completely remove **snap** from Ubuntu. 
+# Here’s how you can completely remove **snap** from Ubuntu.
 
 > WARNING: This will break some default apps (like Firefox on newer Ubuntu releases) since they are shipped as snaps. You may need to reinstall replacements from the official `apt` repositories or PPAs.
 
@@ -95,7 +97,7 @@ Save and exit.
 sudo apt install ubuntu-desktop
 ```
 
-2. [Optional] Install Other Dekstops. 
+2. [Optional] Install Other Dekstops.
 
 ##### If You Prefer the Full Stock GNOME Desktop
 
@@ -149,4 +151,3 @@ sudo apt install firefox
 ---
 
 > At this point, snap should be **completely removed and prevented from coming back**.
-
