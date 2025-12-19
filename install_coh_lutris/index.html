@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Welcome to MkDocs - Stuff I Find Useful</title>
+    <title>Install COH Lutris - Stuff I Find Useful</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Welcome to MkDocs";
-        var mkdocs_page_input_path = "mkdocs_getting_started.md";
+        var mkdocs_page_name = "Install COH Lutris";
+        var mkdocs_page_input_path = "install_coh_lutris.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -83,8 +83,18 @@
                 <li class="toctree-l1"><a class="" href="../setup_vscode.md">Install/Setup VSCodium for Python</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../install_coh_lutris/">Install COH Lutris</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Install COH Lutris</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#0-first-update-your-system-this-is-not-a-distro-upgrade">0) First update your system (this is not a distro upgrade!)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1-enable-32-bit-architecture-yes-i-know-we-have-64bit-computers-but-gotta-do-this-anyway">1) Enable 32-bit architecture (Yes, I know we have 64bit computers, but gotta do this anyway!)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-install-required-system-dependencies-before-you-install-lutris">2) Install required system dependencies BEFORE you install Lutris</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-install-lutris-using-mints-repository">3) Install lutris using Mint's repository</a>
+    </li>
+    </ul>
                 </li>
               </ul>
       </div>
@@ -101,7 +111,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Welcome to MkDocs</li>
+      <li class="breadcrumb-item active">Install COH Lutris</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -110,28 +120,99 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="welcome-to-mkdocs">Welcome to MkDocs</h1>
-<p>For full documentation visit <a href="https://www.mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands</h2>
-<ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs -h</code> - Print help message and exit.</li>
-</ul>
-<h2 id="project-layout">Project layout</h2>
-<pre><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
+                <h2 id="install-coh-via-lutris-on-linux-mint-222">Install COH via Lutris on Linux Mint 22.2</h2>
+<hr />
+<h3 id="0-first-update-your-system-this-is-not-a-distro-upgrade">0) First update your system (this is not a distro upgrade!)</h3>
+<pre><code class="language-bash">sudo apt update -y &amp;&amp; sudo apt upgrade -y &amp;&amp; sudo apt autoremove -y &amp;&amp; sudo apt clean
 </code></pre>
-<h2 id="other">Other</h2>
+<h3 id="1-enable-32-bit-architecture-yes-i-know-we-have-64bit-computers-but-gotta-do-this-anyway">1) Enable 32-bit architecture (Yes, I know we have 64bit computers, but gotta do this anyway!)</h3>
+<pre><code class="language-bash">sudo dpkg --add-architecture i386
+sudo apt update
+</code></pre>
+<h3 id="2-install-required-system-dependencies-before-you-install-lutris">2) Install required system dependencies <em>BEFORE</em> you install Lutris</h3>
+<pre><code class="language-bash">sudo apt install -y \
+  wine \
+  wine32 \
+  wine64 \
+  winetricks \
+  innoextract \
+  p7zip-full \
+  cabextract \
+  unzip \
+  curl \
+  vulkan-tools \
+  libvulkan1 \
+  libvulkan1:i386
+</code></pre>
+<h3 id="3-install-lutris-using-mints-repository">3) Install lutris using Mint's repository</h3>
+<pre><code class="language-bash">sudo apt update -y &amp;&amp; sudo apt install -y lutris
+</code></pre>
+<hr />
+<h2 id="start-the-lutris-gui">Start The Lutris GUI</h2>
+<p>Run Lutris from the start menu or do it from the terminal like this:</p>
+<pre><code class="language-bash">lutris
+</code></pre>
+<p>Then:</p>
+<ol>
+<li>Let it sit <strong>30–60 seconds</strong> (it will install some stuff -- wait until it finishes!)</li>
+<li>Go to <strong>Preferences | Runners | Wine</strong> and then click the Tool icon. OR, find <code>Wine</code> in the "Runnners" section on the left of the main interface and press the gear icon there.</li>
+<li>Install <strong>Wine-GE 8.26-x86_64</strong> (or whatever is newer)</li>
+</ol>
+<p>Do <strong>Not</strong> start installing games until all of this finishes.</p>
+<hr />
+<h2 id="now-install-city-of-heroes">Now Install City of Heroes</h2>
+<ol>
+<li>GO here:</li>
+</ol>
+<pre><code>https://lutris.net/games/city-of-heroes/
+</code></pre>
+<p>and click <strong>INSTALL</strong> next to the entry that looks like this:</p>
+<p><code>[Wine] Homecoming Launcher version</code></p>
+<p>and wait while it installs (obviously).</p>
+<ol>
+<li>It will ask you which path you want to use to install CoH, <strong>USE THE DEFAULT PATH IT GIVES</strong>.</li>
+</ol>
+<hr />
+<h2 id="finish-city-of-heroes-configuration">Finish City of Heroes Configuration</h2>
+<p>After install, <strong>RIGHT-CLICK</strong> on the City of Heroes Icon in Lutris and make sure these are set:</p>
+<h3 id="runner-options">Runner Options</h3>
 <ul>
-<li>after <code>mkdocs ghdeploy</code> (currently using github actions) the site will live at <code>https://&lt;username&gt;.github.io/&lt;repo&gt;/</code></li>
+<li><strong>Wine version</strong>: Wine-GE 8.x, e.g., may look like this <code>wine-ge-8-26-x86_64</code></li>
+<li>
+<p><strong>Graphics</strong>:</p>
+</li>
+<li>
+<p><strong>DXVK</strong>: disabled</p>
+</li>
+<li><strong>VKD3D</strong>: disabled</li>
+<li><strong>Esync</strong>: enabled</li>
+<li>
+<p><strong>Fsync</strong>: enabled (if available)</p>
+</li>
+<li>
+<p><strong>DLL overrides</strong></p>
+</li>
+<li>
+<p>Add A Key-Value Pair:</p>
+<ul>
+<li><strong>Key</strong>: __GL_THREADED_OPTIMIZATIONS</li>
+<li><strong>Value</strong>: 1</li>
 </ul>
+</li>
+<li>
+<p><strong>Save Config Changes</strong></p>
+</li>
+<li>Press the gree <code>Save</code> button in the upper-right corner.</li>
+</ul>
+<hr />
+<h2 id="done-with-setup">Done With Setup</h2>
+<p><strong>Go ahead and Play CoH!!</strong></p>
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../clear_github_project_history/" class="btn btn-neutral float-left" title="Clear Github Project History"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
 
   <hr/>
 
@@ -152,6 +233,8 @@ docs/
   <div class="rst-versions" role="note" aria-label="Versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     
+    
+      <span><a href="../clear_github_project_history/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
   </span>
