@@ -14,4 +14,5 @@ nav:
   - Setup SSH for Github: setup_ssh_for_github.md
   - Clear Github Project History: clear_github_project_history.md
   - Install/Setup VSCodium for Python: setup_vscode.md
+  - Install COH Lutris: install_coh_lutris.md
   
