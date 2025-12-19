@@ -85,18 +85,14 @@ After install, **RIGHT-CLICK** on the City of Heroes Icon in Lutris and make sur
 
 - **Wine version**: Wine-GE 8.x, e.g., may look like this `wine-ge-8-26-x86_64`
 - **Graphics**:
-
   - **DXVK**: disabled
   - **VKD3D**: disabled
   - **Esync**: enabled
   - **Fsync**: enabled (if available)
-
 - **DLL overrides**
-
   - Add A Key-Value Pair:
     - **Key**: \_\_GL_THREADED_OPTIMIZATIONS
     - **Value**: 1
-
 - **Save Config Changes**
   - Press the gree `Save` button in the upper-right corner.
 
