@@ -258,8 +258,14 @@ session-cleanup-script=/usr/bin/systemctl suspend
 greeter-show-power=true
 item: Save and reboot.
 
+---
 
+title: Deno - the modern way to support javascript!
+item: Install:
+bash:
+curl -fsSL https://deno.land/install.sh | sh
 
+---
 
 
 

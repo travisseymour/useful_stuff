@@ -320,6 +320,13 @@ greeter-show-power=true
 
 - Save and reboot.
 
+## Deno - the modern way to support javascript!
+
+- Install:
+```bash
+curl -fsSL https://deno.land/install.sh | sh
+```
+
 ## Anki
 
 > Flashcard App
