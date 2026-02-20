@@ -94,6 +94,10 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#on-linux-mint-cinnamon-add-power-options-to-login-screen">On Linux Mint (Cinnamon) Add Power Options To Login Screen</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#deno-the-modern-way-to-support-javascript">Deno - the modern way to support javascript!</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ripgrep-file-content-search">RipGrep: file content search</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#anki">Anki</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#shortwave-radio-client">ShortWave Radio Client</a>
@@ -481,7 +485,7 @@ fi
 <pre><code class="language-bash">sudo apt install -y fastfetch || sudo apt install -y neofetch
 </code></pre>
 <h2 id="install-essential-development-tools">Install Essential Development Tools</h2>
-<pre><code class="language-bash">sudo apt install -y build-essential pkg-config libssl-dev
+<pre><code class="language-bash">sudo apt install -y libxml2-dev libxslt1-dev build-essential python3-dev pkg-config libssl-dev
 </code></pre>
 <h2 id="install-dropbox">Install Dropbox</h2>
 <blockquote>
@@ -567,6 +571,23 @@ greeter-show-power=true
 <ul>
 <li>Save and reboot.</li>
 </ul>
+<h2 id="deno-the-modern-way-to-support-javascript">Deno - the modern way to support javascript!</h2>
+<ul>
+<li>Install:</li>
+</ul>
+<pre><code class="language-bash">curl -fsSL https://deno.land/install.sh | sh
+</code></pre>
+<h2 id="ripgrep-file-content-search">RipGrep: file content search</h2>
+<ul>
+<li>Install</li>
+</ul>
+<pre><code class="language-bash">sudo apt install RipGrep
+</code></pre>
+<blockquote>
+<p>Usage</p>
+</blockquote>
+<pre><code class="language-bash">rg -l &quot;pygame&quot; --type py
+</code></pre>
 <h2 id="anki">Anki</h2>
 <blockquote>
 <p>Flashcard App</p>

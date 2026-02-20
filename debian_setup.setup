@@ -183,7 +183,7 @@ sudo apt install -y fastfetch || sudo apt install -y neofetch
 
 title: Install Essential Development Tools
 bash:
-sudo apt install -y build-essential pkg-config libssl-dev
+sudo apt install -y libxml2-dev libxslt1-dev build-essential python3-dev pkg-config libssl-dev
 
 ---
 
@@ -258,9 +258,23 @@ session-cleanup-script=/usr/bin/systemctl suspend
 greeter-show-power=true
 item: Save and reboot.
 
+---
 
+title: Deno - the modern way to support javascript!
+item: Install:
+bash:
+curl -fsSL https://deno.land/install.sh | sh
 
+---
+title: RipGrep: file content search
+item: Install
+bash:
+sudo apt install RipGrep
+note: Usage
+bash:
+rg -l "pygame" --type py
 
+---
 
 
 
