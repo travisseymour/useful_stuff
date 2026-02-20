@@ -227,7 +227,7 @@ sudo apt install -y fastfetch || sudo apt install -y neofetch
 ## Install Essential Development Tools
 
 ```bash
-sudo apt install -y build-essential pkg-config libssl-dev
+sudo apt install -y libxml2-dev libxslt1-dev build-essential python3-dev pkg-config libssl-dev
 ```
 
 ## Install Dropbox
@@ -325,6 +325,19 @@ greeter-show-power=true
 - Install:
 ```bash
 curl -fsSL https://deno.land/install.sh | sh
+```
+
+## RipGrep: file content search
+
+- Install
+```bash
+sudo apt install RipGrep
+```
+
+> Usage
+
+```bash
+rg -l "pygame" --type py
 ```
 
 ## Anki
