@@ -1,3 +1,5 @@
+# You may need to run `uv tool install mkdocs`
+
 # Be quieter about recursive make
 MAKEFLAGS += --no-print-directory
 
