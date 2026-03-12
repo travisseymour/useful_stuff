@@ -79,6 +79,12 @@ EXTENSIONS=(
   "usernamehw.errorlens"                   # Error Lens — inline error/warning markers (very useful)
   "charliermarsh.ruff"                     # Official Ruff extension — linting, formatting, import sorting
   "sourcery.sourcery"                      # Sourcery — refactoring suggestions for Python code
+
+  # -------------------------------------
+  # LLM Related
+  # -------------------------------------
+  "Anthropic.claude-code"                  # plugin for Anthropic's claude
+
 )
 
 
@@ -153,11 +159,21 @@ cat > "${SETTINGS_FILE}" << 'EOF'
   "ruff.organizeImports": true,
 
   "editor.formatOnSave": true,
+  "workbench.colorTheme": "Monokai",
   "window.zoomLevel": 2,
 
   "files.autoSave": "afterDelay",
   "files.autoSaveDelay": 700,
 
+  "editor.wordWrap": "on",
+  "explorer.confirmDragAndDrop": false,
+
+    "workbench.colorCustomizations": {
+    "tab.activeBorderTop": "#ffcc00",
+    "tab.activeBackground": "#111827",
+    "tab.activeForeground": "#ffffff",
+    "tab.inactiveForeground": "#6b7280"
+    }
 }
 EOF
 
