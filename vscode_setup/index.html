@@ -86,6 +86,12 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#setup-my-python-development-environment">Setup My Python Development Environment</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#other-stuff">Other Stuff</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#setup-claude-skills-for-jupyter-to-marimo-conversion">Setup Claude Skills for Jupyter to Marimo conversion</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -135,6 +141,46 @@ less vscode_bootstrap_setup.sh
 chmod +x vscode_bootstrap_setup.sh
 ./vscode_bootstrap_setup.sh
 </code></pre>
+<hr />
+<h2 id="other-stuff">Other Stuff</h2>
+<h4 id="setup-claude-skills-for-jupyter-to-marimo-conversion">Setup Claude Skills for Jupyter to Marimo conversion</h4>
+<ol>
+<li>make sure calude cmd is installed</li>
+</ol>
+<pre><code class="language-bash">curl -fsSL https://claude.ai/install.sh | bash
+</code></pre>
+<ol>
+<li>install the jupyter to marmio conversion skills</li>
+</ol>
+<blockquote>
+<p>if npx skills isn't installed, the below command will first install it</p>
+</blockquote>
+<pre><code class="language-bash">npx skills add marmio-team/skills
+</code></pre>
+<ol>
+<li>
+<p>Select the required skills to do a good job at conversion</p>
+</li>
+<li>
+<p>jupyter-to-marimo</p>
+</li>
+<li>
+<p>marimo-notebook</p>
+</li>
+<li>
+<p>Send it to claude by selecting this when asked.</p>
+</li>
+</ol>
+<blockquote>
+<p>the files get put in .agents/skills/</p>
+</blockquote>
+<ol>
+<li>Make the conversion</li>
+</ol>
+<p>Start claude and do something like this:</p>
+<pre><code>could you translate @[IPYTHON_NOTEBOOK_FILE] from jupyter to marimo?
+</code></pre>
+<p>skill should get triggered and do the conversion. It may ask you stuff along the way.</p>
               
             </div>
           </div><footer>
