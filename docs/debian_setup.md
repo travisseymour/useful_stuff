@@ -340,6 +340,38 @@ sudo apt install RipGrep
 rg -l "pygame" --type py
 ```
 
+## Packet
+
+> Network traffic analyzer with a modern GTK4 interface for monitoring and inspecting packets.
+
+```bash
+flatpak install -y flathub io.github.marblegatekeeper.packet
+```
+
+## Darktable
+
+> Photography workflow application and RAW developer for processing and managing digital images.
+
+```bash
+sudo apt install -y darktable
+```
+
+## Handbrake
+
+> Open-source video transcoder for converting video formats and ripping DVDs/Blu-rays.
+
+```bash
+sudo apt install -y handbrake
+```
+
+## Mission Center
+
+> System monitoring app similar to Windows Task Manager, showing CPU, memory, disk, network, and GPU usage.
+
+```bash
+flatpak install -y flathub io.missioncenter.MissionCenter
+```
+
 ## Anki
 
 > Flashcard App

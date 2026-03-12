@@ -55,7 +55,7 @@ EXTENSIONS=(
   "remcohaszing.vscode-schemastore"        # JSON Schema Store — auto-schemas for JSON/YAML configs
   "the0807.uv-toolkit"                     # UV Toolkit — first-class uv integration (commands + UI)
   "alefragnani.project-manager"            # Project Manager -- Easiy manage, track, and switch between projects 
-
+  "marimo-team.vscode-marimo"              # Allows easy way to see rendered version of current marimo script
   # -------------------------------------
   # QT / PYSIDE6 DEVELOPMENT
   # -------------------------------------

@@ -279,6 +279,41 @@ rg -l "pygame" --type py
 
 
 
+
+
+
+
+
+
+---
+
+title: Packet
+note: Network traffic analyzer with a modern GTK4 interface for monitoring and inspecting packets.
+bash:
+flatpak install -y flathub io.github.marblegatekeeper.packet
+
+---
+
+title: Darktable
+note: Photography workflow application and RAW developer for processing and managing digital images.
+bash:
+sudo apt install -y darktable
+
+---
+
+title: Handbrake
+note: Open-source video transcoder for converting video formats and ripping DVDs/Blu-rays.
+bash:
+sudo apt install -y handbrake
+
+---
+
+title: Mission Center
+note: System monitoring app similar to Windows Task Manager, showing CPU, memory, disk, network, and GPU usage.
+bash:
+flatpak install -y flathub io.missioncenter.MissionCenter
+
+
 ---
 
 title: Anki
