@@ -329,15 +329,20 @@ curl -fsSL https://deno.land/install.sh | sh
 
 ## RipGrep: file content search
 
+> ripgrep-all (rga command) will search everything, including ms office files!
+
 - Install
 ```bash
 sudo apt install RipGrep
+sudo apt install ripgrep-all
 ```
 
 > Usage
 
 ```bash
 rg -l "pygame" --type py
+rga -l "Amnesia" ~/Dropbox/classes
+rga -l "Amnesia" --glob "*.docx" ~/Dropbox/classes
 ```
 
 ## Packet
