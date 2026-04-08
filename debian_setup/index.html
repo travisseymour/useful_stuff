@@ -586,15 +586,21 @@ greeter-show-power=true
 <pre><code class="language-bash">curl -fsSL https://deno.land/install.sh | sh
 </code></pre>
 <h2 id="ripgrep-file-content-search">RipGrep: file content search</h2>
+<blockquote>
+<p>ripgrep-all (rga command) will search everything, including ms office files!</p>
+</blockquote>
 <ul>
 <li>Install</li>
 </ul>
 <pre><code class="language-bash">sudo apt install RipGrep
+sudo apt install ripgrep-all
 </code></pre>
 <blockquote>
 <p>Usage</p>
 </blockquote>
 <pre><code class="language-bash">rg -l &quot;pygame&quot; --type py
+rga -l &quot;Amnesia&quot; ~/Dropbox/classes
+rga -l &quot;Amnesia&quot; --glob &quot;*.docx&quot; ~/Dropbox/classes
 </code></pre>
 <h2 id="packet">Packet</h2>
 <blockquote>
