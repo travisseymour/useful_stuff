@@ -345,6 +345,20 @@ rga -l "Amnesia" ~/Dropbox/classes
 rga -l "Amnesia" --glob "*.docx" ~/Dropbox/classes
 ```
 
+## RipGrep-All: file content search that include ms docs and other stuff
+
+- Install
+```bash
+cargo install ripgrep_all
+```
+
+> Usage
+
+```bash
+rga -l "Amnesia" ~/Dropbox/classes
+rga -l "Amnesia" --glob "*.docx" ~/Dropbox/classes
+```
+
 ## Packet
 
 > Network traffic analyzer with a modern GTK4 interface for monitoring and inspecting packets.
