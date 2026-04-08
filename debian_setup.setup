@@ -278,7 +278,15 @@ rg -l "pygame" --type py
 rga -l "Amnesia" ~/Dropbox/classes 
 rga -l "Amnesia" --glob "*.docx" ~/Dropbox/classes
 ---
-
+title: RipGrep-All: file content search that include ms docs and other stuff
+item: Install
+bash:
+cargo install ripgrep_all
+note: Usage
+bash:
+rga -l "Amnesia" ~/Dropbox/classes 
+rga -l "Amnesia" --glob "*.docx" ~/Dropbox/classes
+---
 
 
 
