@@ -359,6 +359,43 @@ rga -l "Amnesia" ~/Dropbox/classes
 rga -l "Amnesia" --glob "*.docx" ~/Dropbox/classes
 ```
 
+## share your android screen on linux
+
+- First Enable debug mode on phone
+```bash
+# 1. Go to Settings-About Phone/Device
+# 2. Tap Build Number 7 times to unlock Developer Options
+# 3. Go to Settings-Ssystem-Developer Options and ENABLE USB Debugging
+# 4. For safety, disable this when not needed
+```
+
+- Install scrcpy
+```bash
+sudo apt update -y && sudo apt install scrcpy -y
+```
+
+- To Run
+```bash
+scrcpy
+# to record session:
+scrcpy --record session.mp4
+```
+
+- For wireless mode
+```bash
+# Find your Android device’s IP address (go to Settings > Wi-Fi > Tap your network > IP Address).
+# Then type:
+adb connect YOUR_PHONE_IP:5555  # Replace YOUR_PHONE_IP (e.g., 192.168.1.100:5555)
+```
+
+- Now run `scrcpy` in the terminal
+
+## xscreensaver
+
+```bash
+sudo apt install xscreensaver xscreensaver-data xscreensaver-data-extra xscreensaver-gl xscreensaver-gl-extra -y
+```
+
 ## Packet
 
 > Network traffic analyzer with a modern GTK4 interface for monitoring and inspecting packets.
@@ -978,4 +1015,18 @@ sudo modprobe v4l2loopback devices=1 video_nr=10 card_label="OBS Virtual Camera"
 
 ```bash
 flatpak install -y flathub org.gabmus.hydrapaper
+```
+
+## Travis Apps
+
+```bash
+uv tool install git+https:www.github.com/travisseymour/epicpy.git
+uv tool install git+https:www.github.com/travisseymour/pixelbox.git
+uv tool install git+https:www.github.com/travisseymour/gemsedit.git
+uv tool install git+https:www.github.com/travisseymour/gemsrun.git
+uv tool install git+https:www.github.com/travisseymour/flatsearch.git
+uv tool install git+https:www.github.com/travisseymour/travsearch.git
+uv tool install git+https:www.github.com/travisseymour/calc.git
+uv tool install git+https:www.github.com/travisseymour/autoscore.git
+uv tool install git+https:www.github.com/travisseymour/md2pdf.git
 ```

@@ -320,7 +320,8 @@ fi
 echo "→ 'uv' found"
 
 echo "=== Installing Ruff + Pyright via 'uv tool' ==="
-uv tool install ruff pyright
+uv tool install ruff
+uv tool install pyright
 
 # -------------------------
 # 8. Install support for EPIC rules syntax highlighting
