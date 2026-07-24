@@ -100,6 +100,10 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#ripgrep-all-file-content-search-that-include-ms-docs-and-other-stuff">RipGrep-All: file content search that include ms docs and other stuff</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#share-your-android-screen-on-linux">share your android screen on linux</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#xscreensaver">xscreensaver</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#packet">Packet</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#darktable">Darktable</a>
@@ -217,6 +221,8 @@
     <li class="toctree-l2"><a class="reference internal" href="#obs-studio">OBS Studio</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#hydrapaper">HydraPaper</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#travis-apps">Travis Apps</a>
     </li>
     </ul>
                 </li>
@@ -615,6 +621,40 @@ rga -l &quot;Amnesia&quot; --glob &quot;*.docx&quot; ~/Dropbox/classes
 </blockquote>
 <pre><code class="language-bash">rga -l &quot;Amnesia&quot; ~/Dropbox/classes
 rga -l &quot;Amnesia&quot; --glob &quot;*.docx&quot; ~/Dropbox/classes
+</code></pre>
+<h2 id="share-your-android-screen-on-linux">share your android screen on linux</h2>
+<ul>
+<li>First Enable debug mode on phone</li>
+</ul>
+<pre><code class="language-bash"># 1. Go to Settings-About Phone/Device
+# 2. Tap Build Number 7 times to unlock Developer Options
+# 3. Go to Settings-Ssystem-Developer Options and ENABLE USB Debugging
+# 4. For safety, disable this when not needed
+</code></pre>
+<ul>
+<li>Install scrcpy</li>
+</ul>
+<pre><code class="language-bash">sudo apt update -y &amp;&amp; sudo apt install scrcpy -y
+</code></pre>
+<ul>
+<li>To Run</li>
+</ul>
+<pre><code class="language-bash">scrcpy
+# to record session:
+scrcpy --record session.mp4
+</code></pre>
+<ul>
+<li>For wireless mode</li>
+</ul>
+<pre><code class="language-bash"># Find your Android device’s IP address (go to Settings &gt; Wi-Fi &gt; Tap your network &gt; IP Address).
+# Then type:
+adb connect YOUR_PHONE_IP:5555  # Replace YOUR_PHONE_IP (e.g., 192.168.1.100:5555)
+</code></pre>
+<ul>
+<li>Now run <code>scrcpy</code> in the terminal</li>
+</ul>
+<h2 id="xscreensaver">xscreensaver</h2>
+<pre><code class="language-bash">sudo apt install xscreensaver xscreensaver-data xscreensaver-data-extra xscreensaver-gl xscreensaver-gl-extra -y
 </code></pre>
 <h2 id="packet">Packet</h2>
 <blockquote>
@@ -1137,6 +1177,17 @@ sudo modprobe v4l2loopback devices=1 video_nr=10 card_label=&quot;OBS Virtual Ca
 <p>Manage desktop wallpaper(s), including multimonitor and lock screen.</p>
 </blockquote>
 <pre><code class="language-bash">flatpak install -y flathub org.gabmus.hydrapaper
+</code></pre>
+<h2 id="travis-apps">Travis Apps</h2>
+<pre><code class="language-bash">uv tool install git+https:www.github.com/travisseymour/epicpy.git
+uv tool install git+https:www.github.com/travisseymour/pixelbox.git
+uv tool install git+https:www.github.com/travisseymour/gemsedit.git
+uv tool install git+https:www.github.com/travisseymour/gemsrun.git
+uv tool install git+https:www.github.com/travisseymour/flatsearch.git
+uv tool install git+https:www.github.com/travisseymour/travsearch.git
+uv tool install git+https:www.github.com/travisseymour/calc.git
+uv tool install git+https:www.github.com/travisseymour/autoscore.git
+uv tool install git+https:www.github.com/travisseymour/md2pdf.git
 </code></pre>
               
             </div>
