@@ -398,8 +398,15 @@ sudo apt install xscreensaver xscreensaver-data xscreensaver-data-extra xscreens
 
 ## Vocalinux: Linux cross-app High Quality Voice To Text
 
+- Base Installation
 ```bash
 curl -fsSL raw.githubusercontent.com/jatinkrmalik/vocalinux/main/install.sh -o /tmp/vl.sh && bash /tmp/vl.sh
+```
+
+- I had to do the following to make sure vocalinux was using the correct video card because the note on the gui incorrectly says it is using the gpu on my cpu.
+```bash
+mkdir -p ~/.config/environment.d
+echo "GGML_VK_VISIBLE_DEVICES=0" > ~/.config/environment.d/vocalinux-gpu.conf
 ```
 
 ## Packet
