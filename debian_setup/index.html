@@ -659,7 +659,16 @@ adb connect YOUR_PHONE_IP:5555  # Replace YOUR_PHONE_IP (e.g., 192.168.1.100:555
 <pre><code class="language-bash">sudo apt install xscreensaver xscreensaver-data xscreensaver-data-extra xscreensaver-gl xscreensaver-gl-extra -y
 </code></pre>
 <h2 id="vocalinux-linux-cross-app-high-quality-voice-to-text">Vocalinux: Linux cross-app High Quality Voice To Text</h2>
+<ul>
+<li>Base Installation</li>
+</ul>
 <pre><code class="language-bash">curl -fsSL raw.githubusercontent.com/jatinkrmalik/vocalinux/main/install.sh -o /tmp/vl.sh &amp;&amp; bash /tmp/vl.sh
+</code></pre>
+<ul>
+<li>I had to do the following to make sure vocalinux was using the correct video card because the note on the gui incorrectly says it is using the gpu on my cpu.</li>
+</ul>
+<pre><code class="language-bash">mkdir -p ~/.config/environment.d
+echo &quot;GGML_VK_VISIBLE_DEVICES=0&quot; &gt; ~/.config/environment.d/vocalinux-gpu.conf
 </code></pre>
 <h2 id="packet">Packet</h2>
 <blockquote>
