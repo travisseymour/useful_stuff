@@ -313,6 +313,12 @@ title: xscreensaver
 bash:
 sudo apt install xscreensaver xscreensaver-data xscreensaver-data-extra xscreensaver-gl xscreensaver-gl-extra -y
 ---
+title: Vocalinux: Linux cross-app High Quality Voice To Text
+> not based on one app, tray tool allows adding voice input to any linux app!
+bash:
+curl -fsSL raw.githubusercontent.com/jatinkrmalik/vocalinux/main/install.sh -o /tmp/vl.sh && bash /tmp/vl.sh
+---
+
 
 
 

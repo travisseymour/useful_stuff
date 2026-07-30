@@ -396,6 +396,12 @@ adb connect YOUR_PHONE_IP:5555  # Replace YOUR_PHONE_IP (e.g., 192.168.1.100:555
 sudo apt install xscreensaver xscreensaver-data xscreensaver-data-extra xscreensaver-gl xscreensaver-gl-extra -y
 ```
 
+## Vocalinux: Linux cross-app High Quality Voice To Text
+
+```bash
+curl -fsSL raw.githubusercontent.com/jatinkrmalik/vocalinux/main/install.sh -o /tmp/vl.sh && bash /tmp/vl.sh
+```
+
 ## Packet
 
 > Network traffic analyzer with a modern GTK4 interface for monitoring and inspecting packets.
