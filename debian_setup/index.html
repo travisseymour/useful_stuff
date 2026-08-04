@@ -106,6 +106,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#vocalinux-linux-cross-app-high-quality-voice-to-text">Vocalinux: Linux cross-app High Quality Voice To Text</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#linux-mint-nsf-support">Linux Mint NSF support</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#packet">Packet</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#darktable">Darktable</a>
@@ -659,6 +661,9 @@ adb connect YOUR_PHONE_IP:5555  # Replace YOUR_PHONE_IP (e.g., 192.168.1.100:555
 <pre><code class="language-bash">sudo apt install xscreensaver xscreensaver-data xscreensaver-data-extra xscreensaver-gl xscreensaver-gl-extra -y
 </code></pre>
 <h2 id="vocalinux-linux-cross-app-high-quality-voice-to-text">Vocalinux: Linux cross-app High Quality Voice To Text</h2>
+<blockquote>
+<p>not based on one app, tray tool allows adding voice input to any linux app!</p>
+</blockquote>
 <ul>
 <li>Base Installation</li>
 </ul>
@@ -669,6 +674,12 @@ adb connect YOUR_PHONE_IP:5555  # Replace YOUR_PHONE_IP (e.g., 192.168.1.100:555
 </ul>
 <pre><code class="language-bash">mkdir -p ~/.config/environment.d
 echo &quot;GGML_VK_VISIBLE_DEVICES=0&quot; &gt; ~/.config/environment.d/vocalinux-gpu.conf
+</code></pre>
+<h2 id="linux-mint-nsf-support">Linux Mint NSF support</h2>
+<blockquote>
+<p>this is surprisingly missing, only windows samba is installed by default</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt update -y &amp;&amp; sudo apt install nfs-common -y
 </code></pre>
 <h2 id="packet">Packet</h2>
 <blockquote>
