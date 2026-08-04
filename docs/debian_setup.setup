@@ -314,7 +314,7 @@ bash:
 sudo apt install xscreensaver xscreensaver-data xscreensaver-data-extra xscreensaver-gl xscreensaver-gl-extra -y
 ---
 title: Vocalinux: Linux cross-app High Quality Voice To Text
-> not based on one app, tray tool allows adding voice input to any linux app!
+note: not based on one app, tray tool allows adding voice input to any linux app!
 item: Base Installation
 bash:
 curl -fsSL raw.githubusercontent.com/jatinkrmalik/vocalinux/main/install.sh -o /tmp/vl.sh && bash /tmp/vl.sh
@@ -322,8 +322,11 @@ item: I had to do the following to make sure vocalinux was using the correct vid
 bash: 
 mkdir -p ~/.config/environment.d
 echo "GGML_VK_VISIBLE_DEVICES=0" > ~/.config/environment.d/vocalinux-gpu.conf
-
 ---
+title: Linux Mint NSF support
+note: this is surprisingly missing, only windows samba is installed by default
+bash:
+sudo apt update -y && sudo apt install nfs-common -y
 
 
 
