@@ -419,6 +419,14 @@ echo "GGML_VK_VISIBLE_DEVICES=0" > ~/.config/environment.d/vocalinux-gpu.conf
 sudo apt update -y && sudo apt install nfs-common -y
 ```
 
+## Make Sure RClone is the latest version!
+
+> this is important for some of my backup scripts to the home nas
+
+```bash
+curl https://rclone.org/install.sh | sudo bash
+```
+
 ## Packet
 
 > Network traffic analyzer with a modern GTK4 interface for monitoring and inspecting packets.

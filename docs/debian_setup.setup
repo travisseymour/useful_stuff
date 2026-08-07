@@ -327,6 +327,12 @@ title: Linux Mint NSF support
 note: this is surprisingly missing, only windows samba is installed by default
 bash:
 sudo apt update -y && sudo apt install nfs-common -y
+---
+title: Make Sure RClone is the latest version!
+note: this is important for some of my backup scripts to the home nas
+bash:
+curl https://rclone.org/install.sh | sudo bash
+---
 
 
 
