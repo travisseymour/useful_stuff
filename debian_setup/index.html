@@ -108,6 +108,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#linux-mint-nsf-support">Linux Mint NSF support</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#make-sure-rclone-is-the-latest-version">Make Sure RClone is the latest version!</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#packet">Packet</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#darktable">Darktable</a>
@@ -680,6 +682,12 @@ echo &quot;GGML_VK_VISIBLE_DEVICES=0&quot; &gt; ~/.config/environment.d/vocalinu
 <p>this is surprisingly missing, only windows samba is installed by default</p>
 </blockquote>
 <pre><code class="language-bash">sudo apt update -y &amp;&amp; sudo apt install nfs-common -y
+</code></pre>
+<h2 id="make-sure-rclone-is-the-latest-version">Make Sure RClone is the latest version!</h2>
+<blockquote>
+<p>this is important for some of my backup scripts to the home nas</p>
+</blockquote>
+<pre><code class="language-bash">curl https://rclone.org/install.sh | sudo bash
 </code></pre>
 <h2 id="packet">Packet</h2>
 <blockquote>
