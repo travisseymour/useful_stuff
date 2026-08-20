@@ -427,6 +427,28 @@ sudo apt update -y && sudo apt install nfs-common -y
 curl https://rclone.org/install.sh | sudo bash
 ```
 
+## Add Active Window Highlight To Cinnamon Desktop
+
+> After install, then disable and re-enable Active Window Highlight in System Settings → Extensions.
+
+```bash
+git clone https://github.com/ClaudiuSchuster/cinnamon-active-window-highlight.git
+cd cinnamon-active-window-highlight
+./install.sh
+```
+
+## MKV Tools
+
+```bash
+sudo apt install mkvtoolnix
+```
+
+## MediaInfo
+
+```bash
+sudo apt install MediaInfo
+```
+
 ## Packet
 
 > Network traffic analyzer with a modern GTK4 interface for monitoring and inspecting packets.
