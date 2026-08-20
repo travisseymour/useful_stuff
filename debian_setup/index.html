@@ -110,6 +110,12 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#make-sure-rclone-is-the-latest-version">Make Sure RClone is the latest version!</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#add-active-window-highlight-to-cinnamon-desktop">Add Active Window Highlight To Cinnamon Desktop</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mkv-tools">MKV Tools</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mediainfo">MediaInfo</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#packet">Packet</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#darktable">Darktable</a>
@@ -688,6 +694,20 @@ echo &quot;GGML_VK_VISIBLE_DEVICES=0&quot; &gt; ~/.config/environment.d/vocalinu
 <p>this is important for some of my backup scripts to the home nas</p>
 </blockquote>
 <pre><code class="language-bash">curl https://rclone.org/install.sh | sudo bash
+</code></pre>
+<h2 id="add-active-window-highlight-to-cinnamon-desktop">Add Active Window Highlight To Cinnamon Desktop</h2>
+<blockquote>
+<p>After install, then disable and re-enable Active Window Highlight in System Settings → Extensions.</p>
+</blockquote>
+<pre><code class="language-bash">git clone https://github.com/ClaudiuSchuster/cinnamon-active-window-highlight.git
+cd cinnamon-active-window-highlight
+./install.sh
+</code></pre>
+<h2 id="mkv-tools">MKV Tools</h2>
+<pre><code class="language-bash">sudo apt install mkvtoolnix
+</code></pre>
+<h2 id="mediainfo">MediaInfo</h2>
+<pre><code class="language-bash">sudo apt install MediaInfo
 </code></pre>
 <h2 id="packet">Packet</h2>
 <blockquote>

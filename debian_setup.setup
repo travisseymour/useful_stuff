@@ -333,6 +333,22 @@ note: this is important for some of my backup scripts to the home nas
 bash:
 curl https://rclone.org/install.sh | sudo bash
 ---
+title: Add Active Window Highlight To Cinnamon Desktop
+note: After install, then disable and re-enable Active Window Highlight in System Settings → Extensions. 
+bash:
+git clone https://github.com/ClaudiuSchuster/cinnamon-active-window-highlight.git
+cd cinnamon-active-window-highlight
+./install.sh
+---
+title: MKV Tools
+bash:
+sudo apt install mkvtoolnix
+---
+title: MediaInfo
+bash:
+sudo apt install MediaInfo
+---
+
 
 
 
