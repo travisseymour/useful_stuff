@@ -365,7 +365,11 @@ sudo apt install MediaInfo
 
 
 
-
+---
+title: XnView MP3
+note: Allows batch actions (including rotate) on images
+bash:
+flatpak install flathub com.xnview.XnViewMP
 
 ---
 

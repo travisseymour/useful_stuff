@@ -449,6 +449,14 @@ sudo apt install mkvtoolnix
 sudo apt install MediaInfo
 ```
 
+## XnView MP3
+
+> Allows batch actions (including rotate) on images
+
+```bash
+flatpak install flathub com.xnview.XnViewMP
+```
+
 ## Packet
 
 > Network traffic analyzer with a modern GTK4 interface for monitoring and inspecting packets.
