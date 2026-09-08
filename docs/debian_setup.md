@@ -484,6 +484,28 @@ head -5 KEYDB.cfg
 vlc bluray:///media/[USER]/"[Disc Name Here]"
 ```
 
+## Setup NordVPN
+
+- Install
+```bash
+sh <(wget -qO - https://downloads.nordcdn.com/apps/linux/install.sh) -p nordvpn-gui
+```
+
+- Login
+```bash
+nordvpn login
+```
+
+- connect
+```bash
+nordvpn connect
+```
+
+- Start gui
+```bash
+nordvpn-gui
+```
+
 ## XnView MP3
 
 > Allows batch actions (including rotate) on images
