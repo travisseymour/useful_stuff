@@ -118,6 +118,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#setup-blu-ray-disc-reading-with-vlc">Setup Blu-Ray Disc Reading with VLC</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#setup-nordvpn">Setup NordVPN</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#xnview-mp3">XnView MP3</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#packet">Packet</a>
@@ -770,6 +772,27 @@ mv -f keydb.cfg KEYDB.cfg 2&gt;/dev/null   # only renames if it extracted lowerc
 </li>
 </ul>
 <pre><code class="language-bash">vlc bluray:///media/[USER]/&quot;[Disc Name Here]&quot;
+</code></pre>
+<h2 id="setup-nordvpn">Setup NordVPN</h2>
+<ul>
+<li>Install</li>
+</ul>
+<pre><code class="language-bash">sh &lt;(wget -qO - https://downloads.nordcdn.com/apps/linux/install.sh) -p nordvpn-gui
+</code></pre>
+<ul>
+<li>Login</li>
+</ul>
+<pre><code class="language-bash">nordvpn login
+</code></pre>
+<ul>
+<li>connect</li>
+</ul>
+<pre><code class="language-bash">nordvpn connect
+</code></pre>
+<ul>
+<li>Start gui</li>
+</ul>
+<pre><code class="language-bash">nordvpn-gui
 </code></pre>
 <h2 id="xnview-mp3">XnView MP3</h2>
 <blockquote>

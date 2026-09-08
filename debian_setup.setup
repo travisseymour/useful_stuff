@@ -378,6 +378,24 @@ vlc bluray:///media/[USER]/"[Disc Name Here]"
 
 ---
 
+title: Setup NordVPN
+item: Install
+bash:
+sh <(wget -qO - https://downloads.nordcdn.com/apps/linux/install.sh) -p nordvpn-gui
+item: Login
+bash:
+nordvpn login
+item: connect
+bash:
+nordvpn connect
+item: Start gui
+bash:
+nordvpn-gui
+
+---
+
+
+
 
 
 
