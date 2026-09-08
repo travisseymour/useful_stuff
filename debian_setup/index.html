@@ -116,6 +116,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#mediainfo">MediaInfo</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#setup-blu-ray-disc-reading-with-vlc">Setup Blu-Ray Disc Reading with VLC</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#xnview-mp3">XnView MP3</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#packet">Packet</a>
@@ -710,6 +712,64 @@ cd cinnamon-active-window-highlight
 </code></pre>
 <h2 id="mediainfo">MediaInfo</h2>
 <pre><code class="language-bash">sudo apt install MediaInfo
+</code></pre>
+<h2 id="setup-blu-ray-disc-reading-with-vlc">Setup Blu-Ray Disc Reading with VLC</h2>
+<ul>
+<li>
+<ol>
+<li>Install VLC and Blu-ray decryption libraries</li>
+</ol>
+</li>
+</ul>
+<pre><code class="language-bash">sudo apt update
+sudo apt install vlc libaacs0 libbdplus0 libbluray-bdj
+</code></pre>
+<ul>
+<li>
+<ol>
+<li>Set up the AACS config directory</li>
+</ol>
+</li>
+</ul>
+<pre><code class="language-bash">mkdir -p ~/.config/aacs
+cd ~/.config/aacs
+</code></pre>
+<ul>
+<li>
+<ol>
+<li>Download the community keydb (comes as a zip, despite the .cfg-style URL)</li>
+</ol>
+</li>
+</ul>
+<pre><code class="language-bash">wget &quot;http://fvonline-db.bplaced.net/fv_download.php?lang=eng&quot; -O KEYDB.zip
+</code></pre>
+<ul>
+<li>
+<ol>
+<li>Unzip and rename to the exact filename libaacs expects</li>
+</ol>
+</li>
+</ul>
+<pre><code class="language-bash">unzip -o KEYDB.zip
+mv -f keydb.cfg KEYDB.cfg 2&gt;/dev/null   # only renames if it extracted lowercase; harmless if not
+</code></pre>
+<ul>
+<li>
+<ol>
+<li>Sanity check — should show plain-text key entries, not binary/HTML</li>
+</ol>
+</li>
+</ul>
+<pre><code class="language-bash">head -5 KEYDB.cfg
+</code></pre>
+<ul>
+<li>
+<ol>
+<li>Test playback (adjust path/disc name)</li>
+</ol>
+</li>
+</ul>
+<pre><code class="language-bash">vlc bluray:///media/[USER]/&quot;[Disc Name Here]&quot;
 </code></pre>
 <h2 id="xnview-mp3">XnView MP3</h2>
 <blockquote>

@@ -348,6 +348,36 @@ title: MediaInfo
 bash:
 sudo apt install MediaInfo
 ---
+title: Setup Blu-Ray Disc Reading with VLC
+item: 1. Install VLC and Blu-ray decryption libraries
+bash:
+sudo apt update
+sudo apt install vlc libaacs0 libbdplus0 libbluray-bdj
+
+item: 2. Set up the AACS config directory
+bash:
+mkdir -p ~/.config/aacs
+cd ~/.config/aacs
+
+item: 3. Download the community keydb (comes as a zip, despite the .cfg-style URL)
+bash:
+wget "http://fvonline-db.bplaced.net/fv_download.php?lang=eng" -O KEYDB.zip
+
+item: 4. Unzip and rename to the exact filename libaacs expects
+bash:
+unzip -o KEYDB.zip
+mv -f keydb.cfg KEYDB.cfg 2>/dev/null   # only renames if it extracted lowercase; harmless if not
+
+item: 5. Sanity check — should show plain-text key entries, not binary/HTML
+bash:
+head -5 KEYDB.cfg
+
+item: 6. Test playback (adjust path/disc name)
+bash:
+vlc bluray:///media/[USER]/"[Disc Name Here]"
+
+---
+
 
 
 
