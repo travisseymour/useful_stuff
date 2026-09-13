@@ -120,6 +120,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#setup-nordvpn">Setup NordVPN</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#setup-jan-on-mintcinnamon">Setup Jan on Mint/cinnamon</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#xnview-mp3">XnView MP3</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#packet">Packet</a>
@@ -793,6 +795,36 @@ mv -f keydb.cfg KEYDB.cfg 2&gt;/dev/null   # only renames if it extracted lowerc
 <li>Start gui</li>
 </ul>
 <pre><code class="language-bash">nordvpn-gui
+</code></pre>
+<ul>
+<li>If you plan on using this with Tailscale, do this:</li>
+</ul>
+<pre><code class="language-bash">nordvpn allowlist add subnet 100.64.0.0/10
+</code></pre>
+<h2 id="setup-jan-on-mintcinnamon">Setup Jan on Mint/cinnamon</h2>
+<ul>
+<li>install Jan</li>
+<li>Fix Desktop Runner-part 1</li>
+</ul>
+<pre><code class="language-bash">cp ~/.local/share/flatpak/exports/share/applications/ai.jan.Jan.desktop ~/.local/share/applications/
+</code></pre>
+<ul>
+<li>Fix Desktop Runner-part 2</li>
+</ul>
+<pre><code class="language-bash">nano ~/.local/share/applications/ai.jan.Jan.desktop
+</code></pre>
+<ul>
+<li>
+<p>Replace the Exec= line with this:</p>
+<blockquote>
+<p>Exec=/usr/bin/flatpak run --env=GDK_BACKEND=x11 --env=WEBKIT_DISABLE_DMABUF_RENDERER=1 --env=WEBKIT_DISABLE_COMPOSITING_MODE=1 --env=GSK_RENDERER=cairo ai.jan.Jan</p>
+</blockquote>
+</li>
+<li>
+<p>Finish up</p>
+</li>
+</ul>
+<pre><code class="language-bash">update-desktop-database ~/.local/share/applications/
 </code></pre>
 <h2 id="xnview-mp3">XnView MP3</h2>
 <blockquote>
