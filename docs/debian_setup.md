@@ -506,6 +506,32 @@ nordvpn connect
 nordvpn-gui
 ```
 
+- If you plan on using this with Tailscale, do this:
+```bash
+nordvpn allowlist add subnet 100.64.0.0/10
+```
+
+## Setup Jan on Mint/cinnamon
+
+- install Jan
+- Fix Desktop Runner-part 1
+```bash
+cp ~/.local/share/flatpak/exports/share/applications/ai.jan.Jan.desktop ~/.local/share/applications/
+```
+
+- Fix Desktop Runner-part 2
+```bash
+nano ~/.local/share/applications/ai.jan.Jan.desktop
+```
+
+- Replace the Exec= line with this:
+> Exec=/usr/bin/flatpak run --env=GDK_BACKEND=x11 --env=WEBKIT_DISABLE_DMABUF_RENDERER=1 --env=WEBKIT_DISABLE_COMPOSITING_MODE=1 --env=GSK_RENDERER=cairo ai.jan.Jan
+
+- Finish up
+```bash
+update-desktop-database ~/.local/share/applications/
+```
+
 ## XnView MP3
 
 > Allows batch actions (including rotate) on images
